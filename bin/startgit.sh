@@ -1,6 +1,6 @@
 #!/bin/sh
 
-git init --separate-git .
+git init --separate-git-dir=.dotfiles.git .
 git remote add -f origin https://github.com/hubrigant/dotfiles
 git remote set-head origin -a
 git checkout master
