@@ -131,4 +131,4 @@ unset __conda_setup
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # zsh-syntax-highlighting must be sourced as the last thing in this file
-source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
