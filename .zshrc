@@ -2,10 +2,13 @@
 bindkey -v
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/miniconda3/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:$HOME/miniconda3/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-export ZSH="/home/pi/.oh-my-zsh"
+# Path to your oh-my-zsh installation
+# USERID=`whoami`
+# MY_HOME_DIR=`finger $USERID |awk -F: '{print $2}' |awk '{print $1}' |head -2 |tail -1`
+OH_MY_ZSH_SUFFIX="/.oh-my-zsh"
+export ZSH=$HOME$OH_MY_ZSH_SUFFIX
 
 export TERM=screen-256color
 
@@ -37,10 +40,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
+export LC_ALL="en_US.UTF-8"
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -70,7 +72,7 @@ POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%F{red} \Uf1d0 %f %F{yellow
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs vi_mode)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(anaconda status history ssh root_indicator)
---
+
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
 
@@ -109,3 +111,23 @@ alias txst="tmuxinator start traffic"
 
 # added by Miniconda3 3.16.0 installer
 export PATH="~/miniconda3/bin:$PATH"
+
+# added by Anaconda3 5.0.0 installer
+# export PATH="/anaconda3/bin:$PATH"  # commented out by conda initialize
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+   eval "$__conda_setup"
+else
+   if [ -f "/anaconda3/etc/profile.d/conda.sh" ]; then
+       . "/anaconda3/etc/profile.d/conda.sh"
+   else
+       export PATH="/anaconda3/bin:$PATH"
+   fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
