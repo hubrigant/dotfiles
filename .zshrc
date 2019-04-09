@@ -101,8 +101,6 @@ POWERLEVEL9K_ANACONDA_RIGHT_DELIMITER=""
 POWERLEVEL9K_ANACONDA_BACKGROUND='cyan'
 POWERLEVEL9K_ANACONDA_FOREGROUND='black'
 
-source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-
 alias zshconfig="code ~/.zshrc"
 alias ohmyzsh="code ~/.oh-my-zsh"
 alias dotfiles="git --git-dir=$HOME/.dotfiles.git"
@@ -131,3 +129,6 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# zsh-syntax-highlighting must be sourced as the last thing in this file
+source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
