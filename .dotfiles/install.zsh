@@ -16,12 +16,12 @@ rm ~/.zshrc
 rm ~/.bundle.vim
 
 # link new dot files
-ln ~/.dotfiles/dots/home/gitconfig               ~/.gitconfig
-ln ~/.dotfiles/dots/home/gitignore_global        ~/.gitignore_global
-ln ~/.dotfiles/dots/home/tmux.conf               ~/.tmux.conf
-ln ~/.dotfiles/dots/home/vimrc                   ~/.vimrc
-ln ~/.dotfiles/dots/home/zshrc                   ~/.zshrc
-ln ~/.dotfiles/dots/work/bundles.vim              ~/.bundles.vim
+ln ~/.dotfiles/dots/common/gitconfig                ~/.gitconfig
+ln ~/.dotfiles/dots/common/gitignore_global         ~/.gitignore_global
+ln ~/.dotfiles/dots/common/tmux.conf                ~/.tmux.conf
+ln ~/.dotfiles/dots/common/vimrc                    ~/.vimrc
+ln ~/.dotfiles/dots/common/zshrc                    ~/.zshrc
+ln ~/.dotfiles/dots/common/bundles.vim              ~/.bundles.vim
 
 # Do special to sync sublime settings on OS X
 # Since I don't use Sublime at the moment, commenting this out
