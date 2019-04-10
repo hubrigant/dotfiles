@@ -4,6 +4,7 @@ filetype off
 " Load plugins (with vundle)
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
+" Let Vundle mange itself, required
 Plugin 'VundleVim/Vundle.vim'
 
 
@@ -33,9 +34,6 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'elzr/vim-json'
 " Support for golang
 " Plugin 'fatih/vim-go'
-" Let Vundle mange itself, required
-" Plugin 'gmarik/Vundle.vim'
-Plugin 'VundleVim/Vundle.vim'
 " Match tag for html tags
 " Plugin 'gregsexton/MatchTag'
 " css3 syntax
