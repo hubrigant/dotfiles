@@ -3,8 +3,8 @@
 ### Copied from https://www.outcoldman.com/en/archive/2015/09/13/keep-your-sh-together/
 
 ## Change shell for current user to zsh
-if [ ! "$SHELL" = "/bin/zsh" ]; then
-    chsh -s /bin/zsh
+if [ ! "$SHELL" = "/usr/local/bin/zsh" ]; then
+    chsh -s /usr/local/bin/zsh
 fi
 
 # remove old dot files
@@ -21,7 +21,7 @@ ln ~/.dotfiles/dots/home/gitignore_global        ~/.gitignore_global
 ln ~/.dotfiles/dots/home/tmux.conf               ~/.tmux.conf
 ln ~/.dotfiles/dots/home/vimrc                   ~/.vimrc
 ln ~/.dotfiles/dots/home/zshrc                   ~/.zshrc
-ln ~/.dotfiles/dots/work/bundle.vim              ~/.bundle.vim
+ln ~/.dotfiles/dots/work/bundles.vim              ~/.bundles.vim
 
 # Do special to sync sublime settings on OS X
 # Since I don't use Sublime at the moment, commenting this out
