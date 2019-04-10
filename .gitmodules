@@ -6,3 +6,6 @@
 	path = nerd-fonts
 	url = https://github.com/ryanoasis/nerd-fonts.git
 	branch = master
+[submodule ".dotfiles/powerline-fonts"]
+	path = .dotfiles/powerline-fonts
+	url = https://github.com/powerline/fonts.git
