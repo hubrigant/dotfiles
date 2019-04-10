@@ -1,3 +1,36 @@
+# begin section 1
+# This first section adapted from https://www.outcoldman.com/en/archive/2015/09/13/keep-your-sh-together/
+
+# If I see that zsh takes to much time to load I profile what has been changed,
+# I want to see my shell ready in not more than 1 second
+PROFILING=${PROFILING:-true}
+if $PROFILING; then
+    zmodload zsh/zprof
+fi
+
+# Location of my dotfiles
+DOTFILES=$HOME/.dotfiles
+
+# if you want red dots to be displayed while waiting for completion
+COMPLETION_WAITING_DOTS="true"
+
+# change the size of history files
+export HISTSIZE=32768;
+export HISTFILESIZE=$HISTSIZE;
+
+
+# Shell
+export CLICOLOR=1
+export EDITOR='vim'
+export PAGER='less'
+
+# Remove the history (fc -l) command from the history list when invoked.
+setopt histnostore
+# Remove superfluous blanks from each command line being added to the history list.
+setopt histreduceblanks
+
+# end section 1
+
 # use vi bindings
 bindkey -v
 
