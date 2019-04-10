@@ -153,7 +153,7 @@ if [ ! $TERM = dumb ]; then
         zgen oh-my-zsh
 
         # these plugins only have utility on my raspis
-        if ! [[ `uname` = 'Darwin' ]]
+        if ! [[ $OSTYPE =~ 'darwin' ]]
             zgen oh-my-zsh plugins/debian
             zgen oh-my-zsh plugins/systemd
         fi
