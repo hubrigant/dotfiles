@@ -18,6 +18,28 @@ COMPLETION_WAITING_DOTS="true"
 export HISTSIZE=32768;
 export HISTFILESIZE=$HISTSIZE;
 
+# Autoenv https://github.com/Tarrasch/zsh-autoenv
+# Plugin to automatically modify path when it sees .env file
+AUTOENV_FILE_ENTER=.env
+AUTOENV_FILE_LEAVE=.env1
+
+# tmux plugin settings
+# this always starts tmux
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOSTART_ONCE=true
+ZSH_TMUX_FIXTERM=true
+ZSH_TMUX_AUTOQUIT=false # not sure what this does, may remove later
+
+# set DEFAULT_USER based on different environments
+if [[ $OSTYPE =~ 'darwin' ]]; then
+    if [[ `hostname` = 'WDXJW68539TD8' ]]; then
+        DEFAULT_USER=jw68539
+    else
+        DEFAULT_USER=jon
+    fi
+else
+    DEFAULT_USER=pi
+fi
 
 # Shell
 export CLICOLOR=1
