@@ -1,3 +1,6 @@
+" Load plugins via Vundle plugin manager
+source ~/.bundles.vim
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: 
 "       Amir Salihefendic — @amix3k
@@ -184,7 +187,7 @@ set lbr
 set tw=500
 
 set ai "Auto indent
-set si "Smart indent
+" set si "Smart indent
 set wrap "Wrap lines
 
 
