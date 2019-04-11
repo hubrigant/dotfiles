@@ -141,11 +141,29 @@ POWERLEVEL9K_CONTEXT_ALWAYS_SHOW=true
 POWERLEVEL9K_CONTEXT_ALWAYS_SHOW_USER=false
 
 # Command prompt
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir_joined vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status anaconda root_indicator vi_mode ssh)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir_joined vcs custom_git_repo_name)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status anaconda root_indicator vi_mode date ssh)
 
-# GitHub icon
+# GitHub prompt
 POWERLEVEL9K_VCS_GIT_GITHUB_ICON=$'\uF113'
+
+get_repo_name() {
+    if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) ]]; then
+        local repo_url=$(git remote show origin |grep URL |grep Fetch)
+        local url_end=$(echo $repo_url |awk -F'/' '{print $NF}')
+        if [[ $(echo $url_end |egrep -e 'git$') ]]; then
+            local repo_name=$(echo $url_end |awk -F'.' '{print $1}')
+        else
+            local repo_name=$url_end
+        fi
+    else
+        local repo_name=''
+    fi
+    echo -n $repo_name
+}
+
+#POWERLEVEL9K_CUSTOM_GIT_REPO_NAME="git remote show origin |grep Fetch |awk -F'/' '{print $NF}' |awk -F '.' '{print $1}'"
+POWERLEVEL9K_CUSTOM_GIT_REPO_NAME="get_repo_name"
 
 # dir
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
@@ -171,6 +189,7 @@ if [ ! $TERM = dumb ]; then
 
     # load zgen
     # source $DOTFILES/zgen/zgen.zsh
+    ZGEN_DIR=${DOTFILES}/zgen
     source ${HOME}/.zgen/zgen.zsh
 
     # configure zgen
