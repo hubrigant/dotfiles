@@ -57,8 +57,9 @@ Plugin 'majutsushi/tagbar'
 Plugin 'othree/javascript-libraries-syntax.vim'
 " Support for markdown
 Plugin 'plasticboy/vim-markdown'
-" Ag search, use it instead of grep
-Plugin 'rking/ag.vim'
+" Ag search, use it instead of grep; depricated, loading ack.vim instead
+" Plugin 'rking/ag.vim'
+Plugin 'mileszs/ack.vim'
 " File browser
 Plugin 'scrooloose/nerdtree'
 " Syntax linters

@@ -1,6 +1,11 @@
 " Load plugins via Vundle plugin manager
 source ~/.bundles.vim
 
+" Use ag with the ack.vim plugin
+if executable('ag')
+    let g:ackprg = 'ag --vimgrep'
+endif
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: 
 "       Amir Salihefendic — @amix3k
