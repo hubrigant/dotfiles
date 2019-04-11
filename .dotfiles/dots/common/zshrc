@@ -3,13 +3,21 @@
 
 # If I see that zsh takes to much time to load I profile what has been changed,
 # I want to see my shell ready in not more than 1 second
-PROFILING=${PROFILING:-true}
+PROFILING=${PROFILING:-false}
 if $PROFILING; then
     zmodload zsh/zprof
 fi
 
 # Location of my dotfiles
 DOTFILES=$HOME/.dotfiles
+
+# Update PATH
+path=(
+    /usr/local/{bin,sbin}
+    $DOTFILES/scripts
+    $path
+)
+typeset -U path
 
 # if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
@@ -166,7 +174,8 @@ if [ ! $TERM = dumb ]; then
     fi
 
     # load zgen
-    source $DOTFILES/zgen/zgen.zsh
+    # source $DOTFILES/zgen/zgen.zsh
+    source ${HOME}/.zgen/zgen.zsh
 
     # configure zgen
     if ! zgen saved; then
@@ -175,7 +184,7 @@ if [ ! $TERM = dumb ]; then
         zgen oh-my-zsh
 
         # these plugins only have utility on my raspis
-        if ! [[ $OSTYPE =~ 'darwin' ]]
+        if ! [[ $OSTYPE =~ 'darwin' ]]; then
             zgen oh-my-zsh plugins/debian
             zgen oh-my-zsh plugins/systemd
         fi
@@ -210,10 +219,10 @@ if [ ! $TERM = dumb ]; then
         zgen load Tarrasch/zsh-autoenv
         # https://github.com/zsh-users/zsh-completions
         zgen load zsh-users/zsh-completions src
-        
+
         # my own plugins
         zgen load $DOTFILES/plugins/aliases
-        zgen load $DOTFILES/plugins/dotfiles
+        # zgen load $DOTFILES/plugins/dotfiles
         zgen load $DOTFILES/plugins/my-brew
         zgen load $DOTFILES/plugins/tpm
 
