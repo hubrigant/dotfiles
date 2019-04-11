@@ -3,7 +3,7 @@
 	url = https://github.com/robbyrussell/oh-my-zsh.git
 	branch = master
 [submodule "nerd-fonts"]
-	path = nerd-fonts
+	path = .dotfiles/nerd-fonts
 	url = https://github.com/ryanoasis/nerd-fonts.git
 	branch = master
 [submodule ".dotfiles/powerline-fonts"]
