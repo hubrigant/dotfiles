@@ -10,74 +10,74 @@
 	path = .dotfiles/powerline-fonts
 	url = https://github.com/powerline/fonts.git
 [submodule ".vim/bundle/vim-json"]
-	path = .vim/bundle/vim-json
+	path = .dotfiles/vim/bundle/vim-json
 	url = https://github.com/elzr/vim-json.git
 [submodule ".vim/bundle/vim-trailing-whitespace"]
-	path = .vim/bundle/vim-trailing-whitespace
+	path = .dotfiles/vim/bundle/vim-trailing-whitespace
 	url = https://github.com/bronson/vim-trailing-whitespace.git
 [submodule ".vim/bundle/syntastic"]
-	path = .vim/bundle/syntastic
+	path = .dotfiles/vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
 [submodule ".vim/bundle/vim-yaml"]
-	path = .vim/bundle/vim-yaml
+	path = .dotfiles/vim/bundle/vim-yaml
 	url = https://github.com/avakhov/vim-yaml.git
 [submodule ".vim/bundle/vim-surround"]
-	path = .vim/bundle/vim-surround
+	path = .dotfiles/vim/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
 [submodule ".vim/bundle/vim-tmux-focus-events"]
-	path = .vim/bundle/vim-tmux-focus-events
+	path = .dotfiles/vim/bundle/vim-tmux-focus-events
 	url = https://github.com/tmux-plugins/vim-tmux-focus-events.git
 [submodule ".vim/bundle/vim-airline"]
-	path = .vim/bundle/vim-airline
+	path = .dotfiles/vim/bundle/vim-airline
 	url = https://github.com/bling/vim-airline.git
 [submodule ".vim/bundle/vim-tmux"]
-	path = .vim/bundle/vim-tmux
+	path = .dotfiles/vim/bundle/vim-tmux
 	url = https://github.com/tmux-plugins/vim-tmux.git
 [submodule ".vim/bundle/Dockerfile.vim"]
-	path = .vim/bundle/Dockerfile.vim
+	path = .dotfiles/vim/bundle/Dockerfile.vim
 	url = https://github.com/ekalinin/Dockerfile.vim.git
 [submodule ".vim/bundle/vim-javascript-syntax"]
-	path = .vim/bundle/vim-javascript-syntax
+	path = .dotfiles/vim/bundle/vim-javascript-syntax
 	url = https://github.com/jelera/vim-javascript-syntax.git
 [submodule ".vim/bundle/tagbar"]
-	path = .vim/bundle/tagbar
+	path = .dotfiles/vim/bundle/tagbar
 	url = https://github.com/majutsushi/tagbar.git
 [submodule ".vim/bundle/vim-gitgutter"]
-	path = .vim/bundle/vim-gitgutter
+	path = .dotfiles/vim/bundle/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
 [submodule ".vim/bundle/python-mode"]
-	path = .vim/bundle/python-mode
+	path = .dotfiles/vim/bundle/python-mode
 	url = https://github.com/klen/python-mode.git
 [submodule ".vim/bundle/javascript-libraries-syntax.vim"]
-	path = .vim/bundle/javascript-libraries-syntax.vim
+	path = .dotfiles/vim/bundle/javascript-libraries-syntax.vim
 	url = https://github.com/othree/javascript-libraries-syntax.vim.git
 [submodule ".vim/bundle/ag.vim"]
-	path = .vim/bundle/ag.vim
+	path = .dotfiles/vim/bundle/ag.vim
 	url = https://github.com/rking/ag.vim.git
 [submodule ".vim/bundle/vim-web-indent"]
-	path = .vim/bundle/vim-web-indent
+	path = .dotfiles/vim/bundle/vim-web-indent
 	url = https://github.com/lukaszb/vim-web-indent.git
 [submodule ".vim/bundle/vim-unimpaired"]
-	path = .vim/bundle/vim-unimpaired
+	path = .dotfiles/vim/bundle/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
 [submodule ".vim/bundle/vim-fugitive"]
-	path = .vim/bundle/vim-fugitive
+	path = .dotfiles/vim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
 [submodule ".vim/bundle/vim-markdown"]
-	path = .vim/bundle/vim-markdown
+	path = .dotfiles/vim/bundle/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
 [submodule ".vim/bundle/vim-css3-syntax"]
-	path = .vim/bundle/vim-css3-syntax
+	path = .dotfiles/vim/bundle/vim-css3-syntax
 	url = https://github.com/hail2u/vim-css3-syntax.git
 [submodule ".vim/bundle/vim-togglecursor"]
-	path = .vim/bundle/vim-togglecursor
+	path = .dotfiles/vim/bundle/vim-togglecursor
 	url = https://github.com/jszakmeister/vim-togglecursor.git
 [submodule ".vim/bundle/nerdtree"]
-	path = .vim/bundle/nerdtree
+	path = .dotfiles/vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
 [submodule ".vim/bundle/ack.vim"]
-	path = .vim/bundle/ack.vim
+	path = .dotfiles/vim/bundle/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
 [submodule ".vim/bundle/ctrlp.vim"]
-	path = .vim/bundle/ctrlp.vim
+	path = .dotfiles/vim/bundle/ctrlp.vim
 	url = https://github.com/kien/ctrlp.vim.git
