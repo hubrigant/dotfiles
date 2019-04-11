@@ -81,6 +81,3 @@
 [submodule ".vim/bundle/ctrlp.vim"]
 	path = .vim/bundle/ctrlp.vim
 	url = https://github.com/kien/ctrlp.vim.git
-[submodule ".zgen"]
-    path = .zgen
-    url = https://github.com/tarjoilija/zgen.git
