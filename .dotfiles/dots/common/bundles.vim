@@ -2,7 +2,7 @@ set nocompatible
 filetype off
 
 " Load plugins (with vundle)
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.dotfiles/vim/bundle/Vundle.vim
 call vundle#rc()
 " Let Vundle mange itself, required
 Plugin 'VundleVim/Vundle.vim'
