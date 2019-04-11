@@ -70,8 +70,9 @@ bindkey -v
 # Path to your oh-my-zsh installation
 # USERID=`whoami`
 # MY_HOME_DIR=`finger $USERID |awk -F: '{print $2}' |awk '{print $1}' |head -2 |tail -1`
-OH_MY_ZSH_SUFFIX="/.oh-my-zsh"
-export ZSH=$HOME$OH_MY_ZSH_SUFFIX
+# OH_MY_ZSH_SUFFIX="/.dotfiles/oh-my-zsh"
+# export ZSH=$HOME$OH_MY_ZSH_SUFFIX
+export ZSH=$HOME/.dotfiles/zgen/robbyrussell/oh-my-zsh-master
 
 export TERM=screen-256color
 
@@ -190,7 +191,7 @@ if [ ! $TERM = dumb ]; then
     # load zgen
     # source $DOTFILES/zgen/zgen.zsh
     ZGEN_DIR=${DOTFILES}/zgen
-    source ${HOME}/.zgen/zgen.zsh
+    source ${HOME}/.dotfiles/zgen/zgen.zsh
 
     # configure zgen
     if ! zgen saved; then

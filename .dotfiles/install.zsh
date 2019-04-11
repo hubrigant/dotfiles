@@ -61,3 +61,8 @@ if [[ ! `find ~/Library/Fonts/ -name "*Powerline*"` ]]; then
 else
     echo "Powerline fonts already installed"
 fi
+
+if [[ ! `find ~/.dotfiles -name zsh-autosuggestions` ]]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM}/plugins/zsh-autosuggestions
+fi
+
