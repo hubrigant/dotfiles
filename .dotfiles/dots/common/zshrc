@@ -309,4 +309,5 @@ if $PROFILING; then
 fi
 
 # zsh-syntax-highlighting must be sourced as the last thing in this file
-source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+zgen load zsh-users/zsh-syntax-highlighting
