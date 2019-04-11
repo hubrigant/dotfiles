@@ -28,6 +28,7 @@ else
 fi
 
 # remove old dot files
+echo "Removing old home-dir dot files"
 rm ~/.gitconfig
 rm ~/.gitignore_global
 rm ~/.tmux.conf
@@ -36,6 +37,7 @@ rm ~/.zshrc
 rm ~/.bundles.vim
 
 # link new dot files
+echo "Creating hard links of dot files"
 ln ~/.dotfiles/dots/common/gitconfig                ~/.gitconfig
 ln ~/.dotfiles/dots/common/gitignore_global         ~/.gitignore_global
 ln ~/.dotfiles/dots/common/tmux.conf                ~/.tmux.conf
