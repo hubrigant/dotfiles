@@ -54,6 +54,10 @@ ln ~/.dotfiles/dots/common/bundles.vim              ~/.bundles.vim
 #    ln -s ~/.dotfiles/settings/SublimeText/User      ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
 #fi
 
+# make sure we've got basic variables loaded
+if [ -s ${ZSH} ]; then
+    source $ZSH/oh-my-zsh.sh
+fi
 
 # install powerline fonts if they're not already installed
 if [[ ! `find ~/Library/Fonts/ -name "*Powerline*"` ]]; then
@@ -62,7 +66,17 @@ else
     echo "Powerline fonts already installed"
 fi
 
-if [[ ! `find ~/.dotfiles -name zsh-autosuggestions` ]]; then
+# install zsh-autosuggestion
+if [[ ! $(find ~/.dotfiles -name zsh-autosuggestions) ]]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM}/plugins/zsh-autosuggestions
+else
+    echo "zsh-autosuggestions already installed"
 fi
 
+# install powerlevel9k
+if [[ ! $(find ~/.dotfiles -name powerlevel9k) ]]; then
+    # git clone https://github.com/bhilburn/powerlevel9k.git ${ZSH_CUSTOM}/themes/powerlevel9k
+    zgen load bhilburn/powerlevel9k powerlevel9k
+else
+    echo "powerlevel9k theme already installed"
+fi
