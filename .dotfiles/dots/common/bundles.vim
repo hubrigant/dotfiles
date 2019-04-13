@@ -76,5 +76,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 " Good shortcuts for switching between different lists
 Plugin 'tpope/vim-unimpaired'
+" YouCompleteMe code completion
+Plugin 'Valloric/YouCompleteMe'
 call vundle#end()               " required
 filetype plugin indent on       " required
