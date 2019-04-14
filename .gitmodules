@@ -1,7 +1,3 @@
-[submodule ".oh-my-zsh"]
-	path = .oh-my-zsh.old
-	url = https://github.com/robbyrussell/oh-my-zsh.git
-	branch = master
 [submodule "nerd-fonts"]
 	path = .dotfiles/nerd-fonts
 	url = https://github.com/ryanoasis/nerd-fonts.git
