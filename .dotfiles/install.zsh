@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+# try to pull down submodules
+git submodule update --recursive --remote --merge
+
 # if zgen isn't installed, install it
 if [[ ! -d ~/.zgen ]]; then
     git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
@@ -40,10 +43,14 @@ rm ~/.bundles.vim
 echo "Creating hard links of dot files"
 ln ~/.dotfiles/dots/common/gitconfig                ~/.gitconfig
 ln ~/.dotfiles/dots/common/gitignore_global         ~/.gitignore_global
-ln ~/.dotfiles/dots/common/tmux.conf                ~/.tmux.conf
 ln ~/.dotfiles/dots/common/vimrc                    ~/.vimrc
 ln ~/.dotfiles/dots/common/zshrc                    ~/.zshrc
 ln ~/.dotfiles/dots/common/bundles.vim              ~/.bundles.vim
+if [[ $OSTYPE =~ 'darwin' ]]; then
+    ln ~/.dotfiles/dots/common/tmux-mac.conf        ~/.tmux.conf
+else
+    ln ~/.dotfiles/dots/common/tmux-pi.conf         ~/.tmux.conf
+fi
 
 # Do special to sync sublime settings on OS X
 # Since I don't use Sublime at the moment, commenting this out
@@ -60,8 +67,19 @@ if [ -s ${ZSH} ]; then
 fi
 
 # install powerline fonts if they're not already installed
-if [[ ! `find ~/Library/Fonts/ -name "*Powerline*"` ]]; then
+if [[ ! `find ~/Library/Fonts/ -name "*Powerline*" ||
+         find ~/.fonts -name "*Powerline*" ||
+         find /usr/share/fonts -name "*Powerline*"` ]]; then
     ~/.dotfiles/powerline-fonts/install.sh
+else
+    echo "Powerline fonts already installed"
+fi
+
+# install nerd fonts if they're not already installed
+if [[ ! `find ~/Library/Fonts/ -name "*Nerd*" ||
+         find ~/.fonts -name "*Nerd*" ||
+         find /usr/share/fonts -name "*Nerd*"` ]]; then
+    ~/.dotfiles/nerd-fonts/install.sh
 else
     echo "Powerline fonts already installed"
 fi
