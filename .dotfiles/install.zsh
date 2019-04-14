@@ -1,6 +1,7 @@
 #!/bin/zsh
 
 # try to pull down submodules
+git submodule --init
 git submodule update --recursive --remote --merge
 
 # if zgen isn't installed, install it
