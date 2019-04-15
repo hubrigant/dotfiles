@@ -47,11 +47,10 @@ ln ~/.dotfiles/dots/common/gitignore_global         ~/.gitignore_global
 ln ~/.dotfiles/dots/common/vimrc                    ~/.vimrc
 ln ~/.dotfiles/dots/common/zshrc                    ~/.zshrc
 ln ~/.dotfiles/dots/common/bundles.vim              ~/.bundles.vim
-if [[ $OSTYPE =~ 'darwin' ]]; then
-    ln ~/.dotfiles/dots/common/tmux-mac.conf        ~/.tmux.conf
-else
-    ln ~/.dotfiles/dots/common/tmux-pi.conf         ~/.tmux.conf
-fi
+ln ~/.dotfiles/dots/common/tmux.conf                ~/.tmux.conf
+
+# source the main zshrc to help ensure critical variables are set
+source ~/.zshrc
 
 # Do special to sync sublime settings on OS X
 # Since I don't use Sublime at the moment, commenting this out
@@ -66,6 +65,12 @@ fi
 if [ -s ${ZSH} ]; then
     source $ZSH/oh-my-zsh.sh
 fi
+
+# abort if $ZSH_CUSTOM isn't set
+if [! -s ${ZSH_CUSTOM} ]; then exit(1)
+
+# TODO: Font installation checks are noisy, throwing errors for find commands that look in
+# directories that don't exist. Need to fix.
 
 # install powerline fonts if they're not already installed
 if [[ ! `find ~/Library/Fonts/ -name "*Powerline*" ||
