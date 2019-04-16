@@ -7,6 +7,8 @@ I started down this path to synchronize my standard dotfiles across my UNIX-like
 ## Prerequisites
 This set of configurations are predicated on zsh and vim, and to a lesser extent iTerm2 (which is only available on macOS). Naturally, those need to be installed for this repo to be of much use. Some of the plugins use Python, so a current version of that is also needed.
 
+Some of the prompt modifications from oh-my-zsh and powerline9k rely on special glyph characters from either the [nerd fonts](https://nerdfonts.com/) or [powerline fonts](https://github.com/powerline/fonts) collections. These should be installed on your workstations if you intend to use this functionality in your prompts. My configurations do use some, particularly triangle separators between segments and git repo segments.
+
 ## Get zgen
 zgen is a plugin manager for zsh. Most of the zsh-level plugins are installed and managed by zgen, so it needs to be in place first:
 
