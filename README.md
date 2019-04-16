@@ -5,13 +5,15 @@ __At the time of this commit, these instructions are incomplete and I haven't wo
 I started down this path to synchronize my standard dotfiles across my UNIX-like computers, which are macOS and raspbian based. I've spent quite a bit of time tuning these to my liking, and they reflect my particular set of interests (i.e. I do much of my programming in Python and not much in other languages, so my vim configurations reflect this).
 
 ## Prerequisites
-This set of configurations are predicated on [zsh](https://www.zsh.org/) and [vim](https://www.vim.org/), and to a lesser extent [iTerm2](https://iterm2.com/) (which is only available on macOS). Naturally, those need to be installed for this repo to be of much use. Some of the plugins use [Python](https://www.python.org/), so a current version of that is also needed. While most modern operating systems include versions of zsh, vim, and python, upgrading to the most recent stable version of each is recommended.
+Obviously, this repo depends on using [git](https://git-scm.com/), so make sure you have a current release installed.
+
+This set of configurations are predicated on [zsh](https://www.zsh.org/) and [vim](https://www.vim.org/), and to a lesser extent [iTerm2](https://iterm2.com/) (which is only available on macOS). Naturally, those need to be installed for this repo to be of much use. Some of the plugins use [Python](https://www.python.org/), so a current version of that is also needed. As with git, most modern operating systems include versions of zsh, vim, and python, upgrading to the most recent stable version of each is recommended.
 
 Some of the prompt modifications from oh-my-zsh and powerline9k rely on special glyph characters from either the [nerd fonts](https://nerdfonts.com/) or [powerline fonts](https://github.com/powerline/fonts) collections. These should be installed on your workstations if you intend to use this functionality in your prompts. My configurations do use some, particularly triangle separators between segments and git repo segments.
 
 If you have run through all or part of this process and backed everything off, you'll likely need to unset the ZSH environment variable by typing ```unset ZSH```
 
-Obviously, this repo depends on using [git]()
+The YouCompleteMe core library build depends on [cmake](https://cmake.org/). If it's not installed already, use your operating system's package manager (e.g. [yum](http://yum.baseurl.org/) or [apt-get](https://wiki.debian.org/Apt) on most Linuxes, [homebrew](https://brew.sh/) on macOS, etc.)
 
 ## Get zgen
 [zgen](https://github.com/tarjoilija/zgen) is a plugin manager for zsh. Most of the zsh-level plugins are installed and managed by zgen, so it needs to be in place first:
@@ -37,12 +39,6 @@ ln ~/.dotfiles/dots/common/zshrc ~/.zshrc
 
 and then activate the new configuration by typing ```source ~/.zshrc```. This should trigger zgen to pull down the plugins listed in the zshrc file.
 
-## Configure zgen as a submodule
-I don't want to be redistributing other people's code, so the external parts should be configured as submodules.
-
-```
-git submodule init
-```
 
 ## Get vim plugins
 The [Vundle vim plugin manager] should be installed by zgen. Once it's available, tell Vundle to install the vim plugins by entering the command ```vim +PluginInstall +qall```
@@ -56,3 +52,13 @@ cd ~/.vim/bundle/Vundle.vim/YouCompleteMe
 ```
 ## Update .gitignore
 Since this repo only manages dotfiles for zsh, oh-my-zsh, zgen, vim, and Vundle, the rest of the files and directories in your home directory need to be excluded by updating the [.gitignore](https://git-scm.com/docs/gitignore) file in the root of your home directory.
+
+## Configure submodules
+I don't want to be redistributing other people's code, so the external parts, such as Vundle and zgen, should be configured as submodules.
+
+```
+git submodule init
+```
+
+## Local machine-specific configurations
+If you have configurations that are specific to a particular machine, such as OS-dependent things, they can be stored in the file ```.machinerc`` that is not tracked as part of this repo. Naturally, this file should be listed in your .gitignore.
