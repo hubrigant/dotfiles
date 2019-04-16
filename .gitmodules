@@ -1,6 +1,6 @@
 [submodule ".vim/bundle/Vundle.vim"]
-	path = .dotfiles/vim/bundle/Vundle.vim
+	path = .vim/bundle/Vundle.vim
 	url = https://github.com/VundleVim/Vundle.vim.git
 [submodule ".zgen"]
-	path = .dotfiles/zgen
+	path = .zgen
 	url = https://github.com/tarjoilija/zgen.git
