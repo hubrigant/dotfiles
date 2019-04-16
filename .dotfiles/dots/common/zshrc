@@ -189,9 +189,8 @@ if [ ! $TERM = dumb ]; then
     fi
 
     # load zgen
-    # source $DOTFILES/zgen/zgen.zsh
-    ZGEN_DIR=${DOTFILES}/zgen
-    source ${HOME}/.dotfiles/zgen/zgen.zsh
+    ZGEN_DIR=${HOME}/.zgen
+    source ${ZGEN_DIR}/zgen.zsh
 
     # configure zgen
     if ! zgen saved; then
