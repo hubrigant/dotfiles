@@ -15,12 +15,7 @@ If you have run through all or part of this process and backed everything off, y
 
 The YouCompleteMe core library build depends on [cmake](https://cmake.org/). If it's not installed already, use your operating system's package manager (e.g. [yum](http://yum.baseurl.org/) or [apt-get](https://wiki.debian.org/Apt) on most Linuxes, [homebrew](https://brew.sh/) on macOS, etc.)
 
-## Get zgen
-[zgen](https://github.com/tarjoilija/zgen) is a plugin manager for zsh. Most of the zsh-level plugins are installed and managed by zgen, so it needs to be in place first:
-
-```
-git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
-```
+The terminal multiplexer [tmux](https://github.com/tmux/tmux/wiki) is an integral part of this config. It also needs to be installed prior to this process.
 
 ## Clone this repo
 To clone the repo into your existing home directory:
@@ -31,10 +26,28 @@ git remote add -t \* -f origin https://github.com/hubrigant/dotfiles.git
 git checkout master
 ```
 
-Once checked out, create a hard link from the repo zshrc to .zshrc in your home directory:
+## Create links to managed dotfiles
+```
+rm ~/.gitconfig
+rm ~/.gitignore_global
+rm ~/.tmux.conf
+rm ~/.vimrc
+rm ~/.zshrc
+rm ~/.bundles.vim
+
+ln ~/.dotfiles/dots/common/gitconfig                ~/.gitconfig
+ln ~/.dotfiles/dots/common/gitignore_global         ~/.gitignore_global
+ln ~/.dotfiles/dots/common/vimrc                    ~/.vimrc
+ln ~/.dotfiles/dots/common/zshrc                    ~/.zshrc
+ln ~/.dotfiles/dots/common/bundles.vim              ~/.bundles.vim
+ln ~/.dotfiles/dots/common/tmux.conf ~/.tmux.conf
+```
+
+## Get zgen
+[zgen](https://github.com/tarjoilija/zgen) is a plugin manager for zsh. Most of the zsh-level plugins are installed and managed by zgen, so it needs to be in place first:
 
 ```
-ln ~/.dotfiles/dots/common/zshrc ~/.zshrc
+git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 ```
 
 and then activate the new configuration by typing ```source ~/.zshrc```. This should trigger zgen to pull down the plugins listed in the zshrc file.
