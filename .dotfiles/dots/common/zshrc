@@ -206,7 +206,8 @@ if [ ! $TERM = dumb ]; then
 
         # list of plugins from zsh I use
         # see https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins
-        zgen oh-my-zsh plugins/brew
+        # The brew plugin is no longer packaged
+        # zgen oh-my-zsh plugins/brew
         zgen oh-my-zsh plugins/docker
         zgen oh-my-zsh plugins/git
         zgen oh-my-zsh plugins/git-extras
