@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-if [ ! -d "${HOME}/.dotfiles" ]; then
+if [ ! -d "${DOTFILES_DIR}" ]; then
     echo "The dotfiles repo has not been cloned. Please do so now and try again."
     exit(1)
 fi
@@ -39,6 +39,9 @@ if [ ! $(which cmake) ]; then
     exit(1)
 fi
 
+# looks like the pre-reqs are there, let's get going!
+DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
 echo "Backing up old home-dir dot files before creating links"
 mv ${HOME}/.gitconfig           ${HOME}/.gitconfig.old
 mv ${HOME}/.gitignore_global    ${HOME}/.gitignore_global.old
@@ -49,12 +52,12 @@ mv ${HOME}/.bundles.vim         ${HOME}/.bundles.vim.old
 
 # link new dot files
 echo "Creating hard links of dot files"
-ln ${HOME}/.dotfiles/dots/common/gitconfig                ${HOME}/.gitconfig
-ln ${HOME}/.dotfiles/dots/common/gitignore_global         ${HOME}/.gitignore_global
-ln ${HOME}/.dotfiles/dots/common/vimrc                    ${HOME}/.vimrc
-ln ${HOME}/.dotfiles/dots/common/zshrc                    ${HOME}/.zshrc
-ln ${HOME}/.dotfiles/dots/common/bundles.vim              ${HOME}/.bundles.vim
-ln ${HOME}/.dotfiles/dots/common/tmux.conf                ${HOME}/.tmux.conf
+ln ${DOTFILES_DIR}/config_masters/gitconfig                ${HOME}/.gitconfig
+ln ${DOTFILES_DIR}/config_masters/gitignore_global         ${HOME}/.gitignore_global
+ln ${DOTFILES_DIR}/config_masters/vimrc                    ${HOME}/.vimrc
+ln ${DOTFILES_DIR}/config_masters/zshrc                    ${HOME}/.zshrc
+ln ${DOTFILES_DIR}/config_masters/bundles.vim              ${HOME}/.bundles.vim
+ln ${DOTFILES_DIR}/config_masters/tmux.conf                ${HOME}/.tmux.conf
 
 echo "Installing zgen plugin manager."
 git clone https://github.com/tarjoilija/zgen.git ${HOME}/.zgen
@@ -136,5 +139,3 @@ if [ ! ${NERD_FONTS_FOUND} ]; then
 fi
 
 echo "Automated installation complete."
-echo ""
-echo "If not already installed on your workstation(s), you should install the Nerd Fonts and Powerline Fonts collections."
