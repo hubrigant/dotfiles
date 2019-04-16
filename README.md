@@ -14,7 +14,7 @@ zgen is a plugin manager for zsh. Most of the zsh-level plugins are installed an
 git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 ```
 
-## Get the repo cloned
+## Clone this repo
 To clone the repo into your existing home directory:
 
 ```
