@@ -23,7 +23,7 @@ if [ ! $(which python) ]; then
     echo "Please install it and try again."
 fi
 
-if [ ! "$SHELL" =~ "zsh" ]; then
+if [[ ! $(grep zsh ${SHELL}) ]]; then
     chsh -s $(which zsh)
 else
     echo "ZSH is already my shell, continuing."
