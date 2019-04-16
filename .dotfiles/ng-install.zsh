@@ -73,9 +73,16 @@ cd ${HOME}
 echo "Configuring submodules."
 git submodule init
 
-echo "Creating .machinerc to hold configs specific to this system."
-touch ${HOME}/.machinerc
-echo ".machinerc" >> ${HOME}/.gitignore
+# Create .machinerc if it doesn't already exist
+if [ ! -f ${HOME}/.machinerc ]; then
+    echo "Creating .machinerc to hold configs specific to this system."
+    touch ${HOME}/.machinerc
+fi
+
+# If not already done, add .machinerc to .gitignore
+if [ ! $(grep machinerc ${HOME}/.gitignore) ]; then
+    echo ".machinerc" >> ${HOME}/.gitignore
+fi
 
 # Look for installation of Nerd Fonts and warn if not found
 if [ -d ${HOME}/Library/Fonts ]; then
