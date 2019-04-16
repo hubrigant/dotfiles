@@ -5,7 +5,7 @@ __At the time of this commit, these instructions are incomplete and I haven't wo
 I started down this path to synchronize my standard dotfiles across my UNIX-like computers, which are macOS and raspbian based. I've spent quite a bit of time tuning these to my liking, and they reflect my particular set of interests (i.e. I do much of my programming in Python and not much in other languages, so my vim configurations reflect this).
 
 ## Prerequisites
-This set of configurations are predicated on zsh and vim, and to a lesser extent iTerm2 (which is only available on macOS). Naturally, those need to be installed for this repo to be of much use.
+This set of configurations are predicated on zsh and vim, and to a lesser extent iTerm2 (which is only available on macOS). Naturally, those need to be installed for this repo to be of much use. Some of the plugins use Python, so a current version of that is also needed.
 
 ## Get zgen
 zgen is a plugin manager for zsh. Most of the zsh-level plugins are installed and managed by zgen, so it needs to be in place first:
@@ -34,4 +34,10 @@ I don't want to be redistributing other people's code, so the external parts sho
 
 ```
 git submodule init
+```
+
+## Build the YCM library
+```
+cd ~/.vim/bundle/Vundle.vim/YouCompleteMe
+./install.py
 ```
