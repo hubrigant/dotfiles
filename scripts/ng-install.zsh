@@ -1,13 +1,20 @@
 #!/usr/bin/env zsh
 
+DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+echo ${DOTFILES_DIR}
+
 if [ ! -d "${DOTFILES_DIR}" ]; then
     echo "The dotfiles repo has not been cloned. Please do so now and try again."
     exit(1)
+else
+    echo "The dotfiles repo exists, good."
 fi
 
 if [ ! $(which git) ]; then
     echo "A git client is required. Please install and try again."
     exit(1)
+else
+    echo "You have a git cleint. Good."
 fi
 
 if [ ! $(which vim) ]; then
@@ -15,12 +22,16 @@ if [ ! $(which vim) ]; then
     echo ""
     echo "Please install it and try again."
     exit(1)
+else
+	echo "You have vim. Good."
 fi
 
 if [ ! $(which python) ]; then
     echo "Python is needed for some plugins and functionality."
     echo ""
     echo "Please install it and try again."
+else
+	echo "You have python. Good,"
 fi
 
 if [[ ! $(grep zsh ${SHELL}) ]]; then
@@ -29,38 +40,75 @@ else
     echo "ZSH is already my shell, continuing."
 fi
 
-if $ZSH; then
+if [ -v $ZSH ]; then
     echo "ZSH environment variable set. Unsetting to prevent incorrect oh-my-zsh installation and config."
     unset ZSH
+else
+	echo "The ZSH environment variable isn't set. Good."
 fi
 
 if [ ! $(which cmake) ]; then
     echo "No cmake found. Please install and try again."
     exit(1)
+else
+	echo "You have cmake installed. Good."
 fi
 
 # looks like the pre-reqs are there, let's get going!
-DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+if [ ! -d ${HOME}/dotfiles.bkup ]; then
+    mkdir ${HOME}/dotfiles.bkup
+fi
 
 echo "Backing up old home-dir dot files before creating links"
-mv ${HOME}/.gitconfig           ${HOME}/.gitconfig.old
-mv ${HOME}/.gitignore_global    ${HOME}/.gitignore_global.old
-mv ${HOME}/.tmux.conf           ${HOME}/.tmux.conf.old
-mv ${HOME}/.vimrc               ${HOME}/.vimrc.old
-mv ${HOME}/.zshrc               ${HOME}/.zshrc.old
-mv ${HOME}/.bundles.vim         ${HOME}/.bundles.vim.old
+if [ $(diff ${HOME}/dotfiles.bkup/.zshrc ${HOME}/.zshrc) ]; then
+    mv ${HOME}/.gitconfig           ${HOME}/dotfiles.bkup
+    mv ${HOME}/.gitignore_global    ${HOME}/dotfiles.bkup
+    mv ${HOME}/.tmux.conf           ${HOME}/dotfiles.bkup
+    mv ${HOME}/.vimrc               ${HOME}/dotfiles.bkup
+    mv ${HOME}/.zshrc               ${HOME}/dotfiles.bkup
+    mv ${HOME}/.bundles.vim         ${HOME}/dotfiles.bkup
+fi
+
+echo "Removing old home-dir dot files."
+if [ -f ${HOME}/.zshrc ]; then
+    rm ${HOME}/.gitconfig
+    rm ${HOME}/.gitignore_global
+    rm ${HOME}/.tmux.conf
+    rm ${HOME}/.vimrc
+    rm ${HOME}/.zshrc
+    rm ${HOME}/.bundles.vim
+fi
 
 # link new dot files
 echo "Creating hard links of dot files"
-ln ${DOTFILES_DIR}/config_masters/gitconfig                ${HOME}/.gitconfig
-ln ${DOTFILES_DIR}/config_masters/gitignore_global         ${HOME}/.gitignore_global
-ln ${DOTFILES_DIR}/config_masters/vimrc                    ${HOME}/.vimrc
-ln ${DOTFILES_DIR}/config_masters/zshrc                    ${HOME}/.zshrc
-ln ${DOTFILES_DIR}/config_masters/bundles.vim              ${HOME}/.bundles.vim
-ln ${DOTFILES_DIR}/config_masters/tmux.conf                ${HOME}/.tmux.conf
+ln ${DOTFILES_DIR}/config_masters/gitconfig          ${HOME}/.gitconfig
+ln ${DOTFILES_DIR}/config_masters/gitignore_global   ${HOME}/.gitignore_global
+ln ${DOTFILES_DIR}/config_masters/vimrc              ${HOME}/.vimrc
+ln ${DOTFILES_DIR}/config_masters/zshrc              ${HOME}/.zshrc
+ln ${DOTFILES_DIR}/config_masters/bundles.vim        ${HOME}/.bundles.vim
+ln ${DOTFILES_DIR}/config_masters/tmux.conf          ${HOME}/.tmux.conf
 
 echo "Installing zgen plugin manager."
-git clone https://github.com/tarjoilija/zgen.git ${HOME}/.zgen
+if [ -d ${HOME}/.zgen ]; then
+    echo "You already have a ~/.zgen directory."
+else
+    git clone https://github.com/tarjoilija/zgen.git ${HOME}/.zgen
+fi
+
+ZGEN=${HOME}/.zgen
+
+echo "Linking the powerlevel9k theme into the oh-my-zsh plugin custom themes path."
+if [[ ( -d ${ZGEN}/bhilburn/powerlevel9k-master && -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/ ) ]]; then
+    ln -s ${ZGEN}/bhilburn/powerlevel9k-master ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/powerlevel9k
+else
+    echo "Oops, couldn't find the right way to link the powerlevel9k theme."
+    exit(1)
+fi
+
+
+echo "Installing zsh-autosuggestions"
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/plugins/zsh-auatosuggestions
 
 echo "Activating new configurations to trigger zgen plugin installs."
 source ${HOME}/.zshrc
@@ -69,9 +117,11 @@ echo "Installing Vundle plugins."
 vim +PluginInstall +qall
 
 echo "Building the YouCompleteMe core library."
-cd ${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe
-python install.py
-cd ${HOME}
+if [ ! -f "YouCompleteMe/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
+    cd ${HOME}/.vim/bundle/YouCompleteMe
+    python install.py
+    cd -
+fi
 
 echo "Configuring submodules."
 git submodule init
@@ -83,59 +133,8 @@ if [ ! -f ${HOME}/.machinerc ]; then
 fi
 
 # If not already done, add .machinerc to .gitignore
-if [ ! $(grep machinerc ${HOME}/.gitignore) ]; then
-    echo ".machinerc" >> ${HOME}/.gitignore
-fi
-
-# Look for installation of Nerd Fonts and warn if not found
-if [ -d ${HOME}/Library/Fonts ]; then
-    if [ $(find ${HOME}/Library/Fonts -name "*Nerd*") ]; then
-        NERD_FONTS_FOUND = 1
-    fi
-fi
-
-if [-d ${HOME}/.fonts ]; then
-    if [ $(find ${HOME}/.fonts -name "*Nerd*") ]; then
-        NERD_FONTS_FOUND = 1
-    fi
-fi
-
-if [ -d /usr/share/fonts]; then
-    if [ $(find /usr/share/fonts -name "*Nerd*") ]; then
-        NERD_FONTS_FOUND = 1
-    fi
-fi
-
-if [ ! ${NERD_FONTS_FOUND} ]; then
-    echo "Nerd Fonts collection doesn't appear to be installed."
-    echo "This may not be a problem if this system is running headless."
-    echo "If not, they should be installed."
-fi
-
-
-# Look for installation of Powerline Fonts and warn if not found
-if [ -d ${HOME}/Library/Fonts ]; then
-    if [ $(find ${HOME}/Library/Fonts -name "*Powerline*") ]; then
-        NERD_FONTS_FOUND = 1
-    fi
-fi
-
-if [-d ${HOME}/.fonts ]; then
-    if [ $(find ${HOME}/.fonts -name "*Powerline*") ]; then
-        NERD_FONTS_FOUND = 1
-    fi
-fi
-
-if [ -d /usr/share/fonts]; then
-    if [ $(find /usr/share/fonts -name "*Powerline*") ]; then
-        NERD_FONTS_FOUND = 1
-    fi
-fi
-
-if [ ! ${NERD_FONTS_FOUND} ]; then
-    echo "Powerline Fonts collection doesn't appear to be installed."
-    echo "This may not be a problem if this system is running headless."
-    echo "If not, they should be installed."
-fi
+# if [ ! $(grep machinerc ${HOME}/.gitignore) ]; then
+#     echo ".machinerc" >> ${HOME}/.gitignore
+# fi
 
 echo "Automated installation complete."

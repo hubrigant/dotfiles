@@ -72,7 +72,7 @@ bindkey -v
 # MY_HOME_DIR=`finger $USERID |awk -F: '{print $2}' |awk '{print $1}' |head -2 |tail -1`
 # OH_MY_ZSH_SUFFIX="/.dotfiles/oh-my-zsh"
 # export ZSH=$HOME$OH_MY_ZSH_SUFFIX
-export ZSH=$HOME/.dotfiles/zgen/robbyrussell/oh-my-zsh-master
+export ZSH=${HOME}/.zgen/robbyrussell/oh-my-zsh-master
 
 export TERM=screen-256color
 
@@ -235,6 +235,7 @@ if [ ! $TERM = dumb ]; then
         zgen load Tarrasch/zsh-autoenv
         # https://github.com/zsh-users/zsh-completions
         zgen load zsh-users/zsh-completions src
+        zgen load zsh-users/zsh-autosuggestions
 
         # my own plugins
         zgen load $DOTFILES/plugins/aliases
