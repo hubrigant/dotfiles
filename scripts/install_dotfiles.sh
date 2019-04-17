@@ -102,7 +102,7 @@ ln ${DOTFILES_DIR}/config_masters/vimrc              ${HOME}/.vimrc
 ln ${DOTFILES_DIR}/config_masters/zshrc              ${HOME}/.zshrc
 ln ${DOTFILES_DIR}/config_masters/bundles.vim        ${HOME}/.bundles.vim
 ln ${DOTFILES_DIR}/config_masters/tmux.conf          ${HOME}/.tmux.conf
-ln ${DOTFILES_DIR}/config_masters/zgen.conf          ${HOME}/.zgen.conf
+ln ${DOTFILES_DIR}/config_masters/zgen               ${HOME}/.zgen.conf
 
 echo "Installing zgen plugin manager."
 if [ -d ${HOME}/.zgen ]; then
