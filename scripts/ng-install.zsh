@@ -68,6 +68,7 @@ if [ $(diff ${HOME}/dotfiles.bkup/.zshrc ${HOME}/.zshrc) ]; then
     mv ${HOME}/.vimrc               ${HOME}/dotfiles.bkup
     mv ${HOME}/.zshrc               ${HOME}/dotfiles.bkup
     mv ${HOME}/.bundles.vim         ${HOME}/dotfiles.bkup
+    mv ${HOME}/.zgen.conf           ${HOME}/dotfiles.bkup
 fi
 
 echo "Removing old home-dir dot files."
@@ -78,6 +79,7 @@ if [ -f ${HOME}/.zshrc ]; then
     rm ${HOME}/.vimrc
     rm ${HOME}/.zshrc
     rm ${HOME}/.bundles.vim
+    rm ${HOME}/.zgen.conf
 fi
 
 # link new dot files
@@ -88,6 +90,7 @@ ln ${DOTFILES_DIR}/config_masters/vimrc              ${HOME}/.vimrc
 ln ${DOTFILES_DIR}/config_masters/zshrc              ${HOME}/.zshrc
 ln ${DOTFILES_DIR}/config_masters/bundles.vim        ${HOME}/.bundles.vim
 ln ${DOTFILES_DIR}/config_masters/tmux.conf          ${HOME}/.tmux.conf
+ln ${DOTFILES_DIR}/config_masters/zgen.conf          ${HOME}/.zgen.conf
 
 echo "Installing zgen plugin manager."
 if [ -d ${HOME}/.zgen ]; then
@@ -95,6 +98,9 @@ if [ -d ${HOME}/.zgen ]; then
 else
     git clone https://github.com/tarjoilija/zgen.git ${HOME}/.zgen
 fi
+
+echo "Loading zgen configuration to trigger plugin installs"
+source ${HOME}/.zgen.conf
 
 ZGEN=${HOME}/.zgen
 
@@ -105,7 +111,6 @@ else
     echo "Oops, couldn't find the right way to link the powerlevel9k theme."
     exit(1)
 fi
-
 
 echo "Installing zsh-autosuggestions"
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/plugins/zsh-auatosuggestions
