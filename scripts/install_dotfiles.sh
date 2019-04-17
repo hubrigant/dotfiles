@@ -1,7 +1,19 @@
 #!/usr/bin/env zsh
 
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-echo ${DOTFILES_DIR}
+
+if [[ ${DOTFILES_DIR}=${HOME} ]]; then
+	echo "Getting DOTFILES_DIR from execution path didn't work."
+	if [[ -d ${HOME}/.dotfiles && -f ${HOME}/.dotfiles/config_masters/zshrc ]]; then
+		echo "Looks like you cloned repo into standard location, so I'll use that."
+		DOTFILES_DIR=${HOME}/.dotfiles
+	else
+		echo "You didn't clone the repo to the standard location. Searching for it."
+		echo "This may take a moment."
+		DOTFILES_DIR=$(find ${HOME}/.* -name install_dotfiles.zsh|sed 's/\/scripts\/install_dotfiles.zsh//')
+	fi
+fi
+echo "I think the repo is in ${DOTFILES_DIR}."
 
 if [ ! -d "${DOTFILES_DIR}" ]; then
     echo "The dotfiles repo has not been cloned. Please do so now and try again."
@@ -115,7 +127,7 @@ fi
 echo "Installing zsh-autosuggestions"
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/plugins/zsh-auatosuggestions
 
-echo "Activating new configurations to trigger zgen plugin installs."
+echo "Activating new configurations."
 source ${HOME}/.zshrc
 
 echo "Installing Vundle plugins."
@@ -130,6 +142,9 @@ fi
 
 echo "Installing autojump"
 brew install autojump
+
+echo "Installing tmux plugin manager"
+git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm
 
 echo "Configuring submodules."
 git submodule init
