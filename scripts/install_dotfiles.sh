@@ -81,6 +81,7 @@ if [ $(diff ${HOME}/dotfiles.bkup/.zshrc ${HOME}/.zshrc) ]; then
     mv ${HOME}/.zshrc               ${HOME}/dotfiles.bkup
     mv ${HOME}/.bundles.vim         ${HOME}/dotfiles.bkup
     mv ${HOME}/.zgen.conf           ${HOME}/dotfiles.bkup
+    mv ${HOME}/global_extra_conf.py ${HOME}/dotfiles.bkup
 fi
 
 echo "Removing old home-dir dot files."
@@ -92,17 +93,19 @@ if [ -f ${HOME}/.zshrc ]; then
     rm ${HOME}/.zshrc
     rm ${HOME}/.bundles.vim
     rm ${HOME}/.zgen.conf
+    rm ${HOME}/global_extra_conf.py
 fi
 
 # link new dot files
 echo "Creating hard links of dot files"
-ln ${DOTFILES_DIR}/config_masters/gitconfig          ${HOME}/.gitconfig
-ln ${DOTFILES_DIR}/config_masters/gitignore_global   ${HOME}/.gitignore_global
-ln ${DOTFILES_DIR}/config_masters/vimrc              ${HOME}/.vimrc
-ln ${DOTFILES_DIR}/config_masters/zshrc              ${HOME}/.zshrc
-ln ${DOTFILES_DIR}/config_masters/bundles.vim        ${HOME}/.bundles.vim
-ln ${DOTFILES_DIR}/config_masters/tmux.conf          ${HOME}/.tmux.conf
-ln ${DOTFILES_DIR}/config_masters/zgen               ${HOME}/.zgen.conf
+ln ${DOTFILES_DIR}/config_masters/gitconfig             ${HOME}/.gitconfig
+ln ${DOTFILES_DIR}/config_masters/gitignore_global      ${HOME}/.gitignore_global
+ln ${DOTFILES_DIR}/config_masters/vimrc                 ${HOME}/.vimrc
+ln ${DOTFILES_DIR}/config_masters/zshrc                 ${HOME}/.zshrc
+ln ${DOTFILES_DIR}/config_masters/bundles.vim           ${HOME}/.bundles.vim
+ln ${DOTFILES_DIR}/config_masters/tmux.conf             ${HOME}/.tmux.conf
+ln ${DOTFILES_DIR}/config_masters/zgen                  ${HOME}/.zgen.conf
+ln ${DOTFILES_DIR}/config_masters/global_extra_conf.py  ${HOME}/global_extra_conf.py
 
 echo "Installing zgen plugin manager."
 if [ -d ${HOME}/.zgen ]; then
