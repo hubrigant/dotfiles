@@ -123,6 +123,9 @@ if [ ! -f "YouCompleteMe/third_party/ycmd/third_party/cregex/regex_3/_regex.so" 
     cd -
 fi
 
+echo "Installing autojump"
+brew install autojump
+
 echo "Configuring submodules."
 git submodule init
 
