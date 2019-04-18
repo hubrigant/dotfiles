@@ -157,8 +157,10 @@ if [[ ! $(which autojump) ]]; then
     fi
 fi
 
-echo "Installing tmux plugin manager"
-git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm
+if [ ! -d ${HOME}/.tmux/plugins/tpm ]; then
+    echo "Installing tmux plugin manager"
+    git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm
+fi
 
 # echo "Configuring submodules."
 # git submodule init
