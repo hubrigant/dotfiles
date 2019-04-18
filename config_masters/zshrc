@@ -237,6 +237,9 @@ setopt printexitvalue
 # Do not share history
 setopt no_share_history
 
+# configuration for the less command
+export LESS=-FXJ
+
 export PATH=$HOME/bin:$HOME/miniconda3/bin:/usr/local/bin:$PATH
 
 # load local tmux configurations
