@@ -65,7 +65,7 @@ fi
 # looks like the pre-reqs are there, let's get going!
 
 if [ ! -d ${HOME}/dotfiles.bkup ]; then
-    if [ $(mkdir ${HOME}/dotfiles.bkup) ]; then
+    if [[ $(mkdir ${HOME}/dotfiles.bkup) ]]; then
         print -P "%B%K{green}%F{black}[*]%f%k%b Created ${HOME}/dotfiles.bkup"
     else
         print -P "%B%K{red}%F{black}[X]%f%k%b Failed to create backup dir ${HOME}/dotfiles.bkup"
@@ -133,7 +133,7 @@ if [ ! -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/powerlevel9k ]; th
     if [[ ( -d ${ZGEN}/bhilburn/powerlevel9k-master && -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/ ) ]]; then
         ln -s ${ZGEN}/bhilburn/powerlevel9k-master ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/powerlevel9k
     else
-        print -P "%B%K{red}%F{black}[X] Oops, couldn't find the right way to link the powerlevel9k theme."
+        print -P "%B%K{red}%F{black}[X]%f%k%b Oops, couldn't find the right way to link the powerlevel9k theme."
         exit(1)
     fi
 fi
@@ -141,7 +141,7 @@ fi
 if [[ ! -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/plugins/zsh-auatosuggestions ]]; then
     print -P "    Installing zsh-autosuggestions"
     if git clone https://github.com/zsh-users/zsh-autosuggestions ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/plugins/zsh-auatosuggestions; then
-        print -P "%B%K{green}%F{black} Success!"
+        print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
     else
         print -P "%B%K{red}%F{black}[X]%f%k%b Cloudn't clone zsh-autosuggestions for some reason."
         exit(1)
@@ -166,7 +166,7 @@ if [[ ! -d $YCMDIR ]]; then
     if [ ! -f "YouCompleteMe/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
         cd ${HOME}/.vim/bundle/YouCompleteMe
         if python install.py; then
-            print -P "%B%K{green}%F{black}[*] Success!"
+            print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
         else
             print -P "%B%K{red}%F{black}[X]%f%k%b Install failed."
             exit(1)
@@ -196,7 +196,7 @@ fi
 if [ ! -d ${HOME}/.tmux/plugins/tpm ]; then
     print -P "    Installing tmux plugin manager"
     if git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm; then
-        print -P "%B%K{green}%F{black}%f%k%b Success!"
+        print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
     else
         print -P "%B%K{red}%F{black}[X]%f%k%b TPM install failed."
         exit(1)
