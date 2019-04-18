@@ -77,6 +77,7 @@ if [ $(diff ${HOME}/dotfiles.bkup/.zshrc ${HOME}/.zshrc) ]; then
     mv ${HOME}/.gitconfig           ${HOME}/dotfiles.bkup
     mv ${HOME}/.gitignore_global    ${HOME}/dotfiles.bkup
     mv ${HOME}/.tmux.conf           ${HOME}/dotfiles.bkup
+    mv ${HOME}/.tmux-local.conf     ${HOME}/dotfiles.bkup
     mv ${HOME}/.vimrc               ${HOME}/dotfiles.bkup
     mv ${HOME}/.zshrc               ${HOME}/dotfiles.bkup
     mv ${HOME}/.bundles.vim         ${HOME}/dotfiles.bkup
@@ -89,6 +90,7 @@ if [ -f ${HOME}/.zshrc ]; then
     rm ${HOME}/.gitconfig
     rm ${HOME}/.gitignore_global
     rm ${HOME}/.tmux.conf
+    rm ${HOME}/.tmux-local.conf
     rm ${HOME}/.vimrc
     rm ${HOME}/.zshrc
     rm ${HOME}/.bundles.vim
@@ -104,6 +106,7 @@ ln ${DOTFILES_DIR}/config_masters/vimrc                 ${HOME}/.vimrc
 ln ${DOTFILES_DIR}/config_masters/zshrc                 ${HOME}/.zshrc
 ln ${DOTFILES_DIR}/config_masters/bundles.vim           ${HOME}/.bundles.vim
 ln ${DOTFILES_DIR}/config_masters/tmux.conf             ${HOME}/.tmux.conf
+ln ${DOTFILES_DIR}/config_masters/tmux-local.conf       ${HOME}/.tmux.conf
 ln ${DOTFILES_DIR}/config_masters/zgen                  ${HOME}/.zgen.conf
 ln ${DOTFILES_DIR}/config_masters/global_extra_conf.py  ${HOME}/global_extra_conf.py
 

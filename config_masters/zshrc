@@ -239,6 +239,9 @@ setopt no_share_history
 
 export PATH=$HOME/bin:$HOME/miniconda3/bin:/usr/local/bin:$PATH
 
+# load local tmux configurations
+tmux source-file ~/.tmux-local.conf
+
 # if profiling was on
 if $PROFILING; then
     zprof

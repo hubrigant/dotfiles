@@ -1,7 +1,0 @@
-# remap prefix to Ctrl-a
-set -g prefix C-a;
-unbind C-b;
-bind C-a send-prefix
-
-# Set up so that <shift><meta><arrow left/right> changes windows
-# bind-key -n S-M-Left 
