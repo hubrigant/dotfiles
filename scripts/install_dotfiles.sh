@@ -170,6 +170,7 @@ if [[ ! -d $YCMDIR ]]; then
         else
             print -P "%B%K{red}%F{black}[X]%f%k%b Install failed."
             exit(1)
+        fi
         cd -
     fi
 else
@@ -200,6 +201,7 @@ if [ ! -d ${HOME}/.tmux/plugins/tpm ]; then
     else
         print -P "%B%K{red}%F{black}[X]%f%k%b TPM install failed."
         exit(1)
+    fi
 fi
 
 # Create .machinerc if it doesn't already exist
