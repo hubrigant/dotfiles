@@ -146,13 +146,15 @@ if [ ! -f "YouCompleteMe/third_party/ycmd/third_party/cregex/regex_3/_regex.so" 
     cd -
 fi
 
-echo "Installing autojump"
-if [[ ${OSTYPE}=~"darwin" ]]; then
-    brew install autojump
-elif [[ ${OSTYPE}=~"linux" ]]; then
-    echo "I'm not yet sure how to install autojump on linux."
-else
-    echo "Couldn't figure out how to install autojump. You need to do it yourself."
+if [[ ! $(which autojump) ]]; then
+    echo "Installing autojump"
+    if [[ ${OSTYPE}=~"darwin" ]]; then
+        brew install autojump
+    elif [[ ${OSTYPE}=~"linux" ]]; then
+        echo "I'm not yet sure how to install autojump on linux."
+    else
+        echo "Couldn't figure out how to install autojump. You need to do it yourself."
+    fi
 fi
 
 echo "Installing tmux plugin manager"
