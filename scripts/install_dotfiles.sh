@@ -139,11 +139,13 @@ source ${HOME}/.zshrc
 echo "Installing Vundle plugins."
 vim +PluginInstall +qall
 
-echo "Building the YouCompleteMe core library."
-if [ ! -f "YouCompleteMe/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
-    cd ${HOME}/.vim/bundle/YouCompleteMe
-    python install.py
-    cd -
+if [[ $(find ${HOME}/.vim/bundle/YouCompleteMe -name __pycache__ -type d| wc -l) -gt 0 ]]; then
+    echo "Building the YouCompleteMe core library."
+    if [ ! -f "YouCompleteMe/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
+        cd ${HOME}/.vim/bundle/YouCompleteMe
+        # python install.py
+        cd -
+    fi
 fi
 
 if [[ ! $(which autojump) ]]; then
