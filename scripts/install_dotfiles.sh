@@ -162,9 +162,6 @@ if [ ! -d ${HOME}/.tmux/plugins/tpm ]; then
     git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm
 fi
 
-# echo "Configuring submodules."
-# git submodule init
-
 # Create .machinerc if it doesn't already exist
 if [ ! -f ${HOME}/.machinerc ]; then
     echo "Creating .machinerc to hold configs specific to this system."
