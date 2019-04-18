@@ -3,177 +3,215 @@
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 if [[ ${DOTFILES_DIR}=${HOME} ]]; then
-	echo "Getting DOTFILES_DIR from execution path didn't work."
 	if [[ -d ${HOME}/.dotfiles && -f ${HOME}/.dotfiles/config_masters/zshrc ]]; then
-		echo "Looks like you cloned repo into standard location, so I'll use that."
 		DOTFILES_DIR=${HOME}/.dotfiles
 	else
-		echo "You didn't clone the repo to the standard location. Searching for it."
-		echo "This may take a moment."
 		DOTFILES_DIR=$(find ${HOME}/.* -name install_dotfiles.zsh|sed 's/\/scripts\/install_dotfiles.zsh//')
 	fi
 fi
-echo "I think the repo is in ${DOTFILES_DIR}."
+# print -P "%B%F{white}[-]%f%k%b I think the repo is in ${DOTFILES_DIR}."
 
 if [ ! -d "${DOTFILES_DIR}" ]; then
-    echo "The dotfiles repo has not been cloned. Please do so now and try again."
+    print -P "%B%K{red}%F{black}[X]%f%k%b Unable to find dotfiles repo locally. Please clone and try again."
     exit(1)
 else
-    echo "The dotfiles repo exists, good."
+    print -P "%B%K{green}%F{black}[*]%k%f%b The dotfiles repo exists, good."
 fi
 
-if [ ! $(which git) ]; then
-    echo "A git client is required. Please install and try again."
+if ! git_loc="$(type -p "git")" || [[ -z $git_loc ]]; then
+    print -P "%B%K{red}%F{black}[X]%f%k%b A git client is required. Please install and try again."
     exit(1)
 else
-    echo "You have a git cleint. Good."
+    print -P "%B%K{green}%F{black}[*]%f%k%b You have a git cleint. Good."
 fi
 
-if [ ! $(which vim) ]; then
-    echo "Much of these configurations deal with vim, which doesn't appear to be installed,"
-    echo ""
-    echo "Please install it and try again."
+if ! vim_loc="$(type -p "vim")" || [[ -z $vim_loc ]]; then
+    print -P "%B%K{red}%F{black}[X]%f%k%b No vim app found. Please install and try again."
     exit(1)
 else
-	echo "You have vim. Good."
+	print -P "%B%K{green}%F{black}[*]%f%k%b You have vim. Good."
 fi
 
-if [ ! $(which python) ]; then
-    echo "Python is needed for some plugins and functionality."
-    echo ""
-    echo "Please install it and try again."
+if ! python_loc="$(type -p "python")" || [[ -z $python_loc ]]; then
+    print -P "%B%K{red}%F{black}[X]%f%k%b No Python version found. Please install and try again."
 else
-	echo "You have python. Good,"
+	print -P "%B%K{green}%F{black}[*]%f%k%b You have python. Good,"
 fi
 
-if [[ ! $(grep zsh ${SHELL}) ]]; then
-    chsh -s $(which zsh)
+if [[ ! $SHELL =~ 'zsh' ]]; then
+    if $(chsh -s $(which zsh)); then
+        print -P "%B%K{green}%F{black}[*]%f%k%b Your shell wasn't zsh, but now it is."
+    else
+        print -P "%B%KP{red}%F{black}[X]%f%k%b Your shell isn't zsh, and I couldn't change it."
+    fi
 else
-    echo "ZSH is already my shell, continuing."
+    print -P "%B%K{green}%F{black}[*]%f%k%b ZSH is already my shell, continuing."
 fi
 
 if [ -v $ZSH ]; then
-    echo "ZSH environment variable set. Unsetting to prevent incorrect oh-my-zsh installation and config."
+    print -P "%B%K{green}%F{black}[*]%f%k%b ZSH environment variable set. Unsetting to prevent incorrect oh-my-zsh installation and config."
     unset ZSH
 else
-	echo "The ZSH environment variable isn't set. Good."
+	print -P "%B%K{green}%F{black}[*]%f%k%b The ZSH environment variable isn't set. Good."
 fi
 
-if [ ! $(which cmake) ]; then
-    echo "No cmake found. Please install and try again."
+if ! cmake_loc="$(type -p "cmake")" || [[ -z $cmake_loc ]]; then
+    print -P "%B%K{red}%F{black}[*]%f%k%b No cmake found. Please install and try again."
     exit(1)
 else
-	echo "You have cmake installed. Good."
+	print -P "%B%K{green}%F{black}[*]%f%k%b You have cmake installed. Good."
 fi
 
 # looks like the pre-reqs are there, let's get going!
 
 if [ ! -d ${HOME}/dotfiles.bkup ]; then
-    mkdir ${HOME}/dotfiles.bkup
+    if [ $(mkdir ${HOME}/dotfiles.bkup) ]; then
+        print -P "%B%K{green}%F{black}[*]%f%k%b Created ${HOME}/dotfiles.bkup"
+    else
+        print -P "%B%K{red}%F{black}[X]%f%k%b Failed to create backup dir ${HOME}/dotfiles.bkup"
+        exit(1)
+    fi
 fi
 
-echo "Backing up old home-dir dot files before creating links"
-if [ $(diff ${HOME}/dotfiles.bkup/.zshrc ${HOME}/.zshrc) ]; then
-    mv ${HOME}/.gitconfig           ${HOME}/dotfiles.bkup
-    mv ${HOME}/.gitignore_global    ${HOME}/dotfiles.bkup
-    mv ${HOME}/.tmux.conf           ${HOME}/dotfiles.bkup
-    mv ${HOME}/.tmux-local.conf     ${HOME}/dotfiles.bkup
-    mv ${HOME}/.vimrc               ${HOME}/dotfiles.bkup
-    mv ${HOME}/.zshrc               ${HOME}/dotfiles.bkup
-    mv ${HOME}/.bundles.vim         ${HOME}/dotfiles.bkup
-    mv ${HOME}/.zgen.conf           ${HOME}/dotfiles.bkup
-    mv ${HOME}/global_extra_conf.py ${HOME}/dotfiles.bkup
-fi
+#if [ -f ${HOME}/dotfiles.bkup/.zshrc ]; then
+#    if [ $(sum ~/.zshrc |awk '{print $1}') -eq $(sum ~/dotfiles.bkup/.zshrc|awk '{print $1}') ]; then
+print -P "    Backing up old home-dir dot files before creating links"
+[ -f ${HOME}/.gitconfig ]           && mv ${HOME}/.gitconfig           ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.gitignore_global ]    && mv ${HOME}/.gitignore_global    ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.tmux.conf ]           && mv ${HOME}/.tmux.conf           ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.tmux-local.conf ]     && mv ${HOME}/.tmux-local.conf     ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.vimrc ]               && mv ${HOME}/.vimrc               ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.zshrc ]               && mv ${HOME}/.zshrc               ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.bundles.vim ]         && mv ${HOME}/.bundles.vim         ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.zgen.conf ]           && mv ${HOME}/.zgen.conf           ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.global_extra_conf ]   && mv ${HOME}/global_extra_conf.py ${HOME}/dotfiles.bkup >/dev/null 2>&1
+#    fi
+#fi
 
-echo "Removing old home-dir dot files."
-if [ -f ${HOME}/.zshrc ]; then
-    rm ${HOME}/.gitconfig
-    rm ${HOME}/.gitignore_global
-    rm ${HOME}/.tmux.conf
-    rm ${HOME}/.tmux-local.conf
-    rm ${HOME}/.vimrc
-    rm ${HOME}/.zshrc
-    rm ${HOME}/.bundles.vim
-    rm ${HOME}/.zgen.conf
-    rm ${HOME}/global_extra_conf.py
-fi
+print -P "    Removing old home-dir dot files."
+[ -f ${HOME}/.gitconfig ]           && rm ${HOME}/.gitconfig
+[ -f ${HOME}/.gitignore_global ]    && rm ${HOME}/.gitignore_global
+[ -f ${HOME}/.tmux.conf ]           && rm ${HOME}/.tmux.conf
+[ -f ${HOME}/.tmux-local.conf ]     && rm ${HOME}/.tmux-local.conf
+[ -f ${HOME}/.vimrc ]               && rm ${HOME}/.vimrc
+[ -f ${HOME}/.zshrc ]               && rm ${HOME}/.zshrc
+[ -f ${HOME}/.bundles.vim ]         && rm ${HOME}/.bundles.vim
+[ -f ${HOME}/.zgen.conf ]           && rm ${HOME}/.zgen.conf
+[ -f ${HOME}/global_extra_conf.py ] && rm ${HOME}/global_extra_conf.py
 
 # link new dot files
-echo "Creating hard links of dot files"
+print -P "    Creating hard links of dot files"
 ln ${DOTFILES_DIR}/config_masters/gitconfig             ${HOME}/.gitconfig
 ln ${DOTFILES_DIR}/config_masters/gitignore_global      ${HOME}/.gitignore_global
 ln ${DOTFILES_DIR}/config_masters/vimrc                 ${HOME}/.vimrc
 ln ${DOTFILES_DIR}/config_masters/zshrc                 ${HOME}/.zshrc
 ln ${DOTFILES_DIR}/config_masters/bundles.vim           ${HOME}/.bundles.vim
 ln ${DOTFILES_DIR}/config_masters/tmux.conf             ${HOME}/.tmux.conf
-ln ${DOTFILES_DIR}/config_masters/tmux-local.conf       ${HOME}/.tmux.conf
+ln ${DOTFILES_DIR}/config_masters/tmux-local.conf       ${HOME}/.tmux-local.conf
 ln ${DOTFILES_DIR}/config_masters/zgen                  ${HOME}/.zgen.conf
 ln ${DOTFILES_DIR}/config_masters/global_extra_conf.py  ${HOME}/global_extra_conf.py
 
-echo "Installing zgen plugin manager."
+print -P "    Installing zgen plugin manager."
 if [ -d ${HOME}/.zgen ]; then
-    echo "You already have a ~/.zgen directory."
+    print -P "%B%K{green}%F{black}[*]%f%k%b You already have a ~/.zgen directory."
 else
-    git clone https://github.com/tarjoilija/zgen.git ${HOME}/.zgen
+    if git clone https://github.com/tarjoilija/zgen.git ${HOME}/.zgen; then
+        print -P "%B%K{green}%F{black}[*]%f%k%b Successfully cloned zgen."
+    else
+        print -P "%B%K{red}%F{black}[X]%f%k%b Couldn't clone zgen for some reason."
+        exit(1)
+    fi
 fi
 
-echo "Loading zgen configuration to trigger plugin installs"
+print -P "    Loading zgen configuration to trigger plugin installs"
 source ${HOME}/.zgen.conf
 
 ZGEN=${HOME}/.zgen
 
-echo "Linking the powerlevel9k theme into the oh-my-zsh plugin custom themes path."
-if [[ ( -d ${ZGEN}/bhilburn/powerlevel9k-master && -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/ ) ]]; then
-    ln -s ${ZGEN}/bhilburn/powerlevel9k-master ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/powerlevel9k
-else
-    echo "Oops, couldn't find the right way to link the powerlevel9k theme."
-    exit(1)
-fi
-
-echo "Installing zsh-autosuggestions"
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/plugins/zsh-auatosuggestions
-
-echo "Activating new configurations."
-source ${HOME}/.zshrc
-
-echo "Installing Vundle plugins."
-vim +PluginInstall +qall
-
-if [[ $(find ${HOME}/.vim/bundle/YouCompleteMe -name __pycache__ -type d| wc -l) -gt 0 ]]; then
-    echo "Building the YouCompleteMe core library."
-    if [ ! -f "YouCompleteMe/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
-        cd ${HOME}/.vim/bundle/YouCompleteMe
-        # python install.py
-        cd -
+if [ ! -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/powerlevel9k ]; then
+    print -P "    Linking the powerlevel9k theme into the oh-my-zsh plugin custom themes path."
+    if [[ ( -d ${ZGEN}/bhilburn/powerlevel9k-master && -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/ ) ]]; then
+        ln -s ${ZGEN}/bhilburn/powerlevel9k-master ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/powerlevel9k
+    else
+        print -P "%B%K{red}%F{black}[X] Oops, couldn't find the right way to link the powerlevel9k theme."
+        exit(1)
     fi
 fi
 
-if [[ ! $(which autojump) ]]; then
-    echo "Installing autojump"
-    if [[ ${OSTYPE}=~"darwin" ]]; then
-        brew install autojump
-    elif [[ ${OSTYPE}=~"linux" ]]; then
-        echo "I'm not yet sure how to install autojump on linux."
+if [[ ! -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/plugins/zsh-auatosuggestions ]]; then
+    print -P "    Installing zsh-autosuggestions"
+    if git clone https://github.com/zsh-users/zsh-autosuggestions ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/plugins/zsh-auatosuggestions; then
+        print -P "%B%K{green}%F{black} Success!"
     else
-        echo "Couldn't figure out how to install autojump. You need to do it yourself."
+        print -P "%B%K{red}%F{black}[X]%f%k%b Cloudn't clone zsh-autosuggestions for some reason."
+        exit(1)
+    fi
+fi
+
+print -P "    Activating new configurations."
+source ${HOME}/.zshrc
+
+print -P "    Installing Vundle plugins."
+if vim +PluginInstall +qall; then
+    print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
+else
+    print -P "%B%K{red}%F{black}[X]%f%k%b Install failed."
+    exit(1)
+fi
+
+YCMDIR=${HOME}/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
+#if [[ $(find ${HOME}/.vim/bundle/YouCompleteMe -name __pycache__ -type d| wc -l) -gt 0 ]]; then
+if [[ ! -d $YCMDIR ]]; then
+    print -P "    Building the YouCompleteMe core library."
+    if [ ! -f "YouCompleteMe/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
+        cd ${HOME}/.vim/bundle/YouCompleteMe
+        if python install.py; then
+            print -P "%B%K{green}%F{black}[*] Success!"
+        else
+            print -P "%B%K{red}%F{black}[X]%f%k%b Install failed."
+            exit(1)
+        cd -
+    fi
+else
+    print -P "%B%K{green}%F{black}[*]%f%k%b YouCompleteMe core already built."
+fi
+
+if ! autojump_loc="$(type -p "autojump")" || [[ -z $autojump_loc ]]; then
+    print -P "    Installing autojump"
+    if [[ ${OSTYPE}=~"darwin" ]]; then
+        print -P "    Using Homebrew."
+        if brew install autojump; then
+            print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
+        else
+            print -P "%B%K{red}%F{black}[X]%f%k%b Brew install failed."
+            exit(1)
+        fi
+    elif [[ ${OSTYPE}=~"linux" ]]; then
+        print -P "    I'm not yet sure how to install autojump on linux."
+    else
+        print -P "    Couldn't figure out how to install autojump. You need to do it yourself."
     fi
 fi
 
 if [ ! -d ${HOME}/.tmux/plugins/tpm ]; then
-    echo "Installing tmux plugin manager"
-    git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm
+    print -P "    Installing tmux plugin manager"
+    if git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm; then
+        print -P "%B%K{green}%F{black}%f%k%b Success!"
+    else
+        print -P "%B%K{red}%F{black}[X]%f%k%b TPM install failed."
+        exit(1)
 fi
 
 # Create .machinerc if it doesn't already exist
 if [ ! -f ${HOME}/.machinerc ]; then
-    echo "Creating .machinerc to hold configs specific to this system."
+    print -P "Creating .machinerc to hold configs specific to this system."
     touch ${HOME}/.machinerc
 fi
 
 # If not already done, add .machinerc to .gitignore
-echo "Making sure .machinerc is in .gitignore."
+print -P "Making sure .machinerc is in .gitignore."
 if [ ! $(grep machinerc ${HOME}/.gitignore) ]; then
-    echo ".machinerc" >> ${HOME}/.gitignore
+    print -P ".machinerc" >> ${HOME}/.gitignore
 fi
 
-echo "Automated installation complete."
+print -P "Automated installation complete."
