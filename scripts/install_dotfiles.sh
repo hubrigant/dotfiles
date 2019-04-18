@@ -9,7 +9,6 @@ if [[ ${DOTFILES_DIR}=${HOME} ]]; then
 		DOTFILES_DIR=$(find ${HOME}/.* -name install_dotfiles.zsh|sed 's/\/scripts\/install_dotfiles.zsh//')
 	fi
 fi
-# print -P "%B%F{white}[-]%f%k%b I think the repo is in ${DOTFILES_DIR}."
 
 if [ ! -d "${DOTFILES_DIR}" ]; then
     print -P "%B%K{red}%F{black}[X]%f%k%b Unable to find dotfiles repo locally. Please clone and try again."
@@ -73,8 +72,6 @@ if [ ! -d ${HOME}/dotfiles.bkup ]; then
     fi
 fi
 
-#if [ -f ${HOME}/dotfiles.bkup/.zshrc ]; then
-#    if [ $(sum ~/.zshrc |awk '{print $1}') -eq $(sum ~/dotfiles.bkup/.zshrc|awk '{print $1}') ]; then
 print -P "    Backing up old home-dir dot files before creating links"
 [ -f ${HOME}/.gitconfig ]           && mv ${HOME}/.gitconfig           ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.gitignore_global ]    && mv ${HOME}/.gitignore_global    ${HOME}/dotfiles.bkup >/dev/null 2>&1
@@ -85,8 +82,6 @@ print -P "    Backing up old home-dir dot files before creating links"
 [ -f ${HOME}/.bundles.vim ]         && mv ${HOME}/.bundles.vim         ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.zgen.conf ]           && mv ${HOME}/.zgen.conf           ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.global_extra_conf ]   && mv ${HOME}/global_extra_conf.py ${HOME}/dotfiles.bkup >/dev/null 2>&1
-#    fi
-#fi
 
 print -P "    Removing old home-dir dot files."
 [ -f ${HOME}/.gitconfig ]           && rm ${HOME}/.gitconfig
@@ -160,7 +155,6 @@ else
 fi
 
 YCMDIR=${HOME}/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
-#if [[ $(find ${HOME}/.vim/bundle/YouCompleteMe -name __pycache__ -type d| wc -l) -gt 0 ]]; then
 if [[ ! -d $YCMDIR ]]; then
     print -P "    Building the YouCompleteMe core library."
     if [ ! -f "YouCompleteMe/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
