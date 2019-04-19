@@ -147,7 +147,7 @@ print -P "%B%K{green}%F{black}[*]%k%f%b Activating new configurations."
 source ${HOME}/.zshrc
 
 print -P "%B%K{green}%F{black}[*]%k%f%b Installing Vundle plugins."
-if vim +PluginInstall +qall; then
+if /usr/local/bin/vim +PluginInstall +qall; then
     print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
 else
     print -P "%B%K{red}%F{black}[X]%f%k%b Install failed."
