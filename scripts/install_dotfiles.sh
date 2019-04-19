@@ -72,7 +72,7 @@ if [ ! -d ${HOME}/dotfiles.bkup ]; then
     fi
 fi
 
-print -P "    Backing up old home-dir dot files before creating links"
+print -P "%B%K{green}%F{black}[*]%k%f%b Backing up old home-dir dot files before creating links"
 [ -f ${HOME}/.gitconfig ]           && mv ${HOME}/.gitconfig           ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.gitignore_global ]    && mv ${HOME}/.gitignore_global    ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.tmux.conf ]           && mv ${HOME}/.tmux.conf           ${HOME}/dotfiles.bkup >/dev/null 2>&1
@@ -83,7 +83,7 @@ print -P "    Backing up old home-dir dot files before creating links"
 [ -f ${HOME}/.zgen.conf ]           && mv ${HOME}/.zgen.conf           ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.global_extra_conf ]   && mv ${HOME}/global_extra_conf.py ${HOME}/dotfiles.bkup >/dev/null 2>&1
 
-print -P "    Removing old home-dir dot files."
+print -P "%B%K{green}%F{black}[*]%k%f%b Removing old home-dir dot files."
 [ -f ${HOME}/.gitconfig ]           && rm ${HOME}/.gitconfig
 [ -f ${HOME}/.gitignore_global ]    && rm ${HOME}/.gitignore_global
 [ -f ${HOME}/.tmux.conf ]           && rm ${HOME}/.tmux.conf
@@ -95,7 +95,7 @@ print -P "    Removing old home-dir dot files."
 [ -f ${HOME}/global_extra_conf.py ] && rm ${HOME}/global_extra_conf.py
 
 # link new dot files
-print -P "    Creating hard links of dot files"
+print -P "%B%K{green}%F{black}[*]%k%f%b Creating hard links of dot files"
 ln ${DOTFILES_DIR}/config_masters/gitconfig             ${HOME}/.gitconfig
 ln ${DOTFILES_DIR}/config_masters/gitignore_global      ${HOME}/.gitignore_global
 ln ${DOTFILES_DIR}/config_masters/vimrc                 ${HOME}/.vimrc
@@ -106,7 +106,7 @@ ln ${DOTFILES_DIR}/config_masters/tmux-local.conf       ${HOME}/.tmux-local.conf
 ln ${DOTFILES_DIR}/config_masters/zgen                  ${HOME}/.zgen.conf
 ln ${DOTFILES_DIR}/config_masters/global_extra_conf.py  ${HOME}/global_extra_conf.py
 
-print -P "    Installing zgen plugin manager."
+print -P "%B%K{green}%F{black}[*]%k%f%b Installing zgen plugin manager."
 if [ -d ${HOME}/.zgen ]; then
     print -P "%B%K{green}%F{black}[*]%f%k%b You already have a ~/.zgen directory."
 else
@@ -118,13 +118,13 @@ else
     fi
 fi
 
-print -P "    Loading zgen configuration to trigger plugin installs"
+print -P "%B%K{green}%F{black}[*]%k%f%b Loading zgen configuration to trigger plugin installs"
 source ${HOME}/.zgen.conf
 
 ZGEN=${HOME}/.zgen
 
 if [ ! -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/powerlevel9k ]; then
-    print -P "    Linking the powerlevel9k theme into the oh-my-zsh plugin custom themes path."
+    print -P "%B%K{green}%F{black}[*]%k%f%b Linking the powerlevel9k theme into the oh-my-zsh plugin custom themes path."
     if [[ ( -d ${ZGEN}/bhilburn/powerlevel9k-master && -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/ ) ]]; then
         ln -s ${ZGEN}/bhilburn/powerlevel9k-master ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/powerlevel9k
     else
@@ -133,8 +133,8 @@ if [ ! -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/powerlevel9k ]; th
     fi
 fi
 
-if [[ ! -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/plugins/zsh-auatosuggestions ]]; then
-    print -P "    Installing zsh-autosuggestions"
+if [ ! -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/plugins/zsh-auatosuggestions ]; then
+    print -P "%B%K{green}%F{black}[*]%k%f%b Installing zsh-autosuggestions"
     if git clone https://github.com/zsh-users/zsh-autosuggestions ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/plugins/zsh-auatosuggestions; then
         print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
     else
@@ -143,10 +143,10 @@ if [[ ! -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/plugins/zsh-auatosuggest
     fi
 fi
 
-print -P "    Activating new configurations."
+print -P "%B%K{green}%F{black}[*]%k%f%b Activating new configurations."
 source ${HOME}/.zshrc
 
-print -P "    Installing Vundle plugins."
+print -P "%B%K{green}%F{black}[*]%k%f%b Installing Vundle plugins."
 if vim +PluginInstall +qall; then
     print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
 else
@@ -156,10 +156,10 @@ fi
 
 YCMDIR=${HOME}/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
 if [[ ! -d $YCMDIR ]]; then
-    print -P "    Building the YouCompleteMe core library."
+    print -P "%B%K{green}%F{black}[*]%k%f%b Building the YouCompleteMe core library."
     if [ ! -f "YouCompleteMe/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
         cd ${HOME}/.vim/bundle/YouCompleteMe
-        if python install.py; then
+        if $(python install.py > ${HOME}/dotfiles-installer.out); then
             print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
         else
             print -P "%B%K{red}%F{black}[X]%f%k%b Install failed."
@@ -172,9 +172,9 @@ else
 fi
 
 if ! autojump_loc="$(type -p "autojump")" || [[ -z $autojump_loc ]]; then
-    print -P "    Installing autojump"
+    print -P "%B%K{green}%F{black}[*]%k%f%b Installing autojump"
     if [[ ${OSTYPE}=~"darwin" ]]; then
-        print -P "    Using Homebrew."
+        print -P "%B%K{green}%F{black}[*]%k%f%b Using Homebrew."
         if brew install autojump; then
             print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
         else
@@ -182,14 +182,14 @@ if ! autojump_loc="$(type -p "autojump")" || [[ -z $autojump_loc ]]; then
             exit(1)
         fi
     elif [[ ${OSTYPE}=~"linux" ]]; then
-        print -P "    I'm not yet sure how to install autojump on linux."
+        print -P "%B%K{green}%F{black}[*]%k%f%b I'm not yet sure how to install autojump on linux."
     else
-        print -P "    Couldn't figure out how to install autojump. You need to do it yourself."
+        print -P "%B%K{green}%F{black}[*]%k%f%b Couldn't figure out how to install autojump. You need to do it yourself."
     fi
 fi
 
 if [ ! -d ${HOME}/.tmux/plugins/tpm ]; then
-    print -P "    Installing tmux plugin manager"
+    print -P "%B%K{green}%F{black}[*]%k%f%b Installing tmux plugin manager"
     if git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm; then
         print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
     else
@@ -200,14 +200,14 @@ fi
 
 # Create .machinerc if it doesn't already exist
 if [ ! -f ${HOME}/.machinerc ]; then
-    print -P "Creating .machinerc to hold configs specific to this system."
+    print -P "%B%K{green}%F{black}[*]%k%f%b Creating .machinerc to hold configs specific to this system."
     touch ${HOME}/.machinerc
 fi
 
 # If not already done, add .machinerc to .gitignore
-print -P "Making sure .machinerc is in .gitignore."
+print -P "%B%K{green}%F{black}[*]%k%f%b Making sure .machinerc is in .gitignore."
 if [ ! $(grep machinerc ${HOME}/.gitignore) ]; then
     print -P ".machinerc" >> ${HOME}/.gitignore
 fi
 
-print -P "Automated installation complete."
+print -P "%B%K{green}%F{black}[*]%k%f%b Automated installation complete."
