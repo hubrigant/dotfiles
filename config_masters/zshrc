@@ -92,16 +92,6 @@ DISABLE_AUTO_TITLE="true"
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
 
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-# plugins=(git)
-plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions)
-
-source $ZSH/oh-my-zsh.sh
-
 # User configuration
 
 # You may need to manually set your language environment
@@ -190,6 +180,15 @@ if [ ! $TERM = dumb ]; then
     source ${ZGEN_DIR}/zgen.zsh
     source ${HOME}/.zgen.conf
 fi
+
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+# plugins=(git)
+source $ZSH/oh-my-zsh.sh
+plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions)
 
 # specific for machine configuration, which I don't sync
 if [ -f ~/.machinerc ]; then
