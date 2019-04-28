@@ -33,7 +33,6 @@ AUTOENV_FILE_LEAVE=.env1
 
 # tmux plugin settings
 # this always starts tmux
-ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOSTART_ONCE=true
 ZSH_TMUX_FIXTERM=true
 ZSH_TMUX_AUTOQUIT=false # not sure what this does, may remove later
@@ -110,7 +109,7 @@ export EDITOR='vim'
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # zsh tmux settings
-ZSH_TMUX_AUTOSTART='true'
+# ZSH_TMUX_AUTOSTART='true'
 
 ## Powerlevel9k Settings
 POWERLEVEL9K_HISTORY_BACKGROUND='green'
