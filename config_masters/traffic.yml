@@ -1,0 +1,56 @@
+# /Users/jw68539/.config/tmuxinator/traffic.yml
+
+name: traffic
+root: ~/notebooks/trafficlights/traffic
+
+# Optional tmux socket
+# socket_name: foo
+
+# Note that the pre and post options have been deprecated and will be replaced by
+# project hooks.
+
+# Project hooks
+# Runs on project start, always
+# on_project_start: command
+# Run on project start, the first time
+# on_project_first_start: command
+# Run on project start, after the first time
+# on_project_restart: command
+# Run on project exit ( detaching from tmux session )
+# on_project_exit: command
+# Run on project stop
+# on_project_stop: command
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+pre_window: conda activate ml
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+# startup_window: editor
+
+# Specifies (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
+# startup_pane: 1
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+# attach: false
+
+windows:
+  - editor:
+      #layout: 0a58,160x42,0,0{100x40,0,0[100x20,0,0,4,100x20,0,20,8],60x40,106,0,6}
+      #layout: c5b4,161x41,0,0{100x41,0,0[100x20,0,0,0,100x20,0,21,8],60x41,101,0,7}
+      #layout: c5b4,208x60,0,0{208x40,0,0,208x20,101,0,7}
+      layout: ce78,208x60,0,0[208x39,0,0{104x39,0,0,12,103x39,105,0,14},208x20,0,40,13]
+      # layout: main-horizontal
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - # empty, just shell
+        - # empty, just shell
+        - ag -l |entr -s pytest
