@@ -11,9 +11,20 @@ fi
 # Location of my dotfiles
 DOTFILES=$HOME/.dotfiles
 
+echo $PATH
+
 # Update PATH
 path=(
-    /usr/local/{bin,sbin}
+    $HOME/bin
+    $HOME/scripts
+    /usr/local/bin
+    /usr/local/sbin
+    /opt/local/bin
+    /opt/local/sbin
+    /bin
+    /sbin
+    /usr/bin
+    /usr/sbin
     $DOTFILES/scripts
     $path
 )
@@ -230,8 +241,6 @@ setopt no_share_history
 
 # configuration for the less command
 export LESS=-FXJAIMqj.5
-
-export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # load local tmux configurations
 tmux source-file ~/.tmux-local.conf
