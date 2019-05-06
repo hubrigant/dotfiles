@@ -80,6 +80,7 @@ print -P "%B%K{green}%F{black}[*]%k%f%b Backing up old home-dir dot files before
 [ -f ${HOME}/.zshrc ]               && mv ${HOME}/.zshrc               ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.bundles.vim ]         && mv ${HOME}/.bundles.vim         ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.zgen.conf ]           && mv ${HOME}/.zgen.conf           ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.aliases ]             && mv ${HOME}/.aliases              ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.global_extra_conf ]   && mv ${HOME}/global_extra_conf.py ${HOME}/dotfiles.bkup >/dev/null 2>&1
 
 print -P "%B%K{green}%F{black}[*]%k%f%b Removing old home-dir dot files."
@@ -90,6 +91,7 @@ print -P "%B%K{green}%F{black}[*]%k%f%b Removing old home-dir dot files."
 [ -f ${HOME}/.zshrc ]               && rm ${HOME}/.zshrc
 [ -f ${HOME}/.bundles.vim ]         && rm ${HOME}/.bundles.vim
 [ -f ${HOME}/.zgen.conf ]           && rm ${HOME}/.zgen.conf
+[ -f ${HOME}/.aliases ]             && rm ${HOME}/.aliases
 [ -f ${HOME}/global_extra_conf.py ] && rm ${HOME}/global_extra_conf.py
 
 # link new dot files
@@ -101,6 +103,7 @@ ln ${DOTFILES_DIR}/config_masters/zshrc                 ${HOME}/.zshrc
 ln ${DOTFILES_DIR}/config_masters/bundles.vim           ${HOME}/.bundles.vim
 ln ${DOTFILES_DIR}/config_masters/tmux.conf             ${HOME}/.tmux.conf
 ln ${DOTFILES_DIR}/config_masters/zgen                  ${HOME}/.zgen.conf
+ln ${DOTFILES_DIR}/config_masters/aliases               ${HOME}/.aliases
 ln ${DOTFILES_DIR}/config_masters/global_extra_conf.py  ${HOME}/global_extra_conf.py
 
 print -P "%B%K{green}%F{black}[*]%k%f%b Installing zgen plugin manager."
