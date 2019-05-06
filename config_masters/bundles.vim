@@ -2,8 +2,9 @@ set nocompatible
 filetype off
 
 " Load plugins (with vundle)
-set rtp+=~/.dotfiles/vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 " call vundle#rc()
+" call vundle#begin('~/.vim/bundle/Vundle.vim')
 call vundle#begin('~/.vim/bundle/Vundle.vim')
 "
 " Let Vundle mange itself, required
