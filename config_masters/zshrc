@@ -11,8 +11,6 @@ fi
 # Location of my dotfiles
 DOTFILES=$HOME/.dotfiles
 
-echo $PATH
-
 # Update PATH
 path=(
     $HOME/bin
@@ -203,20 +201,6 @@ source $ZSH/oh-my-zsh.sh
 if [ -f ~/.machinerc ]; then
     source ~/.machinerc
 fi
-
-<<<<<<< HEAD
-# added by Miniconda3 3.16.0 installer
-export PATH="~/miniconda3/bin:$PATH"
-
-# added by Anaconda3 5.0.0 installer
-# export PATH="/anaconda3/bin:$PATH"  # commented out by conda initialize
-=======
-alias zshconfig="code ~/.zshrc"
-alias ohmyzsh="code ~/.oh-my-zsh"
-alias dotfiles="git --git-dir=$HOME/.dotfiles.git"
-alias vi="vim"
-alias txst="tmuxinator start traffic"
->>>>>>> e1c9d86d1ae7bd809ec58fb5d9bdfbef14c0c05b
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
