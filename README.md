@@ -30,16 +30,24 @@ To clone the repo into the standard location:
 git clone https://github.com/hubrigant/dotfiles ~/.dotfiles
 ```
 
-## Exceute the install script
+## Automated install
+I've included an installer script that puts everything in place. While it has been working fine on my systems, it hasn't been tested anywhere except on a Mac running Mojave and a Raspberry Pi running raspbian stretch, so proceed with caution. Even though the installer will do its best to make a backup for you, it might be a good idea to backup any of the dotfiles you already have first.
+
+### Exceute the install script
 To use the automatic installer, type the following:
 
 ```
 ~/.dotfiles/scripts/install_dotfiles.sh
 ```
 
-While the installer has been working fine on my systems, it hasn't been tested anywhere except on a Mac running Mojave and a Raspberry Pi running raspbian stretch, so proceed with caution. It would be a good idea to backup any of the dotfiles you may have already first.
 
-## Create links to managed dotfiles
+## Manual install
+If you don't want to, or can't, use the install script, the following are the steps to perform the installation manually.
+
+### Install autosuggestions plugin
+The [autosuggestions plugin](https://github.com/zsh-users/zsh-autosuggestions) is the only oh-my-zsh plugin I use that can't be installed yet via zgen, so you'll have to do this manually.
+
+### Create links to managed dotfiles
 ```
 rm ~/.aliases
 rm ~/.bundles.vim
@@ -50,15 +58,17 @@ rm ~/.vimrc
 rm ~/.zgen.conf
 rm ~/.zshrc
 
+ln ~/.dotfiles/dots/common/aliases                  ~/.aliases
+ln ~/.dotfiles/dots/common/bundles.vim              ~/.bundles.vim
 ln ~/.dotfiles/dots/common/gitconfig                ~/.gitconfig
 ln ~/.dotfiles/dots/common/gitignore_global         ~/.gitignore_global
-ln ~/.dotfiles/dots/common/vimrc                    ~/.vimrc
-ln ~/.dotfiles/dots/common/zshrc                    ~/.zshrc
-ln ~/.dotfiles/dots/common/bundles.vim              ~/.bundles.vim
 ln ~/.dotfiles/dots/common/tmux.conf                ~/.tmux.conf
+ln ~/.dotfiles/dots/common/vimrc                    ~/.vimrc
+ln ~/.dotfiles/dots/common/zgen                     ~/.zgen.conf
+ln ~/.dotfiles/dots/common/zshrc                    ~/.zshrc
 ```
 
-## Get zgen
+### Get zgen
 [zgen](https://github.com/tarjoilija/zgen) is a plugin manager for zsh. Most of the zsh-level plugins are installed and managed by zgen, so it needs to be in place first:
 
 ```
@@ -67,13 +77,10 @@ git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 
 and then activate the new configuration by typing ```source ~/.zshrc```. This should trigger zgen to pull down the plugins listed in the zshrc file.
 
-## Install autosuggestions plugin
-<TODO>
-
-## Get vim plugins
+### Get vim plugins
 The [Vundle vim plugin manager] should be installed by zgen. Once it's available, tell Vundle to install the vim plugins by entering the command ```vim +PluginInstall +qall```
 
-## Build the YCM library
+### Build the YCM library
 One of the vim plugins, YouCompleteMe, needs to have its core libraries built. To do this, use the following commands:
 
 ```
@@ -82,4 +89,4 @@ cd ~/.vim/bundle/Vundle.vim/YouCompleteMe
 ```
 
 ## Local machine-specific configurations
-If you have configurations that are specific to a particular machine, such as OS-dependent things, they can be stored in the file ```.machinerc`` that is not tracked as part of this repo. Naturally, this file should be listed in your .gitignore.
+If you have configurations that are specific to a particular machine, such as OS-dependent things, they can be stored in the file ```.machinerc``` that is not tracked as part of this repo. Naturally, this file should be listed in your .gitignore.
