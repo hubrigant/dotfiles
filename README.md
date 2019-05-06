@@ -21,30 +21,41 @@ The YouCompleteMe core library build depends on [cmake](https://cmake.org/). If 
 
 The terminal multiplexer [tmux](https://github.com/tmux/tmux/wiki) is an integral part of this config. It also needs to be installed prior to this process.
 
+While not directly tied to the dotfiles in this repo, I've found [autojump](https://github.com/wting/autojump) to be a very useful addition to my shell toolbox.
+
 ## Clone this repo
-To clone the repo into your existing home directory:
+To clone the repo into the standard location:
 
 ```
-git init .
-git remote add -t \* -f origin https://github.com/hubrigant/dotfiles.git
-git checkout master
+git clone https://github.com/hubrigant/dotfiles ~/.dotfiles
 ```
+
+## Exceute the install script
+To use the automatic installer, type the following:
+
+```
+~/.dotfiles/scripts/install_dotfiles.sh
+```
+
+While the installer has been working fine on my systems, it hasn't been tested anywhere except on a Mac running Mojave and a Raspberry Pi running raspbian stretch, so proceed with caution. It would be a good idea to backup any of the dotfiles you may have already first.
 
 ## Create links to managed dotfiles
 ```
+rm ~/.aliases
+rm ~/.bundles.vim
 rm ~/.gitconfig
 rm ~/.gitignore_global
 rm ~/.tmux.conf
 rm ~/.vimrc
+rm ~/.zgen.conf
 rm ~/.zshrc
-rm ~/.bundles.vim
 
 ln ~/.dotfiles/dots/common/gitconfig                ~/.gitconfig
 ln ~/.dotfiles/dots/common/gitignore_global         ~/.gitignore_global
 ln ~/.dotfiles/dots/common/vimrc                    ~/.vimrc
 ln ~/.dotfiles/dots/common/zshrc                    ~/.zshrc
 ln ~/.dotfiles/dots/common/bundles.vim              ~/.bundles.vim
-ln ~/.dotfiles/dots/common/tmux.conf ~/.tmux.conf
+ln ~/.dotfiles/dots/common/tmux.conf                ~/.tmux.conf
 ```
 
 ## Get zgen
@@ -56,6 +67,8 @@ git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 
 and then activate the new configuration by typing ```source ~/.zshrc```. This should trigger zgen to pull down the plugins listed in the zshrc file.
 
+## Install autosuggestions plugin
+<TODO>
 
 ## Get vim plugins
 The [Vundle vim plugin manager] should be installed by zgen. Once it's available, tell Vundle to install the vim plugins by entering the command ```vim +PluginInstall +qall```
@@ -66,15 +79,6 @@ One of the vim plugins, YouCompleteMe, needs to have its core libraries built. T
 ```
 cd ~/.vim/bundle/Vundle.vim/YouCompleteMe
 ./install.py
-```
-## Update .gitignore
-Since this repo only manages dotfiles for zsh, oh-my-zsh, zgen, vim, and Vundle, the rest of the files and directories in your home directory need to be excluded by updating the [.gitignore](https://git-scm.com/docs/gitignore) file in the root of your home directory.
-
-## Configure submodules
-I don't want to be redistributing other people's code, so the external parts, such as Vundle and zgen, should be configured as submodules.
-
-```
-git submodule init
 ```
 
 ## Local machine-specific configurations
