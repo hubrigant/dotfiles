@@ -96,6 +96,9 @@ Plugin 'tpope/vim-surround'
 " Good shortcuts for switching between different lists
 Plugin 'tpope/vim-unimpaired'
 "
+" Flake8 syntax and style checker for Python
+Plugin 'nvie/vim-flake8'
+"
 " YouCompleteMe code completion
 Plugin 'Valloric/YouCompleteMe'
 "
