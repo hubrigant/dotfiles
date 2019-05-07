@@ -77,6 +77,12 @@ Plugin 'scrooloose/nerdtree'
 " Commenter
 Plugin 'scrooloose/nerdcommenter'
 "
+" Syntax for PlantUML files
+Plugin 'aklt/plantuml-syntax'
+"
+" Inline previews of PlantUML sequence diagrams
+Plugin 'scrooloose/vim-slumlord'
+"
 " Syntax linters
 " Plugin 'scrooloose/syntastic'
 Plugin 'vim-syntastic/syntastic'
