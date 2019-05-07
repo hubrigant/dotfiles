@@ -6,6 +6,8 @@ __At the time of this commit, these instructions are incomplete and I haven't wo
 # Introduction
 I started down this path to synchronize my standard dotfiles across my UNIX-like computers, which are macOS and raspbian based. I've spent quite a bit of time tuning these to my liking, and they reflect my particular set of interests (i.e. I do much of my programming in Python and not much in other languages, so my vim configurations reflect this).
 
+For a list of the plugins installed and/or used by these dotfiles, you can [find them here](whats_included.md).
+
 ## Prerequisites
 Obviously, this repo depends on using [git](https://git-scm.com/), so make sure you have a current release installed.
 
