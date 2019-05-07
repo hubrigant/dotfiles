@@ -74,8 +74,12 @@ Plugin 'mileszs/ack.vim'
 " File browser
 Plugin 'scrooloose/nerdtree'
 "
+" Commenter
+Plugin 'scrooloose/nerdcommenter'
+"
 " Syntax linters
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
+Plugin 'vim-syntastic/syntastic'
 "
 " Syntax for tmux files
 Plugin 'tmux-plugins/vim-tmux'
