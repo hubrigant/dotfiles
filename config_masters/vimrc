@@ -485,3 +485,9 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+
+" map F8 to toggle the tagbar pluggin
+nmap <F8> :TagbarToggle<CR>
+
+" set the leader key to something I know
+let mapleader = ","
