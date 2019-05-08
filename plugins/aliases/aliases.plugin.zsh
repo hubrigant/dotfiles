@@ -5,3 +5,4 @@
 # alias dotfiles="git --git-dir=$HOME/.dotfiles.git"
 alias vi="vim"
 alias txst="tmuxinator start traffic"
+alias jd='j d'
