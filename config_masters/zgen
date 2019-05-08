@@ -1,33 +1,5 @@
-# If I see that zsh takes to much time to load I profile what has been changed,
-# I want to see my shell ready in not more than 1 second
-PROFILING=${PROFILING:-false}
-if $PROFILING; then
-    zmodload zsh/zprof
-fi
-
 # Location of my dotfiles
 DOTFILES=$HOME/.dotfiles
-
-# Update PATH
-path=(
-    /usr/local/{bin,sbin}
-    $DOTFILES/scripts
-    $path
-)
-typeset -U path
-
-# set DEFAULT_USER based on different environments
-if [[ $OSTYPE =~ 'darwin' ]]; then
-    if [[ `hostname` = 'WDXJW68539TD8' ]]; then
-        DEFAULT_USER=jw68539
-    else
-        DEFAULT_USER=jon
-    fi
-else
-    DEFAULT_USER=pi
-fi
-
-export ZSH=${HOME}/.zgen/robbyrussell/oh-my-zsh-master
 
 # dumb terminal can be a vim dump terminal in that case don't try to load plugins
 if [ ! $TERM = dumb ]; then
@@ -42,9 +14,6 @@ if [ ! $TERM = dumb ]; then
     source ${ZGEN_DIR}/zgen.zsh
 
     # configure zgen
-    if ! zgen saved; then
-
-        # zgen will load oh-my-zsh and download it if required
         zgen oh-my-zsh
 
         # these plugins only have utility on my raspis
@@ -55,63 +24,27 @@ if [ ! $TERM = dumb ]; then
 
         # list of plugins from zsh I use
         # see https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins
-        # The brew plugin is no longer packaged
-        # zgen oh-my-zsh plugins/brew
-        zgen oh-my-zsh plugins/docker
-        zgen oh-my-zsh plugins/git
-        zgen oh-my-zsh plugins/git-extras
-        zgen oh-my-zsh plugins/gitignore
-        zgen oh-my-zsh plugins/osx
-        zgen oh-my-zsh plugins/pip
-        zgen oh-my-zsh plugins/python
-        zgen oh-my-zsh plugins/sudo
+        zgen oh-my-zsh plugins/taskwarrior
         zgen oh-my-zsh plugins/tmuxinator
+        zgen oh-my-zsh plugins/sudo
         zgen oh-my-zsh plugins/vundle
         zgen oh-my-zsh plugins/autojump
-        zgen oh-my-zsh plugins/autopep8
-        zgen oh-my-zsh plugins/django
-        zgen oh-my-zsh plugins/extract
-        zgen oh-my-zsh plugins/gitflow
-        zgen oh-my-zsh plugins/jsontools
-        zgen oh-my-zsh plugins/macports
-        zgen oh-my-zsh plugins/pep8
-        zgen oh-my-zsh plugins/pyenv
-        zgen oh-my-zsh plugins/pylint
-        zgen oh-my-zsh plugins/taskwarrior
         zgen oh-my-zsh plugins/vi-mode
 
-        # https://github.com/Tarrasch/zsh-autoenv
-        zgen load Tarrasch/zsh-autoenv
-        # https://github.com/zsh-users/zsh-completions
-        zgen load zsh-users/zsh-completions src
+        # https://github.com/zsh-users repos
+        zgen load zsh-users/zsh-autosuggestions
+        zgen load zsh-users/zsh-autosuggestions
         zgen load zsh-users/zsh-autosuggestions
 
         # my own plugins
         zgen load $DOTFILES/plugins/aliases
-        # zgen load $DOTFILES/plugins/dotfiles
+        # zgen oh-my-zsh plugins/dotfiles
         zgen load $DOTFILES/plugins/my-brew
         zgen load $DOTFILES/plugins/tpm
-
-        # load https://github.com/bhilburn/powerlevel9k theme for zsh
-        zgen load bhilburn/powerlevel9k powerlevel9k.zsh-theme
 
         # It takes control, so load last
         zgen load $DOTFILES/plugins/my-tmux
 
-        zgen save
-    fi
-
     # Configure vundle
     vundle-init
 fi
-
-source $ZSH/oh-my-zsh.sh
-
-# if profiling was on
-if $PROFILING; then
-    zprof
-fi
-
-# zsh-syntax-highlighting must be sourced as the last thing in this file
-# source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-zgen load zsh-users/zsh-syntax-highlighting

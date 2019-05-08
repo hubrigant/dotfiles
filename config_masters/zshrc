@@ -4,12 +4,14 @@
 # If I see that zsh takes to much time to load I profile what has been changed,
 # I want to see my shell ready in not more than 1 second
 PROFILING=${PROFILING:-false}
+# PROFILING=${PROFILING:-true}
 if $PROFILING; then
     zmodload zsh/zprof
 fi
 
 # Location of my dotfiles
 DOTFILES=$HOME/.dotfiles
+# PLUGINS=${DOTFILES}/plugins
 
 # Update PATH
 path=(
@@ -32,13 +34,13 @@ typeset -U path
 COMPLETION_WAITING_DOTS="true"
 
 # change the size of history files
-export HISTSIZE=32768;
-export HISTFILESIZE=$HISTSIZE;
+#export HISTSIZE=32768;
+#export HISTFILESIZE=$HISTSIZE;
 
 # Autoenv https://github.com/Tarrasch/zsh-autoenv
 # Plugin to automatically modify path when it sees .env file
-AUTOENV_FILE_ENTER=.env
-AUTOENV_FILE_LEAVE=.env1
+# AUTOENV_FILE_ENTER=.env
+# AUTOENV_FILE_LEAVE=.env1
 
 # tmux plugin settings
 # this always starts tmux
@@ -57,10 +59,6 @@ else
     DEFAULT_USER=pi
 fi
 
-# Shell
-export CLICOLOR=1
-export EDITOR='vim'
-export PAGER='less'
 
 # Remove the history (fc -l) command from the history list when invoked.
 setopt histnostore
@@ -73,22 +71,38 @@ setopt histreduceblanks
 bindkey -v
 source ~/.zshenv
 
+
+#export HISTSIZE=32768;
+#export HISTFILESIZE=$HISTSIZE;
+#export CLICOLOR=1
+#export EDITOR='vim'
+#export PAGER='less'
+#export ZSH=${HOME}/.zgen/robbyrussell/oh-my-zsh-master
+#export TERM=screen-256color
+# export TERM=xterm-256color
+#export LANG=en_US.UTF-8
+#export LC_ALL="en_US.UTF-8"
+#export EDITOR='vim'
+#export PATH="/anaconda3/bin:$PATH"
+#export LESS=-FXJAIMqj.5
+
 # Path to your oh-my-zsh installation
 # USERID=`whoami`
 # MY_HOME_DIR=`finger $USERID |awk -F: '{print $2}' |awk '{print $1}' |head -2 |tail -1`
 # OH_MY_ZSH_SUFFIX="/.dotfiles/oh-my-zsh"
-# export ZSH=$HOME$OH_MY_ZSH_SUFFIX
-export ZSH=${HOME}/.zgen/robbyrussell/oh-my-zsh-master
+# #export ZSH=$HOME$OH_MY_ZSH_SUFFIX
+# #export ZSH=${HOME}/.zgen/robbyrussell/oh-my-zsh-master
+#export OMZSHDIR=${DOTFILES}/plugins/from_omzsh
+#export OMZSHCUSTOM=${DOTFILES}/custom
 
-# export TERM=screen-256color
-export TERM=xterm-256color
+#export TERM=screen-256color
+#export TERM=xterm-256color
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# load powerlevel9k theme
+source ${DOTFILES}/themes/powerlevel9k-master/powerlevel9k.zsh-theme
 POWERLEVEL9K_MODE='awsome-patched'
 ZSH_THEME="powerlevel9k/powerlevel9k"
+
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
@@ -102,19 +116,19 @@ DISABLE_AUTO_TITLE="true"
 # User configuration
 
 # You may need to manually set your language environment
-export LANG=en_US.UTF-8
-export LC_ALL="en_US.UTF-8"
+#export LANG=en_US.UTF-8
+#export LC_ALL="en_US.UTF-8"
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
+#   #export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   #export EDITOR='mvim'
 # fi
-export EDITOR='vim'
+#export EDITOR='vim'
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+# #export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # zsh tmux settings
 # ZSH_TMUX_AUTOSTART='true'
@@ -145,22 +159,25 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status anaconda root_indicator vi_mode date 
 # GitHub prompt
 POWERLEVEL9K_VCS_GIT_GITHUB_ICON=$'\uF113'
 
+
 get_repo_name() {
     if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) ]]; then
-        local repo_url=$(git remote show origin |grep URL |grep Fetch)
-        local url_end=$(echo $repo_url |awk -F'/' '{print $NF}')
-        if [[ $(echo $url_end |egrep -e 'git$') ]]; then
-            local repo_name=$(echo $url_end |awk -F'.' '{print $1}')
-        else
-            local repo_name=$url_end
-        fi
+        # local repo_url=$(git remote show origin |grep URL |grep Fetch)
+        # local url_end=$(echo $repo_url |awk -F'/' '{print $NF}')
+        local url_end=$(git remote show origin |grep URL |grep Fetch |awk -F'\' '{print $NF}' |awk '{print $3}' |awk -F'\/' '{print $NF}' |awk -F'.' '{print $1}')
+        # if [[ $(echo $url_end |egrep -e 'git$') ]]; then
+            # local repo_name=$(echo $url_end |awk -F'.' '{print $1}')
+        # else
+            # local repo_name=$url_end
+        # fi
+        local repo_name=$url_end
     else
         local repo_name=''
     fi
     echo -n $repo_name
 }
 
-#POWERLEVEL9K_CUSTOM_GIT_REPO_NAME="git remote show origin |grep Fetch |awk -F'/' '{print $NF}' |awk -F '.' '{print $1}'"
+
 POWERLEVEL9K_CUSTOM_GIT_REPO_NAME="get_repo_name"
 
 # dir
@@ -177,6 +194,7 @@ POWERLEVEL9K_ANACONDA_BACKGROUND='cyan'
 POWERLEVEL9K_ANACONDA_FOREGROUND='black'
 
 
+
 # dumb terminal can be a vim dump terminal in that case don't try to load plugins
 # this block of commands was relocated to ${DOTFILES}/config_masters/zgen which is
 # linked to ${HOME}/.zgen.conf
@@ -184,9 +202,21 @@ if [ ! $TERM = dumb ]; then
 
     # load zgen
     ZGEN_DIR=${HOME}/.zgen
-    source ${ZGEN_DIR}/zgen.zsh
     source ${HOME}/.zgen.conf
+    # source ${PLUGINS}/from_omzsh/autojump/autojump.plugin.zsh
+    # source ${PLUGINS}/from_omzsh/debian/debian.plugin.zsh
+    # source ${PLUGINS}/from_omzsh/systemd/systemd.plugin.zsh
+    # source ${PLUGINS}/from_omzsh/sudo/sudo.plugin.zsh
+    # source ${PLUGINS}/from_omzsh/taskwarrior/taskwarrior.plugin.zsh
+    # source ${PLUGINS}/from_omzsh/tmuxinator/tmuxinator.plugin.zsh
+    # source ${PLUGINS}/from_omzsh/vi-mode/vi-mode.plugin.zsh
+    # source ${PLUGINS}/from_omzsh/vundle/vundle.plugin.zsh
+    # source ${PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+    # source ${PLUGINS}/aliases/aliases.plugin.zsh
+    # source ${PLUGINS}/tpm/tpm.plugin.zsh
+    # source ${PLUGINS}/my_tmux/my_tmux.plugin.zsh
 fi
+
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -194,30 +224,33 @@ fi
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git)
-plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions)
-source $ZSH/oh-my-zsh.sh
+plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions aliases tpm)
+# source $ZSH/oh-my-zsh.sh
+
 
 # specific for machine configuration, which I don't sync
 if [ -f ~/.machinerc ]; then
     source ~/.machinerc
 fi
 
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-   eval "$__conda_setup"
-else
-   if [ -f "/anaconda3/etc/profile.d/conda.sh" ]; then
-       . "/anaconda3/etc/profile.d/conda.sh"
-   else
-       export PATH="/anaconda3/bin:$PATH"
-   fi
-fi
-unset __conda_setup
+# __conda_setup="$('/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+# else
+#    if [ -f "/anaconda3/etc/profile.d/conda.sh" ]; then
+#        . "/anaconda3/etc/profile.d/conda.sh"
+#    else
+#        #export PATH="/anaconda3/bin:$PATH"
+#    fi
+# fi
+# unset __conda_setup
 # <<< conda initialize <<<
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
 
 # additional configuration for zsh
 # Remove the history (fc -l) command from the history list when invoked.
@@ -231,8 +264,9 @@ setopt printexitvalue
 # Do not share history
 setopt no_share_history
 
+
 # configuration for the less command
-export LESS=-FXJAIMqj.5
+#export LESS=-FXJAIMqj.5
 
 # load local tmux configurations
 tmux source-file ~/.tmux-local.conf
@@ -242,6 +276,7 @@ if $PROFILING; then
     zprof
 fi
 
+
 # zsh-syntax-highlighting must be sourced as the last thing in this file
-# source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-zgen load zsh-users/zsh-syntax-highlighting
+# zgen load zsh-users/zsh-syntax-highlighting
+source ~/.dotfiles/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
