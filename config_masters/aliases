@@ -1,4 +1,0 @@
-alias ls='ls -FG'
-alias zshconfig="code ~/.zshrc"
-alias vi="vim"
-alias txst="tmuxinator start traffic"

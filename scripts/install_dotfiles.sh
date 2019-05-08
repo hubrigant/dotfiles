@@ -73,38 +73,38 @@ if [ ! -d ${HOME}/dotfiles.bkup ]; then
 fi
 
 print -P "%B%K{green}%F{black}[*]%k%f%b Backing up old home-dir dot files before creating links"
+[ -f ${HOME}/.bundles.vim ]         && mv ${HOME}/.bundles.vim         ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.gitconfig ]           && mv ${HOME}/.gitconfig           ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.gitignore_global ]    && mv ${HOME}/.gitignore_global    ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.global_extra_conf ]   && mv ${HOME}/global_extra_conf.py ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.tmux.conf ]           && mv ${HOME}/.tmux.conf           ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.vimrc ]               && mv ${HOME}/.vimrc               ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.zshrc ]               && mv ${HOME}/.zshrc               ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.bundles.vim ]         && mv ${HOME}/.bundles.vim         ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.zgen.conf ]           && mv ${HOME}/.zgen.conf           ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.aliases ]             && mv ${HOME}/.aliases              ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.global_extra_conf ]   && mv ${HOME}/global_extra_conf.py ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.zshenv ]              && mv ${HOME}/.zshenv              ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.zshrc ]               && mv ${HOME}/.zshrc               ${HOME}/dotfiles.bkup >/dev/null 2>&1
 
 print -P "%B%K{green}%F{black}[*]%k%f%b Removing old home-dir dot files."
+[ -f ${HOME}/.bundles.vim ]         && rm ${HOME}/.bundles.vim
 [ -f ${HOME}/.gitconfig ]           && rm ${HOME}/.gitconfig
 [ -f ${HOME}/.gitignore_global ]    && rm ${HOME}/.gitignore_global
+[ -f ${HOME}/global_extra_conf.py ] && rm ${HOME}/global_extra_conf.py
 [ -f ${HOME}/.tmux.conf ]           && rm ${HOME}/.tmux.conf
 [ -f ${HOME}/.vimrc ]               && rm ${HOME}/.vimrc
-[ -f ${HOME}/.zshrc ]               && rm ${HOME}/.zshrc
-[ -f ${HOME}/.bundles.vim ]         && rm ${HOME}/.bundles.vim
 [ -f ${HOME}/.zgen.conf ]           && rm ${HOME}/.zgen.conf
-[ -f ${HOME}/.aliases ]             && rm ${HOME}/.aliases
-[ -f ${HOME}/global_extra_conf.py ] && rm ${HOME}/global_extra_conf.py
+[ -f ${HOME}/.zshenv ]              && rm ${HOME}/.zshenv
+[ -f ${HOME}/.zshrc ]               && rm ${HOME}/.zshrc
 
 # link new dot files
 print -P "%B%K{green}%F{black}[*]%k%f%b Creating hard links of dot files"
+ln ${DOTFILES_DIR}/config_masters/bundles.vim           ${HOME}/.bundles.vim
 ln ${DOTFILES_DIR}/config_masters/gitconfig             ${HOME}/.gitconfig
 ln ${DOTFILES_DIR}/config_masters/gitignore_global      ${HOME}/.gitignore_global
-ln ${DOTFILES_DIR}/config_masters/vimrc                 ${HOME}/.vimrc
-ln ${DOTFILES_DIR}/config_masters/zshrc                 ${HOME}/.zshrc
-ln ${DOTFILES_DIR}/config_masters/bundles.vim           ${HOME}/.bundles.vim
-ln ${DOTFILES_DIR}/config_masters/tmux.conf             ${HOME}/.tmux.conf
-ln ${DOTFILES_DIR}/config_masters/zgen                  ${HOME}/.zgen.conf
-ln ${DOTFILES_DIR}/config_masters/aliases               ${HOME}/.aliases
 ln ${DOTFILES_DIR}/config_masters/global_extra_conf.py  ${HOME}/global_extra_conf.py
+ln ${DOTFILES_DIR}/config_masters/tmux.conf             ${HOME}/.tmux.conf
+ln ${DOTFILES_DIR}/config_masters/vimrc                 ${HOME}/.vimrc
+ln ${DOTFILES_DIR}/config_masters/zgen                  ${HOME}/.zgen.conf
+ln ${DOTFILES_DIR}/config_masters/zshenv                ${HOME}/.zshenv
+ln ${DOTFILES_DIR}/config_masters/zshrc                 ${HOME}/.zshrc
 
 print -P "%B%K{green}%F{black}[*]%k%f%b Installing zgen plugin manager."
 if [ -d ${HOME}/.zgen ]; then
