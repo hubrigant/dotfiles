@@ -37,6 +37,10 @@ Plugin 'bronson/vim-trailing-whitespace'
 " Syntax for json files
 Plugin 'elzr/vim-json'
 "
+" Vim script for text filtering and alignment
+" https://github.com/godlygeek/tabular
+Plugin 'godlygeek/tabular'
+"
 " toggle cursor for vim
 Plugin 'jszakmeister/vim-togglecursor'
 "
