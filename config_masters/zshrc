@@ -4,7 +4,7 @@
 # If I see that zsh takes to much time to load I profile what has been changed,
 # I want to see my shell ready in not more than 1 second
 PROFILING=${PROFILING:-false}
-# PROFILING=${PROFILING:-true}
+#PROFILING=${PROFILING:-true}
 if $PROFILING; then
     zmodload zsh/zprof
 fi
@@ -28,6 +28,32 @@ path=(
     $path
 )
 typeset -U path
+
+# Speed up load time
+DISABLE_UPDATE_PROMPT=true
+
+# Load zgen only if a user types a zgen command
+zgen () {
+    if [[ ! -s {$ZDOTDIR:-$HOME}/.zgen/zgen.zsh ]]; then
+        git clone --recursive https://github.com/tarjoilija/zgen.git ${ZDOTDIR:-$HOME}/.zgen
+    fi
+    source ${ZDOTDIR:-${HOME}}/.zgen/zgen.zsh
+    zgen "$@"
+}
+
+# Perform compinit only once a day
+autoload -Uz compinit
+
+setopt EXTENDEDGLOB
+for dump in $ZSH_COMPDUMP(#qN.m1); do
+    compinit
+    if [[ -s "$dump" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; then
+        zcompile "$dump"
+    fi
+    echo "Initializing Completions..."
+done
+unsetopt EXTENDEDGLOB
+compinit -C
 
 # if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
@@ -138,7 +164,11 @@ if [ ! $TERM = dumb ]; then
 
     # load zgen
     ZGEN_DIR=${HOME}/.zgen
-    source ${HOME}/.zgen.conf
+    if [[ ! -s ${ZDOTDIR:-${HOME}}/.zgen/init.zsh ]]; then
+        echo "Creating a zgen save"
+    else
+        source ${ZDOTDIR:-${HOME}}/.zgen.conf
+    fi
 fi
 
 # Which plugins would you like to load?
