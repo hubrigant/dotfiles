@@ -16,6 +16,9 @@ Plugin 'VundleVim/Vundle.vim'
 " https://github.com/airblade/vim-gitgutter
 Plugin 'airblade/vim-gitgutter'
 "
+" Syntax for PlantUML files
+Plugin 'aklt/plantuml-syntax'
+"
 " vim syntax file for plantuml
 " https://github.com/aklt/plantuml-syntax
 " Plugin 'aklt/plantuml-syntax'
@@ -31,19 +34,8 @@ Plugin 'bling/vim-airline'
 " https://github.com/bronson/vim-trailing-whitespace
 Plugin 'bronson/vim-trailing-whitespace'
 "
-" Seamless navigation between tmux panes and vim splits
-" Plugin 'christoomey/vim-tmux-navigator'
-" Syntax for dockerfile
-Plugin 'ekalinin/Dockerfile.vim'
-"
 " Syntax for json files
 Plugin 'elzr/vim-json'
-"
-" css3 syntax
-Plugin 'hail2u/vim-css3-syntax'
-"
-" javascript additional syntax
-Plugin 'jelera/vim-javascript-syntax'
 "
 " toggle cursor for vim
 Plugin 'jszakmeister/vim-togglecursor'
@@ -55,21 +47,18 @@ Plugin 'kien/ctrlp.vim'
 " Support for python
 Plugin 'klen/python-mode'
 "
-" JavaScript indent plugin
-Plugin 'lukaszb/vim-web-indent'
-"
 " Browser for tags
 Plugin 'majutsushi/tagbar'
-"
-" Syntax for some javascript libraries
-Plugin 'othree/javascript-libraries-syntax.vim'
-"
-" Support for markdown
-Plugin 'plasticboy/vim-markdown'
 "
 " Ag search, use it instead of grep; depricated, loading ack.vim instead
 " Plugin 'rking/ag.vim'
 Plugin 'mileszs/ack.vim'
+"
+" Flake8 syntax and style checker for Python
+Plugin 'nvie/vim-flake8'
+"
+" Support for markdown
+Plugin 'plasticboy/vim-markdown'
 "
 " File browser
 Plugin 'scrooloose/nerdtree'
@@ -77,15 +66,8 @@ Plugin 'scrooloose/nerdtree'
 " Commenter
 Plugin 'scrooloose/nerdcommenter'
 "
-" Syntax for PlantUML files
-Plugin 'aklt/plantuml-syntax'
-"
 " Inline previews of PlantUML sequence diagrams
 Plugin 'scrooloose/vim-slumlord'
-"
-" Syntax linters
-" Plugin 'scrooloose/syntastic'
-Plugin 'vim-syntastic/syntastic'
 "
 " Syntax for tmux files
 Plugin 'tmux-plugins/vim-tmux'
@@ -96,17 +78,20 @@ Plugin 'tmux-plugins/vim-tmux-focus-events'
 " Git wrapper
 Plugin 'tpope/vim-fugitive'
 "
+" repeat.vim extends . command repetition to some pluggins
+Plugin 'tpope/vim-repeat'
+"
 " Additional surround snippets
 Plugin 'tpope/vim-surround'
 "
 " Good shortcuts for switching between different lists
 Plugin 'tpope/vim-unimpaired'
 "
-" Flake8 syntax and style checker for Python
-Plugin 'nvie/vim-flake8'
-"
 " YouCompleteMe code completion
 Plugin 'Valloric/YouCompleteMe'
+"
+" Syntax linters
+Plugin 'vim-syntastic/syntastic'
 "
 call vundle#end()               " required
 filetype plugin indent on       " required
