@@ -46,7 +46,7 @@ Plugin 'jszakmeister/vim-togglecursor'
 "
 " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
 " http://kien.github.io/ctrlp.vim/
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 "
 " Support for python
 Plugin 'klen/python-mode'

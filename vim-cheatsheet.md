@@ -28,7 +28,14 @@
 | \<leader\>hp | preview the current hunk | vim-gitgutter |
 | :FixTrailingWhitespace | trim off whitespace at the ends of lines | vim-trailing-whitespace |
 | :Tabularize /\<pattern\> | align text in multiple lines along the characters matched by \<pattern\> | tabularize<sup>+</sup> |
-
+| \<C-p\> | activate CtrlP | ctrlp.vim |
+| \<F5\> | when CtrlP is active, purge the cache for the current directory to get new files, etc. | ctrlp.vim |
+| \<C-f\>\/\<C-b\> | cycle betwen CtrlP modes (find file\/buffer\/MRU file\/mixed) | ctrlp.vim |
+| \<C-d\> | when CtrlP is active, switch to filename only search instead of full path | ctrlp.vim |
+| \<C-r\> | when CtrlP is active, switch to regex mode | ctrlp.vim |
+| \<C-j\>\/\<C-k\> | navigate the CtrlP result list | ctrlp.vim |
+| \<C-t\>\/\<C-v\>\<C-x\> | open the selected entry in a new tab or split | ctrlp.vim |
+| .. | submit two or more dots to go up the directory tree by one or multiple levels | ctrlp.vim |
 
 Footnotes
 =========
