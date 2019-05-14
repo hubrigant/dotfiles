@@ -180,7 +180,6 @@ source ${DOTFILES}/plugins/taskwarrior/taskwarrior.plugin.zsh
 source ${DOTFILES}/plugins/tmuxinator/tmuxinator.plugin.zsh
 source ${DOTFILES}/plugins/tpm/tpm.plugin.zsh
 source ${DOTFILES}/plugins/vi-mode/vi-mode.plugin.zsh
-source ${DOTFILES}/plugins/vim-markdown/vim-markdown.plugin.zsh
 source ${DOTFILES}/plugins/vundle/vundle.plugin.zsh
 source ${DOTFILES}/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source ${DOTFILES}/plugins/zsh-completions/zsh-completions.plugin.zsh
