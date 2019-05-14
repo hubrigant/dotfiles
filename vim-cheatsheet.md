@@ -33,7 +33,7 @@
 Footnotes
 =========
 
-<sup>*</sup>Entries marked with an asterix (*) denote my own bindings for plugin-provided functionality.
+<sup>\*</sup>Entries marked with an asterix (*) denote my own bindings for plugin-provided functionality.
 <sup>+</sup>Entries marked with a plus sign (+) denote commands that work with Vim's visual mode selection.
 
 1. <span id="f1"></span> In vim-surround <target> is used to designate the character(s) to be used to surround the text. vim-surround recognizes eith punctuation marks, (, ), {, }, [, ], <,and >, which represent themselves and their counterparts. If the opening mark is used, contained whitespace is also trimmed. The targets b, B, r, and a are aliases for ), }, ], and >. The first two mirror Vim. The second two are, [according to the vim-surround
