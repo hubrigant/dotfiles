@@ -1,7 +1,8 @@
 # Cheatsheet of commands available through active plugins
 
-| Binding | Function | From plugin |
-| ------- | -------- | ----------- |
+---------------------------------------------------------------------------------------------------------------------------------------------------
+|Binding                   |Function                                                                      |From plugin                            |
+|------------------------- |----------------------------------------------------------------------------- |-------------------------------------- |
 | zr | reduce fold level throughout the buffer | vim-markdown |
 | zR | opens all folds | vim-markdown |
 | zm | increases fold level throughout the buffer | vim-markdown |
