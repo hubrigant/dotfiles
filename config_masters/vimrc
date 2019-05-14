@@ -385,9 +385,26 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => End of copied config
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " map F8 to toggle the tagbar pluggin
 nmap <F8> :TagbarToggle<CR>
 
 " set the leader key to something I know
 let mapleader = ","
+
+" map <leader>f to vim-markdown's unfold-all command
+" and <leader>F to fold-all
+nmap <leader>f zR<CR>
+nmap <leader>F zM<CR>
+
+" set interval that vim-gitgutter uses when looking for changes
+set updatetime=100
+
+" toggle vim-gitgutter's highlighting of changed hunks
+nmap <leader>h :GitGutterLineHighlightsToggle<CR>
+
+" put airline on top instead of bottom
+let g:airline_statusline_ontop=1

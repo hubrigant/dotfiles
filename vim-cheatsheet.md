@@ -1,10 +1,14 @@
 # Cheatsheet of commands available through active plugins
 
+Entries marked with an asterix (*) denote my own bindings for plugin-provided functionality
+
 |Binding                   |Function                                                                      |From plugin                            |
 |------------------------- |----------------------------------------------------------------------------- |-------------------------------------- |
 | zr | reduce fold level throughout the buffer | vim-markdown |
 | zR | opens all folds | vim-markdown |
-| zm | increases fold level throughout the buffer | vim-markdown |
+| \<leader\>f | opens all folds | vim-markdown |
+| zm | increases fold level throughout the buffer | vim-markdown* |
+| \<leader\>F | increases fold level throughout the buffer | vim-markdown* |
 | zM | folds everything all the way | vim-markdown |
 | za | open a fold your cursor is on | vim-markdown |
 | zA | open a fold your cursor is on recursively | vim-markdown |
@@ -13,6 +17,20 @@
 | cs\<target\><span id="a2">[[1]](#f1)</span> | Change the surrounding character(s) designated by <target> | vim-surround<span id="b2">[[2]](#f2")</span> |
 | ys\<target\><span id="a3">[[1]](#f1)</span> | Create new surrounding character(s) designated by <target> | vim-surround<span id="b2">[[2]](#f2")</span> |
 | v\<motion\>s\<target\><span id="a4">[[1]](#f1)</span> | Create new surrounding character(s) designated by \<argument\> | vim-surround<span id="b2">[[2]](#f2")</span> |
+| [c | jump to previous changed hunk | vim-gitgutter |
+| ]c | jump to next changed hunk | vim-gitgutter |
+| \<leader\>hp | preview changed hunk | vim-gitgutter |
+| \<leader\>hs | stage changed hunk | vim-gitgutter |
+| \<leader\>hu | undo hunk | vim-gitgutter |
+| \<leader\>g | enable highlighting of changed lines | vim-gitgutter* |
+| \<leader\>g | disable highlighting of changed lines | vim-gitgutter* |
+| \<leader\>h | toggle highlighting of changed lines | vim-gitgutter |
+| \<leader\>hs | stage the current hunk | vim-gitgutter |
+| \<leader\>hu | undo the current hunk | vim-gitgutter |
+| \<leader\>hp | preview the current hunk | vim-gitgutter |
+| :FixTrailingWhitespace | trim off whitespace at the ends of lines | vim-trailing-whitespace |
+| :Tabularize /\<pattern\> | align text in multiple lines along the characters matched by \<pattern\> | tabularize<sup>+</sup> |
+
 
 Footnotes
 =========

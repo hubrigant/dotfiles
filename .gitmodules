@@ -4,3 +4,6 @@
 [submodule "powerlevel9k"]
 	path = powerlevel9k
 	url = /Users/jon/.dotfiles/themes/powerlevel9k
+[submodule "/Users/jw68539/.dotfiles/plugins/vim-markdown"]
+	path = /Users/jw68539/.dotfiles/plugins/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown.git
