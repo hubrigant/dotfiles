@@ -8,6 +8,10 @@ I started down this path to synchronize my standard dotfiles across my UNIX-like
 
 For a list of the plugins installed and/or used by these dotfiles, you can [find them here](whats_included.md).
 
+
+## Documentation
+Besides the documentation for each module/plugin I've used and for ZSH itself, I've been [compiling a cheatsheet of Vim commands/key mappings](vim-cheatsheet.md) for the various Vim plugins.
+
 ## Prerequisites
 Obviously, this repo depends on using [git](https://git-scm.com/), so make sure you have a current release installed.
 
