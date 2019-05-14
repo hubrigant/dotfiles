@@ -82,6 +82,7 @@ bindkey -v
 source ~/.zshenv
 
 # load powerlevel9k theme
+source ${DOTFILES}/themes/powerlevel9k/powerlevel9k.zsh-theme
 POWERLEVEL9K_MODE='awsome-patched'
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
@@ -161,15 +162,27 @@ POWERLEVEL9K_ANACONDA_FOREGROUND='black'
 # this block of commands was relocated to ${DOTFILES}/config_masters/zgen which is
 # linked to ${HOME}/.zgen.conf
 if [ ! $TERM = dumb ]; then
-
     # load zgen
     ZGEN_DIR=${HOME}/.zgen
-    if [[ ! -s ${ZDOTDIR:-${HOME}}/.zgen/init.zsh ]]; then
-        echo "Creating a zgen save"
-    else
-        source ${ZDOTDIR:-${HOME}}/.zgen.conf
-    fi
+    # if [[ ! -s ${ZDOTDIR:-${HOME}}/.zgen/init.zsh ]]; then
+    #     echo "Creating a zgen save"
+    # else
+    #     source ${ZDOTDIR:-${HOME}}/.zgen.conf
+    # fi
 fi
+
+source ${DOTFILES}/plugins/aliases/aliases.plugin.zsh
+source ${DOTFILES}/plugins/autojump/autojump.plugin.zsh
+source ${DOTFILES}/plugins/my-brew/my-brew.plugin.zsh
+source ${DOTFILES}/plugins/my-tmux/my-tmux.plugin.zsh
+source ${DOTFILES}/plugins/sudo/sudo.plugin.zsh
+source ${DOTFILES}/plugins/taskwarrior/taskwarrior.plugin.zsh
+source ${DOTFILES}/plugins/tmuxinator/tmuxinator.plugin.zsh
+source ${DOTFILES}/plugins/tpm/tpm.plugin.zsh
+source ${DOTFILES}/plugins/vi-mode/vi-mode.plugin.zsh
+source ${DOTFILES}/plugins/vundle/vundle.plugin.zsh
+source ${DOTFILES}/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source ${DOTFILES}/plugins/zsh-completions/zsh-completions.plugin.zsh
 
 # Which plugins would you like to load?
 plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions aliases tpm)

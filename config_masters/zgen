@@ -14,13 +14,7 @@ if [ ! $TERM = dumb ]; then
     source ${ZGEN_DIR}/zgen.zsh
 
     # configure zgen
-        zgen oh-my-zsh
-
-        # these plugins only have utility on my raspis
-        if ! [[ $OSTYPE =~ 'darwin' ]]; then
-            zgen oh-my-zsh plugins/debian
-            zgen oh-my-zsh plugins/systemd
-        fi
+        # zgen oh-my-zsh
 
         # list of plugins from zsh I use
         # see https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins
