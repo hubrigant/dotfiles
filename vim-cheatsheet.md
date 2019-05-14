@@ -12,7 +12,7 @@
 | ds\<target\><span id="a1">[[1]](#f1)</span> | Delete the surrounding character(s) designated by <target> | vim-surround<span id="b2">[[2]](#f2")</span> |
 | cs\<target\><span id="a2">[[1]](#f1)</span> | Change the surrounding character(s) designated by <target> | vim-surround<span id="b2">[[2]](#f2")</span> |
 | ys\<target\><span id="a3">[[1]](#f1)</span> | Create new surrounding character(s) designated by <target> | vim-surround<span id="b2">[[2]](#f2")</span> |
-| v\<motion\>s\<target\><span id="a4">[[1]](#f1)</span> | Create new surrounding character(s) designated by \<argument\> vim-surround<span id="b2">[[2]](#f2")</span> |
+| v\<motion\>s\<target\><span id="a4">[[1]](#f1)</span> | Create new surrounding character(s) designated by \<argument\> | vim-surround<span id="b2">[[2]](#f2")</span> |
 
 Footnotes
 =========
