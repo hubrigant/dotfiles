@@ -9,10 +9,10 @@
 | za | open a fold your cursor is on | vim-markdown |
 | zA | open a fold your cursor is on recursively | vim-markdown |
 | zc | close a fold your cursor is on | vim-markdown |
-| ds\<target\><span id="a1">[[1]](#f1)</span> | Delete the surrounding character(s) designated by <target> | [vim-surround][^2] |
-| cs\<target\><span id="a2">[[1]](#f1)</span> | Change the surrounding character(s) designated by <target> | [vim-surround][^2] |
-| ys\<target\><span id="a3">[[1]](#f1)</span> | Create new surrounding character(s) designated by <target> | [vim-surround][^2] |
-| v<select motion>s\<target\><span id="a4">[[1]](#f1)</span> | Create new surrounding character(s) designated by <argument> | [vim-surround][^2] |
+| ds\<target\><span id="a1">[[1]](#f1)</span> | Delete the surrounding character(s) designated by <target> | <span id="b2">[[2]](#f2")</span> |
+| cs\<target\><span id="a2">[[1]](#f1)</span> | Change the surrounding character(s) designated by <target> | <span id="b2">[[2]](#f2")</span> |
+| ys\<target\><span id="a3">[[1]](#f1)</span> | Create new surrounding character(s) designated by <target> | <span id="b2">[[2]](#f2")</span> |
+| v<select motion>s\<target\><span id="a4">[[1]](#f1)</span> | Create new surrounding character(s) designated by <argument> | <span id="b2">[[2]](#f2")</span> |
 
 Footnotes
 =========
