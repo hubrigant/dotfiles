@@ -408,3 +408,6 @@ nmap <leader>h :GitGutterLineHighlightsToggle<CR>
 
 " put airline on top instead of bottom
 let g:airline_statusline_ontop=1
+
+" bind key to run YAPF to format Python code
+autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr><C-o>
