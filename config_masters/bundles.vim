@@ -94,6 +94,10 @@ Plugin 'tpope/vim-unimpaired'
 " YouCompleteMe code completion
 Plugin 'Valloric/YouCompleteMe'
 "
+" LaTeX Suite
+" https://github.com/vim-latex/vim-latex
+Plugin 'vim-latex/vim-latex'
+"
 " Syntax linters
 Plugin 'vim-syntastic/syntastic'
 "
