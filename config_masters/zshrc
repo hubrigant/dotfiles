@@ -171,8 +171,8 @@ if [ ! $TERM = dumb ]; then
     # fi
 fi
 
-source ${DOTFILES}/plugins/aliases/aliases.plugin.zsh
 source ${DOTFILES}/plugins/autojump/autojump.plugin.zsh
+source ${DOTFILES}/plugins/my-aliases/my-aliases.plugin.zsh
 source ${DOTFILES}/plugins/my-brew/my-brew.plugin.zsh
 source ${DOTFILES}/plugins/my-tmux/my-tmux.plugin.zsh
 source ${DOTFILES}/plugins/sudo/sudo.plugin.zsh
