@@ -1733,13 +1733,19 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>530 496 620 392 0 0 1680 1027 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>390 495 918 512 0 0 1680 1027 </string>
+	<string>390 415 918 514 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>625 400 970 627 0 0 1680 1027 </string>
+	<string>0 117 1680 736 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>0 400 970 627 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>693 81 970 627 0 0 1680 1027 </string>
+	<string>402 81 970 627 0 0 1680 1027 </string>
+	<key>NSWindow Frame iTerm Window 3</key>
+	<string>776 271 970 627 0 0 1680 1027 </string>
+	<key>NSWindow Frame iTerm Window 4</key>
+	<string>275 400 970 627 0 0 1680 1027 </string>
+	<key>NSWindow Frame iTerm Window 5</key>
+	<string>296 400 970 627 0 0 1680 1027 </string>
 	<key>NeverWarnAboutSpaces</key>
 	<true/>
 	<key>NeverWarnAboutSpaces_selection</key>
@@ -2477,7 +2483,7 @@
 					<key>partial</key>
 					<false/>
 					<key>regex</key>
-					<string>[pP]assword:</string>
+					<string>[pP]aassword:</string>
 				</dict>
 			</array>
 			<key>Unicode Normalization</key>
@@ -5246,6 +5252,8 @@
 	<true/>
 	<key>OpenTmuxWindowsIn</key>
 	<integer>2</integer>
+	<key>PasteTabToStringTabStopSize</key>
+	<integer>4</integer>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -5339,7 +5347,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-05-07T13:04:20Z</date>
+	<date>2019-05-20T19:05:24Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SuppressRestartAnnouncement</key>
