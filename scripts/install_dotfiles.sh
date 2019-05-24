@@ -17,6 +17,9 @@ else
     print -P "%B%K{green}%F{black}[*]%k%f%b The dotfiles repo exists, good."
 fi
 
+CONFIG_MASTERS_DIR="${DOTFILES_DIR}/config_masters"
+echo "debug> ${CONFIG_MASTERS_DIR}"
+
 if ! git_loc="$(type -p "git")" || [[ -z $git_loc ]]; then
     print -P "%B%K{red}%F{black}[X]%f%k%b A git client is required. Please install and try again."
     exit(1)
@@ -73,16 +76,16 @@ if [ ! -d ${HOME}/dotfiles.bkup ]; then
 fi
 
 print -P "%B%K{green}%F{black}[*]%k%f%b Backing up old home-dir dot files before creating links"
-[ -f ${HOME}/.bundles.vim ]                    && mv ${HOME}/.bundles.vim         ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.gitconfig ]                      && mv ${HOME}/.gitconfig           ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.gitignore_global ]               && mv ${HOME}/.gitignore_global    ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.global_extra_conf ]              && mv ${HOME}/global_extra_conf.py ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.tmux.conf ]                      && mv ${HOME}/.tmux.conf           ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.vimrc ]                          && mv ${HOME}/.vimrc               ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.zgen.conf ]                      && mv ${HOME}/.zgen.conf           ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.zshenv ]                         && mv ${HOME}/.zshenv              ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.zshrc ]                          && mv ${HOME}/.zshrc               ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.config/karabiner/karabiner.json] && mv ${HOME}/.zshrc               ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.bundles.vim ]                     && mv ${HOME}/.bundles.vim                     ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.gitconfig ]                       && mv ${HOME}/.gitconfig                       ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.gitignore_global ]                && mv ${HOME}/.gitignore_global                ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.global_extra_conf ]               && mv ${HOME}/global_extra_conf.py             ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.tmux.conf ]                       && mv ${HOME}/.tmux.conf                       ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.vimrc ]                           && mv ${HOME}/.vimrc                           ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.zgen.conf ]                       && mv ${HOME}/.zgen.conf                       ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.zshenv ]                          && mv ${HOME}/.zshenv                          ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.zshrc ]                           && mv ${HOME}/.zshrc                           ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.config/karabiner/karabiner.json ] && mv ${HOME}/.config/karabiner/karabiner.json ${HOME}/dotfiles.bkup >/dev/null 2>&1
 
 print -P "%B%K{green}%F{black}[*]%k%f%b Removing old home-dir dot files."
 [ -f ${HOME}/.bundles.vim ]                     && rm ${HOME}/.bundles.vim
@@ -98,16 +101,16 @@ print -P "%B%K{green}%F{black}[*]%k%f%b Removing old home-dir dot files."
 
 # link new dot files
 print -P "%B%K{green}%F{black}[*]%k%f%b Creating hard links of dot files"
-ln ${DOTFILES_DIR}/config_masters/bundles.vim                      ${HOME}/.bundles.vim
-ln ${DOTFILES_DIR}/config_masters/gitconfig                        ${HOME}/.gitconfig
-ln ${DOTFILES_DIR}/config_masters/gitignore_global                 ${HOME}/.gitignore_global
-ln ${DOTFILES_DIR}/config_masters/global_extra_conf.py             ${HOME}/global_extra_conf.py
-ln ${DOTFILES_DIR}/config_masters/tmux.conf                        ${HOME}/.tmux.conf
-ln ${DOTFILES_DIR}/config_masters/vimrc                            ${HOME}/.vimrc
-ln ${DOTFILES_DIR}/config_masters/zgen                             ${HOME}/.zgen.conf
-ln ${DOTFILES_DIR}/config_masters/zshenv                           ${HOME}/.zshenv
-ln ${DOTFILES_DIR}/config_masters/zshrc                            ${HOME}/.zshrc
-ln ${DOTFILES_DIR}/config_masters/.config/karabiner/karabiner.json ${HOME}/..config/karabiner/karabiner.json
+ln ${CONFIG_MASTERS_DIR}/bundles.vim                      ${HOME}/.bundles.vim
+ln ${CONFIG_MASTERS_DIR}/gitconfig                        ${HOME}/.gitconfig
+ln ${CONFIG_MASTERS_DIR}/gitignore_global                 ${HOME}/.gitignore_global
+ln ${CONFIG_MASTERS_DIR}/global_extra_conf.py             ${HOME}/global_extra_conf.py
+ln ${CONFIG_MASTERS_DIR}/tmux.conf                        ${HOME}/.tmux.conf
+ln ${CONFIG_MASTERS_DIR}/vimrc                            ${HOME}/.vimrc
+ln ${CONFIG_MASTERS_DIR}/zgen                             ${HOME}/.zgen.conf
+ln ${CONFIG_MASTERS_DIR}/zshenv                           ${HOME}/.zshenv
+ln ${CONFIG_MASTERS_DIR}/zshrc                            ${HOME}/.zshrc
+ln ${CONFIG_MASTERS_DIR}/karabiner.json                   ${HOME}/.config/karabiner/karabiner.json
 
 print -P "%B%K{green}%F{black}[*]%k%f%b Installing zgen plugin manager."
 if [ -d ${HOME}/.zgen ]; then
