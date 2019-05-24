@@ -1,6 +1,6 @@
 {
     "global": {
-        "_comment": "The logic for double-tapping the caps lock key is adapted from https://pqrs.org/osx/karabiner/json.html#typical-complex_modifications-examples-change-right-shift-x2-to-mission-control. It's not yet working properly.",
+        "_comment": "test",
         "check_for_updates_on_startup": true,
         "show_in_menu_bar": true,
         "show_profile_name_in_menu_bar": true
@@ -16,38 +16,6 @@
                     "mouse_motion_to_scroll.speed": 100
                 },
                 "rules": [
-                    {
-                        "description": "caps_lock remap to escape",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "caps_lock"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "escape"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "escape remap to caps_lock",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "escape"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "caps_lock"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
                     {
                         "description": "Map right_shift to tmux's <CTRL>-a",
                         "manipulators": [
@@ -168,7 +136,10 @@
             ],
             "name": "Jon's God-mode Profile",
             "selected": true,
-            "simple_modifications": [],
+            "simple_modifications": {
+                "caps_lock": "escape",
+                "escape": "caps_lock"
+            },
             "virtual_hid_keyboard": {
                 "country_code": 0,
                 "mouse_key_xy_scale": 100
