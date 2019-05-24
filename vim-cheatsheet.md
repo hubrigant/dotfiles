@@ -36,6 +36,7 @@
 | \<C-j\>\/\<C-k\> | navigate the CtrlP result list | ctrlp.vim |
 | \<C-t\>\/\<C-v\>\<C-x\> | open the selected entry in a new tab or split | ctrlp.vim |
 | .. | submit two or more dots to go up the directory tree by one or multiple levels | ctrlp.vim |
+| \<leader\>cc | comment out current line or text selected in visual mode | nerdcommenter<sup>+</sup> |
 
 Footnotes
 =========
