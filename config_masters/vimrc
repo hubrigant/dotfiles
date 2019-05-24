@@ -392,9 +392,6 @@ endfunction
 " map F8 to toggle the tagbar pluggin
 nmap <F8> :TagbarToggle<CR>
 
-" set the leader key to something I know
-let mapleader = ","
-
 " map <leader>f to vim-markdown's unfold-all command
 " and <leader>F to fold-all
 nmap <leader>f zR<CR>
@@ -417,3 +414,8 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+" set my defaults for nerdcommenter
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDTrimTrailingWhitespace = 1
