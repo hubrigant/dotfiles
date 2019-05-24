@@ -18,7 +18,6 @@ else
 fi
 
 CONFIG_MASTERS_DIR="${DOTFILES_DIR}/config_masters"
-echo "debug> ${CONFIG_MASTERS_DIR}"
 
 if ! git_loc="$(type -p "git")" || [[ -z $git_loc ]]; then
     print -P "%B%K{red}%F{black}[X]%f%k%b A git client is required. Please install and try again."
@@ -82,7 +81,7 @@ print -P "%B%K{green}%F{black}[*]%k%f%b Backing up old home-dir dot files before
 [ -f ${HOME}/.global_extra_conf ]               && mv ${HOME}/global_extra_conf.py             ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.tmux.conf ]                       && mv ${HOME}/.tmux.conf                       ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.vimrc ]                           && mv ${HOME}/.vimrc                           ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.zgen.conf ]                       && mv ${HOME}/.zgen.conf                       ${HOME}/dotfiles.bkup >/dev/null 2>&1
+# [ -f ${HOME}/.zgen.conf ]                       && mv ${HOME}/.zgen.conf                       ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.zshenv ]                          && mv ${HOME}/.zshenv                          ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.zshrc ]                           && mv ${HOME}/.zshrc                           ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.config/karabiner/karabiner.json ] && mv ${HOME}/.config/karabiner/karabiner.json ${HOME}/dotfiles.bkup >/dev/null 2>&1
@@ -94,7 +93,7 @@ print -P "%B%K{green}%F{black}[*]%k%f%b Removing old home-dir dot files."
 [ -f ${HOME}/global_extra_conf.py ]             && rm ${HOME}/global_extra_conf.py
 [ -f ${HOME}/.tmux.conf ]                       && rm ${HOME}/.tmux.conf
 [ -f ${HOME}/.vimrc ]                           && rm ${HOME}/.vimrc
-[ -f ${HOME}/.zgen.conf ]                       && rm ${HOME}/.zgen.conf
+# [ -f ${HOME}/.zgen.conf ]                       && rm ${HOME}/.zgen.conf
 [ -f ${HOME}/.zshenv ]                          && rm ${HOME}/.zshenv
 [ -f ${HOME}/.zshrc ]                           && rm ${HOME}/.zshrc
 [ -f ${HOME}/.config/karabiner/karabiner.json ] && rm ${HOME}/.config/karabiner/karabiner.json
@@ -107,47 +106,47 @@ ln ${CONFIG_MASTERS_DIR}/gitignore_global                 ${HOME}/.gitignore_glo
 ln ${CONFIG_MASTERS_DIR}/global_extra_conf.py             ${HOME}/global_extra_conf.py
 ln ${CONFIG_MASTERS_DIR}/tmux.conf                        ${HOME}/.tmux.conf
 ln ${CONFIG_MASTERS_DIR}/vimrc                            ${HOME}/.vimrc
-ln ${CONFIG_MASTERS_DIR}/zgen                             ${HOME}/.zgen.conf
+# ln ${CONFIG_MASTERS_DIR}/zgen                             ${HOME}/.zgen.conf
 ln ${CONFIG_MASTERS_DIR}/zshenv                           ${HOME}/.zshenv
 ln ${CONFIG_MASTERS_DIR}/zshrc                            ${HOME}/.zshrc
 ln ${CONFIG_MASTERS_DIR}/karabiner.json                   ${HOME}/.config/karabiner/karabiner.json
 
-print -P "%B%K{green}%F{black}[*]%k%f%b Installing zgen plugin manager."
-if [ -d ${HOME}/.zgen ]; then
-    print -P "%B%K{green}%F{black}[*]%f%k%b You already have a ~/.zgen directory."
-else
-    if git clone https://github.com/tarjoilija/zgen.git ${HOME}/.zgen; then
-        print -P "%B%K{green}%F{black}[*]%f%k%b Successfully cloned zgen."
-    else
-        print -P "%B%K{red}%F{black}[X]%f%k%b Couldn't clone zgen for some reason."
-        exit(1)
-    fi
-fi
+# print -P "%B%K{green}%F{black}[*]%k%f%b Installing zgen plugin manager."
+# if [ -d ${HOME}/.zgen ]; then
+#     print -P "%B%K{green}%F{black}[*]%f%k%b You already have a ~/.zgen directory."
+# else
+#     if git clone https://github.com/tarjoilija/zgen.git ${HOME}/.zgen; then
+#         print -P "%B%K{green}%F{black}[*]%f%k%b Successfully cloned zgen."
+#     else
+#         print -P "%B%K{red}%F{black}[X]%f%k%b Couldn't clone zgen for some reason."
+#         exit(1)
+#     fi
+# fi
 
-print -P "%B%K{green}%F{black}[*]%k%f%b Loading zgen configuration to trigger plugin installs"
-source ${HOME}/.zgen.conf
+# print -P "%B%K{green}%F{black}[*]%k%f%b Loading zgen configuration to trigger plugin installs"
+# source ${HOME}/.zgen.conf
 
-ZGEN=${HOME}/.zgen
+# ZGEN=${HOME}/.zgen
 
-if [ ! -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/powerlevel9k ]; then
-    print -P "%B%K{green}%F{black}[*]%k%f%b Linking the powerlevel9k theme into the oh-my-zsh plugin custom themes path."
-    if [[ ( -d ${ZGEN}/bhilburn/powerlevel9k-master && -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/ ) ]]; then
-        ln -s ${ZGEN}/bhilburn/powerlevel9k-master ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/powerlevel9k
-    else
-        print -P "%B%K{red}%F{black}[X]%f%k%b Oops, couldn't find the right way to link the powerlevel9k theme."
-        exit(1)
-    fi
-fi
+# if [ ! -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/powerlevel9k ]; then
+#     print -P "%B%K{green}%F{black}[*]%k%f%b Linking the powerlevel9k theme into the oh-my-zsh plugin custom themes path."
+#     if [[ ( -d ${ZGEN}/bhilburn/powerlevel9k-master && -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/ ) ]]; then
+#         ln -s ${ZGEN}/bhilburn/powerlevel9k-master ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/powerlevel9k
+#     else
+#         print -P "%B%K{red}%F{black}[X]%f%k%b Oops, couldn't find the right way to link the powerlevel9k theme."
+#         exit(1)
+#     fi
+# fi
 
-if [ ! -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/plugins/zsh-auatosuggestions ]; then
-    print -P "%B%K{green}%F{black}[*]%k%f%b Installing zsh-autosuggestions"
-    if git clone https://github.com/zsh-users/zsh-autosuggestions ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/plugins/zsh-auatosuggestions; then
-        print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
-    else
-        print -P "%B%K{red}%F{black}[X]%f%k%b Cloudn't clone zsh-autosuggestions for some reason."
-        exit(1)
-    fi
-fi
+# if [ ! -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/plugins/zsh-auatosuggestions ]; then
+#     print -P "%B%K{green}%F{black}[*]%k%f%b Installing zsh-autosuggestions"
+#     if git clone https://github.com/zsh-users/zsh-autosuggestions ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/plugins/zsh-auatosuggestions; then
+#         print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
+#     else
+#         print -P "%B%K{red}%F{black}[X]%f%k%b Cloudn't clone zsh-autosuggestions for some reason."
+#         exit(1)
+#     fi
+# fi
 
 print -P "%B%K{green}%F{black}[*]%k%f%b Activating new configurations."
 source ${HOME}/.zshrc
