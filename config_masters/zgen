@@ -32,8 +32,7 @@ if [ ! $TERM = dumb ]; then
         # zgen load zsh-users/zsh-syn
 
         # my own plugins
-        zgen load $DOTFILES/plugins/aliases
-        # zgen oh-my-zsh plugins/dotfiles
+        zgen load $DOTFILES/plugins/my-aliases
         zgen load $DOTFILES/plugins/my-brew
         zgen load $DOTFILES/plugins/tpm
 
