@@ -1,122 +1,177 @@
 {
     "global": {
-        "_comment": "The logic for double-tapping the caps lock key is adapted from https://pqrs.org/osx/karabiner/json.html#typical-complex_modifications-examples-change-right-shift-x2-to-mission-control. It's not yet working properly."
+        "_comment": "The logic for double-tapping the caps lock key is adapted from https://pqrs.org/osx/karabiner/json.html#typical-complex_modifications-examples-change-right-shift-x2-to-mission-control. It's not yet working properly.",
+        "check_for_updates_on_startup": true,
+        "show_in_menu_bar": true,
+        "show_profile_name_in_menu_bar": true
     },
     "profiles": [
         {
-            "name": "Jon's super-ultra-meta layout",
-            "selected": true,
             "complex_modifications": {
                 "parameters": {
+                    "basic.simultaneous_threshold_milliseconds": 50,
+                    "basic.to_delayed_action_delay_milliseconds": 500,
                     "basic.to_if_alone_timeout_milliseconds": 250,
-                    "basic.to_if_held_down_threshold_milliseconds": 250
+                    "basic.to_if_held_down_threshold_milliseconds": 250,
+                    "mouse_motion_to_scroll.speed": 100
                 },
-
                 "rules": [
                     {
-                        "description": "Caps Lock remap to <ESC> if held down",
+                        "description": "caps_lock remap to escape",
                         "manipulators": [
                             {
-                                "type": "basic",
                                 "from": {
                                     "key_code": "caps_lock"
                                 },
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "caps_lock"
-                                    }
-                                ],
-                                "to_if_held_down": [
+                                "to": [
                                     {
                                         "key_code": "escape"
                                     }
-                                 ]
-                            }
-                        ]
-                    },
-
-                    {
-                        "description": "If 'caps_lock pressed' variable is set to 1, send <CTRL>-a instead",
-                        "manipulators": [
-                            {
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_control"
-                                    },
-                                    {
-                                        "key_code": "a"
-                                    }
                                 ],
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "caps_lock pressed",
-                                        "value": 1
-                                    }
-                                ]
+                                "type": "basic"
                             }
                         ]
                     },
-
                     {
-                        "description": "Set variable to track if Caps Lock is pressed twice",
-                        "parameters": {
-                            "basic.to_if_alone_timeout_milliseconds": 500,
-                            "basic.to_if_held_down_threshold_milliseconds": 500
-                        },
+                        "description": "escape remap to caps_lock",
                         "manipulators": [
                             {
-                                "type": "basic",
                                 "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
+                                    "key_code": "escape"
                                 },
                                 "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "caps_lock pressed",
-                                            "value": 1
-                                        }
-                                    },
                                     {
                                         "key_code": "caps_lock"
                                     }
                                 ],
-                                "to_delayed_action": {
-                                    "to_if_invoked": [
-                                        {
-                                            "set_variable": {
-                                                "name": "caps_lock pressed",
-                                                "value": 0
-                                            }
-                                        }
-                                    ],
-                                    "to_if_canceled": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "caps_lock pressed",
-                                                    "value": 0
-                                                }
-                                            }
-                                    ]
-                                }
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Map right_shift to tmux's <CTRL>-a",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "right_shift"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "a",
+                                        "modifiers": [ "left_control" ]
+                                    }
+                                ],
+                                "type": "basic"
                             }
                         ]
                     }
                 ]
+            },
+            "devices": [],
+            "fn_function_keys": [
+                {
+                    "from": {
+                        "key_code": "f1"
+                    },
+                    "to": {
+                        "consumer_key_code": "display_brightness_decrement"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "f2"
+                    },
+                    "to": {
+                        "consumer_key_code": "display_brightness_increment"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "f3"
+                    },
+                    "to": {
+                        "key_code": "mission_control"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "f4"
+                    },
+                    "to": {
+                        "key_code": "launchpad"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "f5"
+                    },
+                    "to": {
+                        "key_code": "illumination_decrement"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "f6"
+                    },
+                    "to": {
+                        "key_code": "illumination_increment"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "f7"
+                    },
+                    "to": {
+                        "consumer_key_code": "rewind"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "f8"
+                    },
+                    "to": {
+                        "consumer_key_code": "play_or_pause"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "f9"
+                    },
+                    "to": {
+                        "consumer_key_code": "fastforward"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "f10"
+                    },
+                    "to": {
+                        "consumer_key_code": "mute"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "f11"
+                    },
+                    "to": {
+                        "consumer_key_code": "volume_decrement"
+                    }
+                },
+                {
+                    "from": {
+                        "key_code": "f12"
+                    },
+                    "to": {
+                        "consumer_key_code": "volume_increment"
+                    }
+                }
+            ],
+            "name": "Jon's God-mode Profile",
+            "selected": true,
+            "simple_modifications": [],
+            "virtual_hid_keyboard": {
+                "country_code": 0,
+                "mouse_key_xy_scale": 100
             }
         }
     ]
