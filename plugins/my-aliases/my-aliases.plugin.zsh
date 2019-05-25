@@ -17,3 +17,5 @@ function hs
 alias hsi='hs -i'
 
 alias speedtest='repeat 10 {test zsh -i -c exit}'
+
+alias testloop='ag -l --python |entr pytest'
