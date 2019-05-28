@@ -108,43 +108,6 @@ ln ${CONFIG_MASTERS_DIR}/zshenv                           ${HOME}/.zshenv
 ln ${CONFIG_MASTERS_DIR}/zshrc                            ${HOME}/.zshrc
 ln ${CONFIG_MASTERS_DIR}/karabiner.json                   ${HOME}/.config/karabiner/karabiner.json
 
-# print -P "%B%K{green}%F{black}[*]%k%f%b Installing zgen plugin manager."
-# if [ -d ${HOME}/.zgen ]; then
-#     print -P "%B%K{green}%F{black}[*]%f%k%b You already have a ~/.zgen directory."
-# else
-#     if git clone https://github.com/tarjoilija/zgen.git ${HOME}/.zgen; then
-#         print -P "%B%K{green}%F{black}[*]%f%k%b Successfully cloned zgen."
-#     else
-#         print -P "%B%K{red}%F{black}[X]%f%k%b Couldn't clone zgen for some reason."
-#         exit(1)
-#     fi
-# fi
-
-# print -P "%B%K{green}%F{black}[*]%k%f%b Loading zgen configuration to trigger plugin installs"
-# source ${HOME}/.zgen.conf
-
-# ZGEN=${HOME}/.zgen
-
-# if [ ! -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/powerlevel9k ]; then
-#     print -P "%B%K{green}%F{black}[*]%k%f%b Linking the powerlevel9k theme into the oh-my-zsh plugin custom themes path."
-#     if [[ ( -d ${ZGEN}/bhilburn/powerlevel9k-master && -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/ ) ]]; then
-#         ln -s ${ZGEN}/bhilburn/powerlevel9k-master ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/themes/powerlevel9k
-#     else
-#         print -P "%B%K{red}%F{black}[X]%f%k%b Oops, couldn't find the right way to link the powerlevel9k theme."
-#         exit(1)
-#     fi
-# fi
-
-# if [ ! -d ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/plugins/zsh-auatosuggestions ]; then
-#     print -P "%B%K{green}%F{black}[*]%k%f%b Installing zsh-autosuggestions"
-#     if git clone https://github.com/zsh-users/zsh-autosuggestions ${ZGEN}/robbyrussell/oh-my-zsh-master/custom/plugins/zsh-auatosuggestions; then
-#         print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
-#     else
-#         print -P "%B%K{red}%F{black}[X]%f%k%b Cloudn't clone zsh-autosuggestions for some reason."
-#         exit(1)
-#     fi
-# fi
-
 print -P "%B%K{green}%F{black}[*]%k%f%b Activating new configurations."
 source ${HOME}/.zshrc
 
