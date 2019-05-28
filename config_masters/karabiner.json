@@ -134,12 +134,18 @@
                     }
                 }
             ],
-            "name": "Jon's God-mode Profile",
-            "selected": true,
+            "name": "Vim-optimized Profile",
             "simple_modifications": {
                 "caps_lock": "escape",
                 "escape": "caps_lock"
             },
+            "virtual_hid_keyboard": {
+                "country_code": 0,
+                "mouse_key_xy_scale": 100
+            }
+        },
+        {
+            "name": "Vanilla Profile",
             "virtual_hid_keyboard": {
                 "country_code": 0,
                 "mouse_key_xy_scale": 100

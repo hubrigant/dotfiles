@@ -81,7 +81,6 @@ print -P "%B%K{green}%F{black}[*]%k%f%b Backing up old home-dir dot files before
 [ -f ${HOME}/.global_extra_conf ]               && mv ${HOME}/global_extra_conf.py             ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.tmux.conf ]                       && mv ${HOME}/.tmux.conf                       ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.vimrc ]                           && mv ${HOME}/.vimrc                           ${HOME}/dotfiles.bkup >/dev/null 2>&1
-# [ -f ${HOME}/.zgen.conf ]                       && mv ${HOME}/.zgen.conf                       ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.zshenv ]                          && mv ${HOME}/.zshenv                          ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.zshrc ]                           && mv ${HOME}/.zshrc                           ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.config/karabiner/karabiner.json ] && mv ${HOME}/.config/karabiner/karabiner.json ${HOME}/dotfiles.bkup >/dev/null 2>&1
@@ -93,7 +92,6 @@ print -P "%B%K{green}%F{black}[*]%k%f%b Removing old home-dir dot files."
 [ -f ${HOME}/global_extra_conf.py ]             && rm ${HOME}/global_extra_conf.py
 [ -f ${HOME}/.tmux.conf ]                       && rm ${HOME}/.tmux.conf
 [ -f ${HOME}/.vimrc ]                           && rm ${HOME}/.vimrc
-# [ -f ${HOME}/.zgen.conf ]                       && rm ${HOME}/.zgen.conf
 [ -f ${HOME}/.zshenv ]                          && rm ${HOME}/.zshenv
 [ -f ${HOME}/.zshrc ]                           && rm ${HOME}/.zshrc
 [ -f ${HOME}/.config/karabiner/karabiner.json ] && rm ${HOME}/.config/karabiner/karabiner.json
@@ -106,7 +104,6 @@ ln ${CONFIG_MASTERS_DIR}/gitignore_global                 ${HOME}/.gitignore_glo
 ln ${CONFIG_MASTERS_DIR}/global_extra_conf.py             ${HOME}/global_extra_conf.py
 ln ${CONFIG_MASTERS_DIR}/tmux.conf                        ${HOME}/.tmux.conf
 ln ${CONFIG_MASTERS_DIR}/vimrc                            ${HOME}/.vimrc
-# ln ${CONFIG_MASTERS_DIR}/zgen                             ${HOME}/.zgen.conf
 ln ${CONFIG_MASTERS_DIR}/zshenv                           ${HOME}/.zshenv
 ln ${CONFIG_MASTERS_DIR}/zshrc                            ${HOME}/.zshrc
 ln ${CONFIG_MASTERS_DIR}/karabiner.json                   ${HOME}/.config/karabiner/karabiner.json

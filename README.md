@@ -10,3 +10,5 @@ For a list of the plugins installed and/or used by these dotfiles, you can [find
 
 ## Documentation
 Besides the documentation for each module/plugin I've used and for ZSH itself, I've been [compiling a cheatsheet of Vim commands/key mappings](vim-cheatsheet.md) for the various Vim plugins.
+
+Of particular note, I have remapped my keyboard layout via Karabiner configs to swap the escape and caps-lock keys since I use Vim so much. If you use your caps-lock more often than your escape key, there is a 2nd profile with the normal layout.
