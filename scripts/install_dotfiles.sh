@@ -18,6 +18,7 @@ else
 fi
 
 CONFIG_MASTERS_DIR="${DOTFILES_DIR}/config_masters"
+echo ${CONFIG_MASTERS_DIR}
 
 if ! git_loc="$(type -p "git")" || [[ -z $git_loc ]]; then
     print -P "%B%K{red}%F{black}[X]%f%k%b A git client is required. Please install and try again."
