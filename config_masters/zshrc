@@ -62,7 +62,7 @@ COMPLETION_WAITING_DOTS="true"
 # this always starts tmux
 ZSH_TMUX_AUTOSTART_ONCE=true
 ZSH_TMUX_FIXTERM=true
-ZSH_TMUX_AUTOQUIT=false # not sure what this does, may remove later
+ZSH_TMUX_AUTOQUIT=false # tells TMUX not to close terminal once tmux exits
 
 # set DEFAULT_USER based on different environments
 if [[ $OSTYPE =~ 'darwin' ]]; then
