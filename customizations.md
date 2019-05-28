@@ -20,5 +20,5 @@
         * tmux-copycat
         * tmux-yank
 * Aliases
-  * commit-all: 'git commit -a -m', which I used to bundle all pending changes into one GitHub commit
+  * all-commit: 'git commit -a -m', which I used to bundle all pending changes into one GitHub commit
   * reload-aliases: source the my-aliases plugin
