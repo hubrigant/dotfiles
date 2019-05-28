@@ -16,10 +16,16 @@ function hs
 
 alias hsi='hs -i'
 
+# ZSH conveniences
 alias speedtest='repeat 10 {test zsh -i -c exit}'
 
+# Programming conveniences
 alias testloop='ag -l --python |entr pytest'
 
+# GitHub conveniences
 alias all-commit='git commit -a -m'
+alias gs='git status'
+alias gp='git push'
+alias ga='git add'
 
 alias alias-reload='source ~/.dotfiles/plugins/my-aliases/my-aliases.plugin.zsh'
