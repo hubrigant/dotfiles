@@ -59,21 +59,23 @@ compinit -C
 COMPLETION_WAITING_DOTS="true"
 
 # tmux plugin settings
-# this always starts tmux
-ZSH_TMUX_AUTOSTART_ONCE=true
+ZSH_TMUX_AUTOSTART_ONCE=false
 ZSH_TMUX_FIXTERM=true
 ZSH_TMUX_AUTOQUIT=false # tells TMUX not to close terminal once tmux exits
 
 # set DEFAULT_USER based on different environments
-if [[ $OSTYPE =~ 'darwin' ]]; then
-    if [[ `hostname` = 'WDXJW68539TD8' ]]; then
-        DEFAULT_USER=jw68539
-    else
-        DEFAULT_USER=jon
-    fi
-else
-    DEFAULT_USER=pi
-fi
+# if [[ $OSTYPE =~ 'darwin' ]]; then
+#     if [[ `hostname` = 'WDXJW68539TD8' ]]; then
+#         DEFAULT_USER=jw68539
+#     else
+#         DEFAULT_USER=jon
+#     fi
+# else
+#     DEFAULT_USER=pi
+# fi
+
+# set DEFAULT_USER based on ${USERNAME} variable
+DEFAULT_USER=${USERNAME}
 
 # end section 1
 
