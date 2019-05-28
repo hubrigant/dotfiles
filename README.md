@@ -9,6 +9,4 @@ I started down this path to synchronize my standard dotfiles across my UNIX-like
 For a list of the plugins installed and/or used by these dotfiles, you can [find them here](whats_included.md).
 
 ## Documentation
-Of particular note, I have remapped my keyboard layout via Karabiner configs to swap the escape and caps-lock keys since I use Vim so much. If you use your caps-lock more often than your escape key, there is a profile named "Vanilla Profile" with the normal layout. If you have a layout you find useful, please feel free to submit a pull request to add it to the repo.
-
-Besides the documentation for each module/plugin I've used and for ZSH itself, which can be found in the repositories for the respective software and thus I won't duplicate here, I've been [compiling a cheatsheet of Vim commands/key mappings](vim-cheatsheet.md) for the various Vim plugins.
+Besides the documentation for each module/plugin I've used and for ZSH itself, which can be found in the repositories for the respective software and thus I won't duplicate here, I've been [compiling a cheatsheet of Vim commands/key mappings](vim-cheatsheet.md) for the various Vim plugins. There is also [a file listing significant customizations](customizations.md) that I've done to tailor the system to my personal style/needs.
