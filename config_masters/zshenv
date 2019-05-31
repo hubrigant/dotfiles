@@ -1,4 +1,30 @@
 #!/usr/bin/env zsh
+echo "--------------------------" >> ~/tmp/loginpaths.txt
+echo "zshenv> Start of execution" >> ~/tmp/loginpaths.txt
+echo "zshenv> PATH: ${PATH}" >> ~/tmp/loginpaths.txt
+echo "zshenv> path: ${path}" >> ~/tmp/loginpaths.txt
+
+# Location of my dotfiles
+DOTFILES=$HOME/.dotfiles
+
+# Update PATH
+path=(
+    $HOME/bin
+    $HOME/scripts
+    /usr/local/bin
+    /usr/local/sbin
+    /usr/local/lib/ruby/gems/2.6.0/bin
+    /opt/local/bin
+    /opt/local/sbin
+    /bin
+    /sbin
+    /usr/bin
+    /usr/sbin
+    $DOTFILES/scripts
+    $path
+)
+typeset -U path
+
 export HISTSIZE=32768;
 export HISTFILESIZE=$HISTSIZE;
 export CLICOLOR=1
@@ -12,3 +38,7 @@ export LC_ALL="en_US.UTF-8"
 export EDITOR='vim'
 export PATH="/anaconda3/bin:$PATH"
 export LESS=-FXJAIMqj.5
+echo "zshenv> PATH: ${PATH}" >> ~/tmp/loginpaths.txt
+echo "zshenv> path: ${path}" >> ~/tmp/loginpaths.txt
+echo "zshenv> End of execution" >> ~/tmp/loginpaths.txt
+echo "--------------------------" >> ~/tmp/loginpaths.txt

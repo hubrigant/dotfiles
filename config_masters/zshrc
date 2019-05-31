@@ -1,3 +1,7 @@
+echo "-------------------------" >> ~/tmp/loginpaths.txt
+echo "zshrc> Start of execution" >> ~/tmp/loginpaths.txt
+echo "zshrc> PATH: ${PATH}" >> ~/tmp/loginpaths.txt
+echo "zshrc> path: ${path}" >> ~/tmp/loginpaths.txt
 # begin section 1
 # This first section adapted from https://www.outcoldman.com/en/archive/2015/09/13/keep-your-sh-together/
 
@@ -82,7 +86,7 @@ DEFAULT_USER=${USERNAME}
 
 # use vi bindings
 bindkey -v
-source ~/.zshenv
+# source ~/.zshenv
 
 # load powerlevel9k theme
 source ${DOTFILES}/themes/powerlevel9k/powerlevel9k.zsh-theme
@@ -213,3 +217,7 @@ fi
 # zsh-syntax-highlighting must be sourced as the last thing in this file
 # zgen load zsh-users/zsh-syntax-highlighting
 source ~/.dotfiles/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+echo "zshrc> PATH: ${PATH}" >> ~/tmp/loginpaths.txt
+echo "zshrc> path: ${path}" >> ~/tmp/loginpaths.txt
+echo "zshrc> End of execution" >> ~/tmp/loginpaths.txt
+echo "-------------------------" >> ~/tmp/loginpaths.txt
