@@ -209,13 +209,16 @@ setopt no_share_history
 # load local tmux configurations
 tmux source-file ~/.tmux-local.conf
 
-if [ $(pgrep tmux) ]; then
+if [[ $(pgrep tmux) ]]; then
     TMUX_WINDOW=$(tmux list-windows |grep active)
     full_array=(${(s:[:)TMUX_WINDOW})
     TMUX_WINDOW_SIZE_TEMP=(${(s:]:)full_array[2]})
-    TMUX_WINDOW_SIZE=(${(s:x:)TMUX_WINDOW_SIZE_TEMP[0]})
-    TMUX_WINDOW_WIDTH=($TMUX_WINDOW_SIZE[0])
-    TMUX_WINDOW_HEIGHT=($TMUX_WINDOW_SIZE[1])
+    TMUX_WINDOW_SIZE=(${(s:x:)TMUX_WINDOW_SIZE_TEMP[1]})
+    TMUX_WINDOW_WIDTH=($TMUX_WINDOW_SIZE[1])
+    TMUX_WINDOW_HEIGHT=($TMUX_WINDOW_SIZE[2])
+else
+    TMUX_WINDOW_WIDTH=0
+    TMUX_WINDOW_HEIGHT=0
 fi
 
 # if profiling was on
