@@ -185,7 +185,7 @@ if [ ! $TERM = dumb ]; then
 fi
 
 # Which plugins would you like to load?
-plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions aliases tpm)
+plugins=(sudo git my-tmux my-aliases taskwarrior tmux tmuxinator zsh-autosuggestions tpm)
 
 # specific for machine configuration, which I don't sync
 if [ -f ~/.machinerc ]; then
