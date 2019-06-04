@@ -102,17 +102,17 @@ print -P "%B%K{green}%F{black}[*]%k%f%b Removing old home-dir dot files."
 
 # link new dot files
 print -P "%B%K{green}%F{black}[*]%k%f%b Creating hard links of dot files"
-ln ${CONFIG_MASTERS_DIR}/bundles.vim          ${HOME }/.bundles.vim
-ln ${CONFIG_MASTERS_DIR}/gitconfig            ${HOME }/.gitconfig
-ln ${CONFIG_MASTERS_DIR}/gitignore_global     ${HOME }/.gitignore_global
-ln ${CONFIG_MASTERS_DIR}/global_extra_conf.py ${HOME }/global_extra_conf.py
-ln ${CONFIG_MASTERS_DIR}/tmux.conf            ${HOME }/.tmux.conf
-ln ${CONFIG_MASTERS_DIR}/vimrc                ${HOME }/.vimrc
-ln ${CONFIG_MASTERS_DIR}/zshenv               ${HOME }/.zshenv
-ln ${CONFIG_MASTERS_DIR}/zshrc                ${HOME }/.zshrc
-ln ${CONFIG_MASTERS_DIR}/karabiner.json       ${HOME }/.config/karabiner/karabiner.json
-ln ${CONFIG_MASTERS_DIR}/dev.yml              ${HOME }/.config/tmuxinator/dev.yml
-ln ${CONFIG_MASTERS_DIR}/template.erb         ${HOME }/.config/tmuxinator/template.erb
+ln ${CONFIG_MASTERS_DIR}/bundles.vim          ${HOME}/.bundles.vim
+ln ${CONFIG_MASTERS_DIR}/gitconfig            ${HOME}/.gitconfig
+ln ${CONFIG_MASTERS_DIR}/gitignore_global     ${HOME}/.gitignore_global
+ln ${CONFIG_MASTERS_DIR}/global_extra_conf.py ${HOME}/global_extra_conf.py
+ln ${CONFIG_MASTERS_DIR}/tmux.conf            ${HOME}/.tmux.conf
+ln ${CONFIG_MASTERS_DIR}/vimrc                ${HOME}/.vimrc
+ln ${CONFIG_MASTERS_DIR}/zshenv               ${HOME}/.zshenv
+ln ${CONFIG_MASTERS_DIR}/zshrc                ${HOME}/.zshrc
+ln ${CONFIG_MASTERS_DIR}/karabiner.json       ${HOME}/.config/karabiner/karabiner.json
+ln ${CONFIG_MASTERS_DIR}/dev.yml              ${HOME}/.config/tmuxinator/dev.yml
+ln ${CONFIG_MASTERS_DIR}/template.erb         ${HOME}/.config/tmuxinator/template.erb
 
 print -P "%B%K{green}%F{black}[*]%k%f%b Activating new configurations."
 source ${HOME}/.zshrc
