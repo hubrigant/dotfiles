@@ -18,7 +18,6 @@ else
 fi
 
 CONFIG_MASTERS_DIR="${DOTFILES_DIR}/config_masters"
-echo ${CONFIG_MASTERS_DIR}
 
 if ! git_loc="$(type -p "git")" || [[ -z $git_loc ]]; then
     print -P "%B%K{red}%F{black}[X]%f%k%b A git client is required. Please install and try again."
@@ -76,15 +75,17 @@ if [ ! -d ${HOME}/dotfiles.bkup ]; then
 fi
 
 print -P "%B%K{green}%F{black}[*]%k%f%b Backing up old home-dir dot files before creating links"
-[ -f ${HOME}/.bundles.vim ]                     && mv ${HOME}/.bundles.vim                     ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.gitconfig ]                       && mv ${HOME}/.gitconfig                       ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.gitignore_global ]                && mv ${HOME}/.gitignore_global                ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.global_extra_conf ]               && mv ${HOME}/global_extra_conf.py             ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.tmux.conf ]                       && mv ${HOME}/.tmux.conf                       ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.vimrc ]                           && mv ${HOME}/.vimrc                           ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.zshenv ]                          && mv ${HOME}/.zshenv                          ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.zshrc ]                           && mv ${HOME}/.zshrc                           ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.config/karabiner/karabiner.json ] && mv ${HOME}/.config/karabiner/karabiner.json ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.bundles.vim ]                      && mv ${HOME}/.bundles.vim                     ${HOME}/d otfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.gitconfig ]                        && mv ${HOME}/.gitconfig                       ${HOME}/d otfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.gitignore_global ]                 && mv ${HOME}/.gitignore_global                ${HOME}/d otfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.global_extra_conf ]                && mv ${HOME}/global_extra_conf.py             ${HOME}/d otfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.tmux.conf ]                        && mv ${HOME}/.tmux.conf                       ${HOME}/d otfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.vimrc ]                            && mv ${HOME}/.vimrc                           ${HOME}/d otfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.zshenv ]                           && mv ${HOME}/.zshenv                          ${HOME}/d otfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.zshrc ]                            && mv ${HOME}/.zshrc                           ${HOME}/d otfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.config/karabiner/karabiner.json ]  && mv ${HOME}/.config/karabiner/karabiner.json ${HOME}/d otfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.config/tmuxinator/dev.yml ]        && mv ${HOME}/.config/tmuxinator/dev.yml       ${HOME}/d otfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.config/tmuxinator/template.erb ]   && mv ${HOME}/.config/tmuxinator/template.erb  ${HOME}/d otfiles.bkup >/dev/null 2>&1
 
 print -P "%B%K{green}%F{black}[*]%k%f%b Removing old home-dir dot files."
 [ -f ${HOME}/.bundles.vim ]                     && rm ${HOME}/.bundles.vim
@@ -96,18 +97,22 @@ print -P "%B%K{green}%F{black}[*]%k%f%b Removing old home-dir dot files."
 [ -f ${HOME}/.zshenv ]                          && rm ${HOME}/.zshenv
 [ -f ${HOME}/.zshrc ]                           && rm ${HOME}/.zshrc
 [ -f ${HOME}/.config/karabiner/karabiner.json ] && rm ${HOME}/.config/karabiner/karabiner.json
+[ -f ${HOME}/.config/tmuxinator/dev.yml ]       && rm ${HOME}/.config/tmuxinator/dev.yml
+[ -f ${HOME}/.config/tmuxinator/template.erb ]  && rm ${HOME}/.config/tmuxinator/template.erb
 
 # link new dot files
 print -P "%B%K{green}%F{black}[*]%k%f%b Creating hard links of dot files"
-ln ${CONFIG_MASTERS_DIR}/bundles.vim                      ${HOME}/.bundles.vim
-ln ${CONFIG_MASTERS_DIR}/gitconfig                        ${HOME}/.gitconfig
-ln ${CONFIG_MASTERS_DIR}/gitignore_global                 ${HOME}/.gitignore_global
-ln ${CONFIG_MASTERS_DIR}/global_extra_conf.py             ${HOME}/global_extra_conf.py
-ln ${CONFIG_MASTERS_DIR}/tmux.conf                        ${HOME}/.tmux.conf
-ln ${CONFIG_MASTERS_DIR}/vimrc                            ${HOME}/.vimrc
-ln ${CONFIG_MASTERS_DIR}/zshenv                           ${HOME}/.zshenv
-ln ${CONFIG_MASTERS_DIR}/zshrc                            ${HOME}/.zshrc
-ln ${CONFIG_MASTERS_DIR}/karabiner.json                   ${HOME}/.config/karabiner/karabiner.json
+ln ${CONFIG_MASTERS_DIR}/bundles.vim          ${HOME }/.bundles.vim
+ln ${CONFIG_MASTERS_DIR}/gitconfig            ${HOME }/.gitconfig
+ln ${CONFIG_MASTERS_DIR}/gitignore_global     ${HOME }/.gitignore_global
+ln ${CONFIG_MASTERS_DIR}/global_extra_conf.py ${HOME }/global_extra_conf.py
+ln ${CONFIG_MASTERS_DIR}/tmux.conf            ${HOME }/.tmux.conf
+ln ${CONFIG_MASTERS_DIR}/vimrc                ${HOME }/.vimrc
+ln ${CONFIG_MASTERS_DIR}/zshenv               ${HOME }/.zshenv
+ln ${CONFIG_MASTERS_DIR}/zshrc                ${HOME }/.zshrc
+ln ${CONFIG_MASTERS_DIR}/karabiner.json       ${HOME }/.config/karabiner/karabiner.json
+ln ${CONFIG_MASTERS_DIR}/dev.yml              ${HOME }/.config/tmuxinator/dev.yml
+ln ${CONFIG_MASTERS_DIR}/template.erb         ${HOME }/.config/tmuxinator/template.erb
 
 print -P "%B%K{green}%F{black}[*]%k%f%b Activating new configurations."
 source ${HOME}/.zshrc
