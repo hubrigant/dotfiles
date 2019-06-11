@@ -8,6 +8,7 @@ alias cd-='cd -'
 alias alias-reload='source ~/.dotfiles/plugins/my-aliases/my-aliases.plugin.zsh'
 alias alias-edit='vi ~/.dotfiles/plugins/my-aliases/my-aliases.plugin.zsh'
 alias reinstall='~/.dotfiles/scripts/install_dotfiles.sh'
+alias jl='jupyter-lab'
 
 # history aliases copied from the oh-my-zsh history plugin
 # added here because the other plugin isn't working
