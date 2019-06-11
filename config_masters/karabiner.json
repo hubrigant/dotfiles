@@ -20,7 +20,6 @@
                         "description": "Map right_shift to tmux's <CTRL>-a",
                         "manipulators": [
                             {
-                                "type": "basic",
                                 "from": {
                                     "key_code": "right_shift"
                                 },
@@ -31,16 +30,22 @@
                                             "left_control"
                                         ]
                                     }
-                                ]
+                                ],
+                                "type": "basic"
                             }
                         ]
                     },
-
                     {
                         "description": "Send the sequence <CTRL>-a q to tmux when left_shift is pressed a second time consecutively",
                         "manipulators": [
                             {
-                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "name": "left_shift_pressed",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "left_shift"
                                 },
@@ -55,22 +60,14 @@
                                         "key_code": "q"
                                     }
                                 ],
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "left_shift_pressed",
-                                        "value": 1
-                                    }
-                                ]
+                                "type": "basic"
                             }
                         ]
                     },
-
                     {
                         "description": "Set the left_shift_pressed variable used in the double-left_shift-press modification above",
                         "manipulators": [
                             {
-                                "type": "basic",
                                 "from": {
                                     "key_code": "left_shift"
                                 },
@@ -86,14 +83,6 @@
                                     }
                                 ],
                                 "to_delayed_action": {
-                                    "to_if_invoked": [
-                                        {
-                                            "set_variable": {
-                                                "name": "left_shift_pressed",
-                                                "value": 0
-                                            }
-                                        }
-                                    ],
                                     "to_if_canceled": [
                                         {
                                             "set_variable": {
@@ -101,15 +90,22 @@
                                                 "value": 0
                                             }
                                         }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "set_variable": {
+                                                "name": "left_shift_pressed",
+                                                "value": 0
+                                            }
+                                        }
                                     ]
-                                }
+                                },
+                                "type": "basic"
                             }
                         ]
                     }
-
                 ]
             },
-
             "devices": [
                 {
                     "disable_built_in_keyboard_if_exists": false,
@@ -153,9 +149,38 @@
                             }
                         }
                     ]
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 91,
+                        "vendor_id": 1226
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": false,
+                    "simple_modifications": [
+                        {
+                            "from": {
+                                "key_code": "left_option"
+                            },
+                            "to": {
+                                "key_code": "left_command"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "left_command"
+                            },
+                            "to": {
+                                "key_code": "left_option"
+                            }
+                        }
+                    ]
                 }
             ],
-
             "fn_function_keys": [
                 {
                     "from": {
@@ -254,8 +279,10 @@
                     }
                 }
             ],
-
             "name": "Vim-optimized Profile",
+            "parameters": {
+                "delay_milliseconds_before_open_device": 1000
+            },
             "selected": true,
             "simple_modifications": [
                 {
@@ -275,7 +302,6 @@
                     }
                 }
             ],
-
             "virtual_hid_keyboard": {
                 "country_code": 0,
                 "mouse_key_xy_scale": 100
@@ -292,7 +318,6 @@
                 },
                 "rules": []
             },
-
             "devices": [
                 {
                     "disable_built_in_keyboard_if_exists": false,
@@ -308,18 +333,18 @@
                     "simple_modifications": [
                         {
                             "from": {
-                                "key_code": "left_option"
+                                "key_code": "left_command"
                             },
                             "to": {
-                                "key_code": "left_command"
+                                "key_code": "left_option"
                             }
                         },
                         {
                             "from": {
-                                "key_code": "left_command"
+                                "key_code": "left_option"
                             },
                             "to": {
-                                "key_code": "left_option"
+                                "key_code": "left_command"
                             }
                         }
                     ]
@@ -338,7 +363,6 @@
                     "simple_modifications": []
                 }
             ],
-
             "fn_function_keys": [
                 {
                     "from": {
@@ -437,8 +461,10 @@
                     }
                 }
             ],
-
             "name": "Vanilla Profile",
+            "parameters": {
+                "delay_milliseconds_before_open_device": 1000
+            },
             "selected": false,
             "simple_modifications": [],
             "virtual_hid_keyboard": {
