@@ -1,33 +1,89 @@
-<!doctype html>
-<html lang="en" class="TridactylOwnNamespace">
-    <head>
-        <meta charset="utf-8">
-        <title>Tridactyl Tutorial</title>
-        <link rel="stylesheet" href="../css/newtab.css">
-        <link rel="stylesheet" href="../css/content.css">
-        <link rel="stylesheet" href="../css/hint.css">
-        <link rel="stylesheet" href="../css/viewsource.css">
-        <link rel="shortcut icon" href="../logo/Tridactyl_64px.png">
-    </head>
-    <body>
-<h1 id="native-messenger">Native Messenger</h1>
-<p>The native messenger is an external executable that you can install on your computer in order for Tridactyl to be able to run other programs. It enables Tridactyl to do quite a few things, among which:</p>
-<ul>
-<li>Use your favorite text editor to edit firefox inputs (see <code>:help editor</code> for more information).</li>
-<li>Read Tridactyl settings from a file on your disk (<code>:help source</code>).</li>
-<li>Restart Firefox from Tridactyl&#39;s command line (<code>:help restart</code>).</li>
-<li>Change the way Firefox looks (<code>:h guiset</code>).</li>
-<li>Load themes from your disk (<code>:h colors</code>).</li>
-<li>Open privileged pages (e.g. <code>about:preferences</code>) from Tridactyl&#39;s commandline (<code>:h nativeopen</code>).</li>
-<li>Copy things to your X selection buffer if you&#39;re on linux (<code>:h yankto</code>).</li>
-<li>Make Tridactyl work on <code>addons.mozilla.org</code> (<code>:h fixamo</code>).</li>
-<li>Set firefox preferences from Tridactyl&#39;s command line (<code>:h setpref</code>).</li>
-<li>Choose where to save files when using Tridactyl&#39;s <code>:saveas</code> command.</li>
-<li>Run arbitrary shell commands (<code>:h exclaim</code>).</li>
-</ul>
-<p>If these seem like interesting features to you, you can run <code>:nativeinstall</code> and follow the instructions in order to install the native messenger. If everything went smoothly, running <code>:native</code> should tell you that the native messenger is correctly installed.</p>
-<p>The <a href="./8-help.html">next and final page</a> of this tutorial is about getting help. <a href='./6-containers.html' rel="prev"></a></p>
+" bovine3dom's dogfood
 
-    </body>
-    <script src="../../content.js"></script>
-</html>
+" Provided only as an example.
+" Do not install/run without reading through as you may be surprised by some
+" of the settings.
+
+" May require the latest beta builds.
+
+" Move this to $XDG_CONFIG_DIR/tridactyl/tridactylrc (that's
+" ~/.config/tridactyl/tridactylrc to mere mortals) or ~/.tridactylrc and
+" install the native messenger (:installnative in Tridactyl). Run :source to
+" get it in the browser, or just restart.
+
+" NB: If you want "vim-like" behaviour where removing a line from 
+" here makes the setting disappear, uncomment the line below.
+
+"sanitise tridactyllocal tridactylsync
+
+"
+" Binds
+"
+
+" Comment toggler for Reddit and Hacker News
+bind ;c hint -c [class*="expand"],[class="togg"]
+
+" GitHub pull request checkout command to clipboard (only works if you're a collaborator or above)
+" bind yp composite js document.getElementById("clone-help-step-1").textContent.replace("git checkout -b", "git checkout -B").replace("git pull ", "git fetch ") + "git reset --hard " + document.getElementById("clone-help-step-1").textContent.split(" ")[3].replace("-","/") | yank
+
+" Git{Hub,Lab} git clone via SSH yank
+" bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
+
+" Make gu take you back to subreddit from comments
+bindurl reddit.com gu urlparent 4
+
+" Only hint search results on Google
+bindurl www.google.com f hint -Jc .rc > .r > a
+bindurl www.google.com F hint -Jtc .rc>.r>a
+
+" Allow Ctrl-a to select all in the commandline
+unbind --mode=ex <C-a>
+
+" Allow Ctrl-c to copy in the commandline
+unbind --mode=ex <C-c>
+
+" Handy multiwindow/multitasking binds
+bind gd tabdetach
+bind gD composite tabduplicate | tabdetach
+
+" Make yy use canonical / short links on the 5 websites that support them
+bind yy clipboard yankshort
+
+" Stupid workaround to let hint -; be used with composite which steals semi-colons
+command hint_focus hint -;
+
+" Open right click menu on links
+bind ;C composite hint_focus; !s xdotool key Menu
+
+"
+" Misc settings
+"
+
+" set editorcmd to suckless terminal, or use the defaults on other platforms
+js tri.browserBg.runtime.getPlatformInfo().then(os=>{const editorcmd = os.os=="linux" ? "st vim" : "auto"; tri.config.set("editorcmd", editorcmd)})
+
+" Sane hinting mode
+set hintfiltermode vimperator-reflow
+set hintnames numeric
+
+" Defaults to 300ms but I'm a 'move fast and close the wrong tabs' kinda chap
+" set hintdelay 100
+
+" Make Tridactyl work on more sites at the expense of some security
+" set csp clobber
+" fixamo_quiet
+
+" Make quickmarks for the sane Tridactyl issue view
+quickmark t https://github.com/tridactyl/tridactyl/issues?utf8=%E2%9C%93&q=sort%3Aupdated-desc+
+
+"
+" URL redirects
+" 
+
+" New reddit is bad
+autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+" Mosquito nets won't make themselves
+autocmd DocStart ^http(s?)://www.amazon.com js tri.excmds.urlmodify("-t", "www", "smile")
+
+" This will have to do until someone writes us a nice syntax file :)
+" vim: set filetype=vim:
