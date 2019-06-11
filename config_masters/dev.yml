@@ -1,0 +1,19 @@
+# /Users/jw68539/.config/tmuxinator/dev.yml
+
+name: dev
+root: <%= @args[0] || "." %>
+
+#
+# Project hooks
+#
+# Run on project exit ( detaching from tmux session )
+on_project_exit: 'for var in "${(M)${(k)parameters}:#TMUX_WINDOW*}"; do unset $var; done'
+
+windows:
+  - editor:
+      layout: 6ba7,120x39,0,0[120x29,0,0{60x29,0,0,26,59x29,61,0,29},120x9,0,30,28]
+      panes:
+        - # top left
+        - # top right
+        - testloop # bottom split running pytest automatically on file changes
+          #- "ag -l |entr -s pytest" # bottom split running pytest automatically on file changes

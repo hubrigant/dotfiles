@@ -19,35 +19,9 @@ fi
 # Location of my dotfiles
 DOTFILES=$HOME/.dotfiles
 
-# Update PATH
-# path=(
-#     $HOME/bin
-#     $HOME/scripts
-#     /usr/local/bin
-#     /usr/local/sbin
-#     /usr/local/lib/ruby/gems/2.6.0/bin
-#     /opt/local/bin
-#     /opt/local/sbin
-#     /bin
-#     /sbin
-#     /usr/bin
-#     /usr/sbin
-#     $DOTFILES/scripts
-#     $path
-# )
-# typeset -U path
 
 # Speed up load time
 DISABLE_UPDATE_PROMPT=true
-
-# Load zgen only if a user types a zgen command
-# zgen () {
-#     if [[ ! -s {$ZDOTDIR:-$HOME}/.zgen/zgen.zsh ]]; then
-#         git clone --recursive https://github.com/tarjoilija/zgen.git ${ZDOTDIR:-$HOME}/.zgen
-#     fi
-#     source ${ZDOTDIR:-${HOME}}/.zgen/zgen.zsh
-#     zgen "$@"
-# }
 
 # Perform compinit only once a day
 autoload -Uz compinit
@@ -188,7 +162,7 @@ if [ ! $TERM = dumb ]; then
 fi
 
 # Which plugins would you like to load?
-plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions aliases tpm)
+plugins=(sudo git my-tmux my-aliases taskwarrior tmux tmuxinator zsh-autosuggestions tpm)
 
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
@@ -213,6 +187,7 @@ if [ -f ~/.machinerc ]; then
     source ~/.machinerc
 fi
 
+# Attempt to deduplicate the PATH variable
 PATH="$(echo ${PATH} |sed 's/ /:/g')"
 PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
 
@@ -222,7 +197,6 @@ if $PROFILING; then
 fi
 
 # zsh-syntax-highlighting must be sourced as the last thing in this file
-# zgen load zsh-users/zsh-syntax-highlighting
 source ~/.dotfiles/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 if $DEBUG; then
     echo "zshrc> PATH: ${PATH}" >> ~/tmp/loginpaths.txt

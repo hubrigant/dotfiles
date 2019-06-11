@@ -27,7 +27,7 @@
 | \<leader\>hu | undo the current hunk | vim-gitgutter |
 | \<leader\>hp | preview the current hunk | vim-gitgutter |
 | :FixTrailingWhitespace | trim off whitespace at the ends of lines | vim-trailing-whitespace |
-| :Tabularize /\<pattern\> | align text in multiple lines along the characters matched by \<pattern\> | tabularize<sup>+</sup> |
+| :Tabularize /\<pattern\>[\<format spec\>]<span id="a4">[[3]](#f3)</span> | align text in multiple lines along the characters matched by \<pattern\> | tabular<sup>+</sup> |
 | \<C-p\> | activate CtrlP | ctrlp.vim |
 | \<F5\> | when CtrlP is active, purge the cache for the current directory to get new files, etc. | ctrlp.vim |
 | \<C-f\>\/\<C-b\> | cycle betwen CtrlP modes (find file\/buffer\/MRU file\/mixed) | ctrlp.vim |
@@ -51,3 +51,4 @@ documentation](https://github.com/tpope/vim-surround/blob/master/doc/surround.tx
     <sup>*</sup>c: change
     <sup>*</sup>y: you create
     <sup>*</sup>s: surround
+3. <span id="f3"></span> Tabular supports an optional format specification after the pattern to control how the alignment occurs. For information, consult [the tabular documentation](https://raw.githubusercontent.com/godlygeek/tabular/master/doc/Tabular.txt?_sm_au_=iVVrL6DSJJ8J6r6j).

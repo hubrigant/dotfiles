@@ -8,27 +8,13 @@ echo "zshenv> path: ${path}" >> ~/tmp/loginpaths.txt
 DOTFILES=$HOME/.dotfiles
 
 # Update PATH
-# path=(
-#     $HOME/bin
-#     $HOME/scripts
-#     /usr/local/opt/ruby/bin
-#     /usr/local/lib/ruby/gems/2.6.0/bin
-#     /opt/local/bin
-#     /opt/local/sbin
-#     /bin
-#     /sbin
-#     /usr/bin
-#     /usr/sbin
-#     $DOTFILES/scripts
-#     $path
-# )
 # typeset -U path
 
 export PATH=$HOME/bin:$HOME/scripts:/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.6.0/bin:/opt/local/bin:/opt/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:$DOTFILES/scripts:$PATH
 
 export HISTSIZE=32768;
 export HISTFILESIZE=$HISTSIZE;
-export HISTFILE=${HOME}/.zhistory
+export HISTFILE=${HOME}/.zsh_history
 export CLICOLOR=1
 export EDITOR='vim'
 export PAGER='less'
