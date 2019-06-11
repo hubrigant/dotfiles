@@ -10,7 +10,7 @@
             "complex_modifications": {
                 "parameters": {
                     "basic.simultaneous_threshold_milliseconds": 50,
-                    "basic.to_delayed_action_delay_milliseconds": 500,
+                    "basic.to_delayed_action_delay_milliseconds": 1000,
                     "basic.to_if_alone_timeout_milliseconds": 250,
                     "basic.to_if_held_down_threshold_milliseconds": 250,
                     "mouse_motion_to_scroll.speed": 100
@@ -20,6 +20,7 @@
                         "description": "Map right_shift to tmux's <CTRL>-a",
                         "manipulators": [
                             {
+                                "type": "basic",
                                 "from": {
                                     "key_code": "right_shift"
                                 },
@@ -30,13 +31,85 @@
                                             "left_control"
                                         ]
                                     }
+                                ]
+                            }
+                        ]
+                    },
+
+                    {
+                        "description": "Send the sequence <CTRL>-a q to tmux when fn is pressed a second time consecutively",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "fn"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "a",
+                                        "modifiers": [
+                                            "control"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "q"
+                                    }
                                 ],
-                                "type": "basic"
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "fn_pressed",
+                                        "value": 1
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+
+                    {
+                        "description": "Set the fn_pressed variable used in the double-fn-press modification above",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "fn"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "fn_pressed",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "key_code": "fn"
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_invoked": [
+                                        {
+                                            "set_variable": {
+                                                "name": "fn_pressed",
+                                                "value": 0
+                                            }
+                                        }
+                                    ],
+                                    "to_if_canceled": [
+                                        {
+                                            "set_variable": {
+                                                "name": "fn_pressed",
+                                                "value": 0
+                                            }
+                                        }
+                                    ]
+                                }
                             }
                         ]
                     }
+
                 ]
             },
+
             "devices": [
                 {
                     "disable_built_in_keyboard_if_exists": false,
@@ -82,6 +155,7 @@
                     ]
                 }
             ],
+
             "fn_function_keys": [
                 {
                     "from": {
@@ -180,6 +254,7 @@
                     }
                 }
             ],
+
             "name": "Vim-optimized Profile",
             "selected": true,
             "simple_modifications": [
@@ -200,6 +275,7 @@
                     }
                 }
             ],
+
             "virtual_hid_keyboard": {
                 "country_code": 0,
                 "mouse_key_xy_scale": 100
@@ -216,6 +292,7 @@
                 },
                 "rules": []
             },
+
             "devices": [
                 {
                     "disable_built_in_keyboard_if_exists": false,
@@ -261,6 +338,7 @@
                     "simple_modifications": []
                 }
             ],
+
             "fn_function_keys": [
                 {
                     "from": {
@@ -359,6 +437,7 @@
                     }
                 }
             ],
+
             "name": "Vanilla Profile",
             "selected": false,
             "simple_modifications": [],
