@@ -75,17 +75,18 @@ if [ ! -d ${HOME}/dotfiles.bkup ]; then
 fi
 
 print -P "%B%K{green}%F{black}[*]%k%f%b Backing up old home-dir dot files before creating links"
-[ -f ${HOME}/.bundles.vim ]                      && mv ${HOME}/.bundles.vim                     ${HOME}/d otfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.gitconfig ]                        && mv ${HOME}/.gitconfig                       ${HOME}/d otfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.gitignore_global ]                 && mv ${HOME}/.gitignore_global                ${HOME}/d otfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.global_extra_conf ]                && mv ${HOME}/global_extra_conf.py             ${HOME}/d otfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.tmux.conf ]                        && mv ${HOME}/.tmux.conf                       ${HOME}/d otfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.vimrc ]                            && mv ${HOME}/.vimrc                           ${HOME}/d otfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.zshenv ]                           && mv ${HOME}/.zshenv                          ${HOME}/d otfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.zshrc ]                            && mv ${HOME}/.zshrc                           ${HOME}/d otfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.config/karabiner/karabiner.json ]  && mv ${HOME}/.config/karabiner/karabiner.json ${HOME}/d otfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.config/tmuxinator/dev.yml ]        && mv ${HOME}/.config/tmuxinator/dev.yml       ${HOME}/d otfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.config/tmuxinator/template.erb ]   && mv ${HOME}/.config/tmuxinator/template.erb  ${HOME}/d otfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.bundles.vim ]                     && mv ${HOME}/.bundles.vim                     ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.gitconfig ]                       && mv ${HOME}/.gitconfig                       ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.gitignore_global ]                && mv ${HOME}/.gitignore_global                ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.global_extra_conf ]               && mv ${HOME}/global_extra_conf.py             ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.tmux.conf ]                       && mv ${HOME}/.tmux.conf                       ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.vimrc ]                           && mv ${HOME}/.vimrc                           ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.zshenv ]                          && mv ${HOME}/.zshenv                          ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.zshrc ]                           && mv ${HOME}/.zshrc                           ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.tridactyl ]                       && mv ${HOME}/.tridactyl                       ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.config/karabiner/karabiner.json ] && mv ${HOME}/.config/karabiner/karabiner.json ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.config/tmuxinator/dev.yml ]       && mv ${HOME}/.config/tmuxinator/dev.yml       ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.config/tmuxinator/template.erb ]  && mv ${HOME}/.config/tmuxinator/template.erb  ${HOME}/dotfiles.bkup >/dev/null 2>&1
 
 print -P "%B%K{green}%F{black}[*]%k%f%b Removing old home-dir dot files."
 [ -f ${HOME}/.bundles.vim ]                     && rm ${HOME}/.bundles.vim
@@ -96,6 +97,7 @@ print -P "%B%K{green}%F{black}[*]%k%f%b Removing old home-dir dot files."
 [ -f ${HOME}/.vimrc ]                           && rm ${HOME}/.vimrc
 [ -f ${HOME}/.zshenv ]                          && rm ${HOME}/.zshenv
 [ -f ${HOME}/.zshrc ]                           && rm ${HOME}/.zshrc
+[ -f ${HOME}/.tridactyl ]                       && rm ${HOME}/.tridactyl
 [ -f ${HOME}/.config/karabiner/karabiner.json ] && rm ${HOME}/.config/karabiner/karabiner.json
 [ -f ${HOME}/.config/tmuxinator/dev.yml ]       && rm ${HOME}/.config/tmuxinator/dev.yml
 [ -f ${HOME}/.config/tmuxinator/template.erb ]  && rm ${HOME}/.config/tmuxinator/template.erb
@@ -110,6 +112,7 @@ ln ${CONFIG_MASTERS_DIR}/tmux.conf            ${HOME}/.tmux.conf
 ln ${CONFIG_MASTERS_DIR}/vimrc                ${HOME}/.vimrc
 ln ${CONFIG_MASTERS_DIR}/zshenv               ${HOME}/.zshenv
 ln ${CONFIG_MASTERS_DIR}/zshrc                ${HOME}/.zshrc
+ln ${CONFIG_MASTERS_DIR}/tridactyl            ${HOME}/.tridactyl
 ln ${CONFIG_MASTERS_DIR}/karabiner.json       ${HOME}/.config/karabiner/karabiner.json
 ln ${CONFIG_MASTERS_DIR}/dev.yml              ${HOME}/.config/tmuxinator/dev.yml
 ln ${CONFIG_MASTERS_DIR}/template.erb         ${HOME}/.config/tmuxinator/template.erb
