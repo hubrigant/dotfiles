@@ -1,7 +1,10 @@
-echo "-------------------------" >> ~/tmp/loginpaths.txt
-echo "zshrc> Start of execution" >> ~/tmp/loginpaths.txt
-echo "zshrc> PATH: ${PATH}" >> ~/tmp/loginpaths.txt
-echo "zshrc> path: ${path}" >> ~/tmp/loginpaths.txt
+if $DEBUG; then
+    echo "-------------------------" >> ~/tmp/loginpaths.txt
+    echo "zshrc> Start of execution" >> ~/tmp/loginpaths.txt
+    echo "zshrc> PATH: ${PATH}" >> ~/tmp/loginpaths.txt
+    echo "zshrc> path: ${path}" >> ~/tmp/loginpaths.txt
+fi
+
 # begin section 1
 # This first section adapted from https://www.outcoldman.com/en/archive/2015/09/13/keep-your-sh-together/
 
@@ -17,34 +20,34 @@ fi
 DOTFILES=$HOME/.dotfiles
 
 # Update PATH
-path=(
-    $HOME/bin
-    $HOME/scripts
-    /usr/local/bin
-    /usr/local/sbin
-    /usr/local/lib/ruby/gems/2.6.0/bin
-    /opt/local/bin
-    /opt/local/sbin
-    /bin
-    /sbin
-    /usr/bin
-    /usr/sbin
-    $DOTFILES/scripts
-    $path
-)
-typeset -U path
+# path=(
+#     $HOME/bin
+#     $HOME/scripts
+#     /usr/local/bin
+#     /usr/local/sbin
+#     /usr/local/lib/ruby/gems/2.6.0/bin
+#     /opt/local/bin
+#     /opt/local/sbin
+#     /bin
+#     /sbin
+#     /usr/bin
+#     /usr/sbin
+#     $DOTFILES/scripts
+#     $path
+# )
+# typeset -U path
 
 # Speed up load time
 DISABLE_UPDATE_PROMPT=true
 
 # Load zgen only if a user types a zgen command
-zgen () {
-    if [[ ! -s {$ZDOTDIR:-$HOME}/.zgen/zgen.zsh ]]; then
-        git clone --recursive https://github.com/tarjoilija/zgen.git ${ZDOTDIR:-$HOME}/.zgen
-    fi
-    source ${ZDOTDIR:-${HOME}}/.zgen/zgen.zsh
-    zgen "$@"
-}
+# zgen () {
+#     if [[ ! -s {$ZDOTDIR:-$HOME}/.zgen/zgen.zsh ]]; then
+#         git clone --recursive https://github.com/tarjoilija/zgen.git ${ZDOTDIR:-$HOME}/.zgen
+#     fi
+#     source ${ZDOTDIR:-${HOME}}/.zgen/zgen.zsh
+#     zgen "$@"
+# }
 
 # Perform compinit only once a day
 autoload -Uz compinit
@@ -187,10 +190,6 @@ fi
 # Which plugins would you like to load?
 plugins=(sudo git history taskwarrior tmux tmuxinator zsh-autosuggestions aliases tpm)
 
-# specific for machine configuration, which I don't sync
-if [ -f ~/.machinerc ]; then
-    source ~/.machinerc
-fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
@@ -204,10 +203,18 @@ setopt histreduceblanks
 # Print the exit value of programs with non-zero exit status.
 setopt printexitvalue
 # Do not share history
-setopt no_share_history
+# setopt no_share_history
 
 # load local tmux configurations
 tmux source-file ~/.tmux-local.conf
+
+# specific for machine configuration, which I don't sync
+if [ -f ~/.machinerc ]; then
+    source ~/.machinerc
+fi
+
+PATH="$(echo ${PATH} |sed 's/ /:/g')"
+PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
 
 # if profiling was on
 if $PROFILING; then
@@ -217,7 +224,9 @@ fi
 # zsh-syntax-highlighting must be sourced as the last thing in this file
 # zgen load zsh-users/zsh-syntax-highlighting
 source ~/.dotfiles/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-echo "zshrc> PATH: ${PATH}" >> ~/tmp/loginpaths.txt
-echo "zshrc> path: ${path}" >> ~/tmp/loginpaths.txt
-echo "zshrc> End of execution" >> ~/tmp/loginpaths.txt
-echo "-------------------------" >> ~/tmp/loginpaths.txt
+if $DEBUG; then
+    echo "zshrc> PATH: ${PATH}" >> ~/tmp/loginpaths.txt
+    echo "zshrc> path: ${path}" >> ~/tmp/loginpaths.txt
+    echo "zshrc> End of execution" >> ~/tmp/loginpaths.txt
+    echo "-------------------------" >> ~/tmp/loginpaths.txt
+fi
