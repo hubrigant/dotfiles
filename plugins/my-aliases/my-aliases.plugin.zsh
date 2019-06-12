@@ -36,6 +36,7 @@ alias gcm='git commit -m'
 alias gd='git diff'
 alias gp='git push'
 alias gs='git status'
+alias gpu='git pull'
 
 # Tmuxinator conveniences
 alias txst='tmuxinator start traffic'
