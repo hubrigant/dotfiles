@@ -15,6 +15,10 @@
 | ^/$ | scroll to left/right margin |
 | gg/G | scroll to start/end of page |
 | \<C-f\>/\<C-b\> |jump to the next/previous part of the page (i.e. move down/up one screen height in the page) |
+| Working with forms |
+| gi | go to the first used input |
+| tab/shift-tab | go to the next/previous input |
+| :focusinput N | go to the Nth input |
 | Find mode |
 | / | open the find search box |
 | \<C-g\>/\<C-G\> | find the next/previous instance of the last find operation (note: these are the standard Firefox shortcuts) |
@@ -38,9 +42,6 @@
 
 Footnotes
 =========
-
-<sup>\*</sup>Entries marked with an asterix (*) denote my own bindings for plugin-provided functionality.  
-<sup>+</sup>Entries marked with a plus sign (+) denote commands that work with Vim's visual mode selection.
 
 1. <span id="f1"></span> In vim-surround <target> is used to designate the character(s) to be used to surround the text. vim-surround recognizes eith punctuation marks, (, ), {, }, [, ], <,and >, which represent themselves and their counterparts. If the opening mark is used, contained whitespace is also trimmed. The targets b, B, r, and a are aliases for ), }, ], and >. The first two mirror Vim. The second two are, [according to the vim-surround
 documentation](https://github.com/tpope/vim-surround/blob/master/doc/surround.txt) "arbitrary and subject to change".
