@@ -143,8 +143,6 @@ POWERLEVEL9K_ANACONDA_BACKGROUND='cyan'
 POWERLEVEL9K_ANACONDA_FOREGROUND='black'
 
 # dumb terminal can be a vim dump terminal in that case don't try to load plugins
-# this block of commands was relocated to ${DOTFILES}/config_masters/zgen which is
-# linked to ${HOME}/.zgen.conf
 if [ ! $TERM = dumb ]; then
     ZGEN_DIR=${HOME}/.zgen
     source ${DOTFILES}/plugins/autojump/autojump.plugin.zsh

@@ -55,6 +55,10 @@ command hint_focus hint -;
 " Open right click menu on links
 bind ;C composite hint_focus; !s xdotool key Menu
 
+" Start a command to search for something python 3 related
+bind ;l fillcmdline open search python 3
+bind ;L fillcmdline tabopen search python 3
+
 "
 " Misc settings
 "
