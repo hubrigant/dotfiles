@@ -1,8 +1,14 @@
+DEBUG=${DEBUG:-false}
+#DEBUG=${DEBUG:-true}
 if $DEBUG; then
     echo "-------------------------" >> ~/tmp/loginpaths.txt
     echo "zshrc> Start of execution" >> ~/tmp/loginpaths.txt
     echo "zshrc> PATH: ${PATH}" >> ~/tmp/loginpaths.txt
     echo "zshrc> path: ${path}" >> ~/tmp/loginpaths.txt
+fi
+
+if [ -d ${HOME}/miniconda/envs/py36 ]; then
+    conda activate py36
 fi
 
 # begin section 1
@@ -185,9 +191,97 @@ if [ -f ~/.machinerc ]; then
     source ~/.machinerc
 fi
 
+build_ycm() {
+    if [[ -d ${HOME}/.vim/bundle/YouCompleteMe/ ]]; then
+        YCMDIR=${HOME}/.vim/bundle/YouCompleteMe/
+        YCMBUILDDIR=${HOME}/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
+    elif [[ -d ${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/ ]]; then
+        YCMDIR=${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/
+        YCMBUILDDIR=${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
+    fi
+    if [[ ! -d $YCMBUILDDIR ]]; then
+        print -P "%B%K{green}%F{black}[*]%k%f%b Building the YouCompleteMe core library."
+        if [ ! -f "$YCMDIR/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
+            cd ${YCMDIR}
+            if $(python install.py > ${HOME}/dotfiles-installer.out); then
+                print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
+            else
+                print -P "%B%K{red}%F{black}[X]%f%k%b Install failed."
+                exit(1)
+            fi
+            cd -
+        fi
+    else
+        print -P "%B%K{green}%F{black}[*]%f%k%b YouCompleteMe core already built."
+    fi
+}
+
+
+rebuild_ycm() {
+    if [[ -d ${HOME}/.vim/bundle/YouCompleteMe/ ]]; then
+        YCMDIR=${HOME}/.vim/bundle/YouCompleteMe/
+        YCMBUILDDIR=${HOME}/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
+    elif [[ -d ${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/ ]]; then
+        YCMDIR=${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/
+        YCMBUILDDIR=${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
+    fi
+    if [[ ! -d $YCMBUILDDIR ]]; then
+        print -P "%B%K{green}%F{black}[*]%k%f%b Building the YouCompleteMe core library."
+        if [ ! -f "$YCMDIR/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
+            cd ${YCMDIR}
+            if $(python install.py > ${HOME}/dotfiles-installer.out); then
+                print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
+            else
+                print -P "%B%K{red}%F{black}[X]%f%k%b Install failed."
+                exit(1)
+            fi
+            cd -
+        fi
+    else
+        print -P "%B%K{green}%F{black}[*]%k%f%b Building the YouCompleteMe core library."
+        rm -rf $YCMBUILDDIR
+        if [ ! -f "$YCMDIR/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
+            cd ${YCMDIR}
+            if $(python install.py > ${HOME}/dotfiles-installer.out); then
+                print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
+            else
+                print -P "%B%K{red}%F{black}[X]%f%k%b Install failed."
+                exit(1)
+            fi
+            cd -
+        fi
+    fi
+}
+
+# Deal with path anomalies across platforms
+fix_path() {
+    # First get rid of games entries that are cropping up on raspbian
+    tmp_path=$(print -l ${(j.:.)$(print -l "${(s. .)path}" |grep -v games)})
+    echo $tmp_path
+
+    if [[ -d ${HOME}/miniconda ]]; then
+        miniconda_loc=miniconda
+    elif [[ -d ${HOME}/miniconda3 ]]; then
+        miniconda_loc=miniconda3
+    elif [[ -d /anaconda3 && ! ${PATH} =~ /anaconda/ ]]; then
+        PATH=/anaconda3/bin:${tmp_path}
+    fi
+
+    if [ ${miniconda_loc} ]; then
+        if [[ ${PATH} =~ /anaconda/ ]]; then
+            PATH=$(echo ${PATH} |sed 's/\/anaconda3/${HOME}\/${miniconda_loc}\/')
+        elif [[ ! ${PATH} =~ /miniconda/ ]]; then
+            PATH=${HOME}/${miniconda_loc}/bin:${PATH}
+        fi
+    fi
+}
+
 # Attempt to deduplicate the PATH variable
-PATH="$(echo ${PATH} |sed 's/ /:/g')"
-PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
+dedup_path() {
+    PATH="$(echo ${PATH} |sed 's/ /:/g'| sed 's/~/${HOME}/g'| sed 's/:\/usr\/local\/games//g'| sed 's/:\/usr\/bin\/games//g')"
+    PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
+}
+fix_path && dedup_path
 
 # if profiling was on
 if $PROFILING; then
