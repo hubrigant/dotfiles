@@ -1,9 +1,6 @@
-[submodule "plugins/zsh-autosuggestions"]
+[submodule "zsh-autosuggestions"]
 	path = plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule "/Users/jw68539/.dotfiles/plugins/vim-markdown"]
-	path = /Users/jw68539/.dotfiles/plugins/vim-markdown
-	url = https://github.com/plasticboy/vim-markdown.git
-[submodule "/Users/jw68539/.dotfiles/themes/powerlevel9k"]
-	path = /Users/jw68539/.dotfiles/themes/powerlevel9k
+[submodule "powerlevel9k"]
+	path = themes/powerlevel9k
 	url = https://github.com/bhilburn/powerlevel9k.git
