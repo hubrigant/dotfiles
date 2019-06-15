@@ -128,11 +128,17 @@ else
     exit(1)
 fi
 
-YCMDIR=${HOME}/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
-if [[ ! -d $YCMDIR ]]; then
+if [[ -d ${HOME}/.vim/bundle/YouCompleteMe/ ]]; then
+    YCMDIR=${HOME}/.vim/bundle/YouCompleteMe/
+    YCMBUILDDIR=${HOME}/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
+elif [[ -d ${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/ ]]; then
+    YCMDIR=${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/
+    YCMBUILDDIR=${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
+fi
+if [[ ! -d $YCMBUILDDIR ]]; then
     print -P "%B%K{green}%F{black}[*]%k%f%b Building the YouCompleteMe core library."
-    if [ ! -f "YouCompleteMe/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
-        cd ${HOME}/.vim/bundle/YouCompleteMe
+    if [ ! -f "$YCMDIR/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
+        cd ${YCMDIR}
         if $(python install.py > ${HOME}/dotfiles-installer.out); then
             print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
         else
