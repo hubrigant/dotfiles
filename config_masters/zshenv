@@ -1,8 +1,12 @@
 #!/usr/bin/env zsh
-echo "--------------------------" >> ~/tmp/loginpaths.txt
-echo "zshenv> Start of execution" >> ~/tmp/loginpaths.txt
-echo "zshenv> PATH: ${PATH}" >> ~/tmp/loginpaths.txt
-echo "zshenv> path: ${path}" >> ~/tmp/loginpaths.txt
+DEBUG=${DEBUG:-false}
+#DEBUG=${DEBUG:-true}
+if $DEBUG; then
+    echo "-------------------------" >> ~/tmp/loginpaths.txt
+    echo "zshrc> Start of execution" >> ~/tmp/loginpaths.txt
+    echo "zshrc> PATH: ${PATH}" >> ~/tmp/loginpaths.txt
+    echo "zshrc> path: ${path}" >> ~/tmp/loginpaths.txt
+fi
 
 # Location of my dotfiles
 DOTFILES=$HOME/.dotfiles
@@ -26,7 +30,10 @@ export LC_ALL="en_US.UTF-8"
 export EDITOR='vim'
 export PATH="/anaconda3/bin:$PATH"
 export LESS=-FXJAIMqj.5
-echo "zshenv> PATH: ${PATH}" >> ~/tmp/loginpaths.txt
-echo "zshenv> path: ${path}" >> ~/tmp/loginpaths.txt
-echo "zshenv> End of execution" >> ~/tmp/loginpaths.txt
-echo "--------------------------" >> ~/tmp/loginpaths.txt
+
+if $DEBUG; then
+    echo "zshenv> PATH: ${PATH}" >> ~/tmp/loginpaths.txt
+    echo "zshenv> path: ${path}" >> ~/tmp/loginpaths.txt
+    echo "zshenv> End of execution" >> ~/tmp/loginpaths.txt
+    echo "--------------------------" >> ~/tmp/loginpaths.txt
+fi
