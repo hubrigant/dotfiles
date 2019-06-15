@@ -2,11 +2,14 @@
 
 * Karabiner
     * Swapped escape and caps-lock keys (karabiner.json)
-    * Mapped right-shift to send <CTRL>-a, the configured tmux prefix (karabiner.json)
+    * Mapped right-shift to send ```<CTRL>-a```, the configured tmux prefix (karabiner.json)
     * Configured a double-tap of the left_shift to send the tmux sequence ```<CTRL>-a q``` to select pane to switch focus
     * Swapped the command (alt) and option (Windows) keys to keep a standard experience regardless of whether I'm using a PC or a Mac keyboard
+    * Remapped right_command (right_alt) to be a second return key
 * Vim
     * Mapped the comma key to be used as Vim's <leader> keystroke (vimrc)
+    * Vundle-managed plugins
+      *
 * tmux
     * Changed the tmux keys to split panes vertically and horizontally to \ and -, respectively
     * Changed pane numbering to start with 1 instead of the default 0
