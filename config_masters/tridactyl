@@ -59,6 +59,10 @@ bind ;C composite hint_focus; !s xdotool key Menu
 bind ;l fillcmdline open search python 3
 bind ;L fillcmdline tabopen search python 3
 
+bind / fillcmdline find
+bind n findnext 1
+bind N findnext -1
+
 "
 " Misc settings
 "
