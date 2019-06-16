@@ -36,6 +36,13 @@ bindurl reddit.com gu urlparent 4
 bindurl www.google.com f hint -Jc .rc > .r > a
 bindurl www.google.com F hint -Jtc .rc>.r>a
 
+" Only hint search results on Duckduckgo
+bindurl duckduckgo.com f hint -Jc div > h2 > a
+bindurl duckduckgo.com F hint -Jtc div > h2 > a
+
+" Better hinting on reddit
+bind ;c hint -c [class*="expand"],[class="togg"]
+
 " Allow Ctrl-a to select all in the commandline
 unbind --mode=ex <C-a>
 
@@ -59,9 +66,13 @@ bind ;C composite hint_focus; !s xdotool key Menu
 bind ;l fillcmdline open search python 3
 bind ;L fillcmdline tabopen search python 3
 
+" Make find within page match vim better
 bind / fillcmdline find
 bind n findnext 1
 bind N findnext -1
+
+" Refresh tridactyl config from file
+bind i source ~/.tridactyl
 
 "
 " Misc settings
@@ -72,7 +83,8 @@ js tri.browserBg.runtime.getPlatformInfo().then(os=>{const editorcmd = os.os=="l
 
 " Sane hinting mode
 set hintfiltermode vimperator-reflow
-set hintnames numeric
+unset hintnames
+" set hintnames numeric
 
 " Defaults to 300ms but I'm a 'move fast and close the wrong tabs' kinda chap
 " set hintdelay 100
