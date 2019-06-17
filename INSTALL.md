@@ -3,7 +3,7 @@
 ## Prerequisites
 Obviously, this repo depends on using [git](https://git-scm.com/), so make sure you have a current release installed.
 
-The vim-easytags plugin depends on a better ctags implementation than what comes with macOS, so install universal-ctags with the following commands:
+The [vim-easytags](https://github.com/xolox/vim-easytags) plugin depends on a better ctags implementation than what comes with macOS, so install [universal-ctags](https://ctags.io/) with the following commands:
 
 ```
 brew tap universal-ctags/universal-ctags
