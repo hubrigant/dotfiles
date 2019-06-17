@@ -3,6 +3,13 @@
 ## Prerequisites
 Obviously, this repo depends on using [git](https://git-scm.com/), so make sure you have a current release installed.
 
+The vim-easytags plugin depends on a better ctags implementation than what comes with macOS, so install universal-ctags with the following commands:
+
+```
+brew tap universal-ctags/universal-ctags
+brew install --HEAD universal-ctags
+```
+
 This set of configurations are predicated on [zsh](https://www.zsh.org/) and [vim](https://www.vim.org/), and to a lesser extent [iTerm2](https://iterm2.com/) (which is only available on macOS). Naturally, those need to be installed for this repo to be of much use. Some of the plugins use [Python](https://www.python.org/), so a current version of that is also needed. As with git, most modern operating systems include versions of zsh, vim, and python, upgrading to the most recent stable
 version of each is recommended.
 
