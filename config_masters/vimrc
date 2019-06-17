@@ -422,3 +422,16 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " highlight the line the cursor is on with an underline
 set cursorline
+
+" PyMode settings
+let g:pymode_python = 'python3'     " Use Python 3 syntax
+let g:pymode_rope = 1               " turn on pymode's use of rope
+PymodeRopeRegenerate                " init or update rope project files
+
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
