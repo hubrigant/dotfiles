@@ -430,6 +430,13 @@ set cursorline
 let g:pymode_python = 'python3'     " Use Python 3 syntax
 let g:pymode_rope = 1               " turn on pymode's use of rope
 
+" vim-mucomplete settings
+set completeopt+=noselect
+set shortmess+=c " Shut off completion messages
+set belloff+=ctrlg " stop Vim from beeping all the time during autocompletion
+let g:mucomplete#enable_auto_at_startup = 1
+let g:mucomplete#completion_delay = 1
+
 inoremap " ""<left>
 inoremap ' ''<left>
 inoremap ( ()<left>

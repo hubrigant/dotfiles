@@ -34,6 +34,14 @@ Plugin 'bling/vim-airline'
 " https://github.com/bronson/vim-trailing-whitespace
 Plugin 'bronson/vim-trailing-whitespace'
 "
+" Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
+" http://kien.github.io/ctrlp.vim/
+Plugin 'ctrlpvim/ctrlp.vim'
+"
+" Semantic language support for Python
+" https://github.com/davidhalter/jedi-vim
+Plugin 'davidhalter/jedi-vim'
+"
 " Syntax for json files
 Plugin 'elzr/vim-json'
 "
@@ -44,12 +52,12 @@ Plugin 'godlygeek/tabular'
 " toggle cursor for vim
 Plugin 'jszakmeister/vim-togglecursor'
 "
-" Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
-" http://kien.github.io/ctrlp.vim/
-Plugin 'ctrlpvim/ctrlp.vim'
-"
 " Support for python
 Plugin 'klen/python-mode'
+"
+" A possible replacement for YCM
+" https://github.com/lifepillar/vim-mucomplete.git
+Plugin 'lifepillar/vim-mucomplete'
 "
 " Browser for tags
 Plugin 'majutsushi/tagbar'
