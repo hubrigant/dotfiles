@@ -98,8 +98,14 @@ Plugin 'Valloric/YouCompleteMe'
 " https://github.com/vim-latex/vim-latex
 Plugin 'vim-latex/vim-latex'
 "
+" Vim Misc plugin
+Plugin 'xolox/vim-misc'
+"
 " Syntax linters
 Plugin 'vim-syntastic/syntastic'
+"
+" Exuberant cTags management
+Plugin 'xolox/vim-easytags'
 "
 call vundle#end()               " required
 filetype plugin indent on       " required
