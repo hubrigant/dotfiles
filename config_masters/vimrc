@@ -392,6 +392,9 @@ endfunction
 " map F8 to toggle the tagbar pluggin
 nmap <F8> :TagbarToggle<CR>
 
+" turn off easytags warning about ctags version
+let g:easytags_suppress_ctags_warning = 1
+
 " map <leader>f to vim-markdown's unfold-all command
 " and <leader>F to fold-all
 nmap <leader>f zR<CR>
@@ -426,7 +429,6 @@ set cursorline
 " PyMode settings
 let g:pymode_python = 'python3'     " Use Python 3 syntax
 let g:pymode_rope = 1               " turn on pymode's use of rope
-PymodeRopeRegenerate                " init or update rope project files
 
 inoremap " ""<left>
 inoremap ' ''<left>
