@@ -135,6 +135,9 @@ set foldcolumn=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable truecolor
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
 " Enable syntax highlighting
 syntax enable
 
@@ -429,6 +432,7 @@ set cursorline
 " PyMode settings
 let g:pymode_python = 'python3'     " Use Python 3 syntax
 let g:pymode_rope = 1               " turn on pymode's use of rope
+let g:pymode_lint_ignore = ["missing-docstring"]
 
 " vim-mucomplete settings
 set completeopt+=noselect
@@ -437,8 +441,11 @@ set belloff+=ctrlg " stop Vim from beeping all the time during autocompletion
 let g:mucomplete#enable_auto_at_startup = 1
 let g:mucomplete#completion_delay = 1
 
-inoremap " ""<left>
-inoremap ' ''<left>
+" easytags settings test
+set tags=./.tags
+let g:easytags_dynamic_files = 1
+highlight pythonFunctionTag ctermfg=blue cterm=bold ctermbg=yellow
+
 inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
