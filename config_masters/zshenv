@@ -14,7 +14,7 @@ DOTFILES=$HOME/.dotfiles
 # Update PATH
 # typeset -U path
 
-export PATH=$HOME/bin:$HOME/scripts:/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.6.0/bin:/opt/local/bin:/opt/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:$DOTFILES/scripts:$PATH
+export PATH=$HOME/bin:$HOME/scripts:/usr/local/bin:/usr/local/sbin:/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.6.0/bin:/opt/local/bin:/opt/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:$DOTFILES/scripts:$PATH
 
 export HISTSIZE=32768;
 export HISTFILESIZE=$HISTSIZE;
