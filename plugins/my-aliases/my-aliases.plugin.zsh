@@ -17,6 +17,7 @@ alias install-edit='vi ~/.dotfiles/scripts/install_dotfiles.sh'
 alias ine='vi ~/.dotfiles/scripts/install_dotfiles.sh'
 alias inr='~/.dotfiles/scripts/install_dotfiles.sh'
 alias jl='jupyter-lab'
+alias top='htop'
 
 # history aliases copied from the oh-my-zsh history plugin
 # added here because the other plugin isn't working
