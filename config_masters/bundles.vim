@@ -17,7 +17,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
 "
 " Syntax for PlantUML files
-Plugin 'aklt/plantuml-syntax'
+" Plugin 'aklt/plantuml-syntax'
 "
 " vim syntax file for plantuml
 " https://github.com/aklt/plantuml-syntax
@@ -36,7 +36,7 @@ Plugin 'bronson/vim-trailing-whitespace'
 "
 " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
 " http://kien.github.io/ctrlp.vim/
-Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'ctrlpvim/ctrlp.vim'
 "
 " Semantic language support for Python
 " https://github.com/davidhalter/jedi-vim
@@ -64,7 +64,7 @@ Plugin 'majutsushi/tagbar'
 "
 " Ag search, use it instead of grep; depricated, loading ack.vim instead
 " Plugin 'rking/ag.vim'
-Plugin 'mileszs/ack.vim'
+" Plugin 'mileszs/ack.vim'
 "
 " Flake8 syntax and style checker for Python
 Plugin 'nvie/vim-flake8'
@@ -79,13 +79,13 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 "
 " Inline previews of PlantUML sequence diagrams
-Plugin 'scrooloose/vim-slumlord'
+" Plugin 'scrooloose/vim-slumlord'
 "
 " Syntax for tmux files
 Plugin 'tmux-plugins/vim-tmux'
 "
 " Make vim to work better in tmux
-Plugin 'tmux-plugins/vim-tmux-focus-events'
+" Plugin 'tmux-plugins/vim-tmux-focus-events'
 "
 " Git wrapper
 Plugin 'tpope/vim-fugitive'
@@ -104,7 +104,7 @@ Plugin 'tpope/vim-unimpaired'
 "
 " LaTeX Suite
 " https://github.com/vim-latex/vim-latex
-Plugin 'vim-latex/vim-latex'
+" Plugin 'vim-latex/vim-latex'
 "
 " Vim Misc plugin
 Plugin 'xolox/vim-misc'
