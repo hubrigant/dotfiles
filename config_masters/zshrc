@@ -51,17 +51,6 @@ ZSH_TMUX_AUTOSTART_ONCE=false
 ZSH_TMUX_FIXTERM=true
 ZSH_TMUX_AUTOQUIT=false # tells TMUX not to close terminal once tmux exits
 
-# set DEFAULT_USER based on different environments
-# if [[ $OSTYPE =~ 'darwin' ]]; then
-#     if [[ `hostname` = 'WDXJW68539TD8' ]]; then
-#         DEFAULT_USER=jw68539
-#     else
-#         DEFAULT_USER=jon
-#     fi
-# else
-#     DEFAULT_USER=pi
-# fi
-
 # set DEFAULT_USER based on ${USERNAME} variable
 DEFAULT_USER=${USERNAME}
 
@@ -69,7 +58,6 @@ DEFAULT_USER=${USERNAME}
 
 # use vi bindings
 bindkey -v
-# source ~/.zshenv
 
 # load powerlevel9k theme
 source ${DOTFILES}/themes/powerlevel9k/powerlevel9k.zsh-theme
@@ -102,15 +90,18 @@ POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
 POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%F{red} \Uf1d0 %f %F{yellow}❯ "
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
+POWERLEVEL9K_RPROMPT_ON_NEWLINE=false
 
-POWERLEVEL9K_STATUS_VERBOSE=false
+# POWERLEVEL9K_STATUS_VERBOSE=false
 POWERLEVEL9K_DIR_OMIT_FIRST_CHARACTER=false
-POWERLEVEL9K_CONTEXT_ALWAYS_SHOW=true
+POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=false
 POWERLEVEL9K_CONTEXT_ALWAYS_SHOW_USER=false
+POWERLEVEL9K_ALWAYS_SHOW_USER=false
+POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND=red
+POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND=black
 
 # Command prompt
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir_joined vcs custom_git_repo_name)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir_joined newline vcs custom_git_repo_name)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status anaconda root_indicator vi_mode date ssh)
 
 # GitHub prompt
@@ -140,7 +131,8 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K_SHORTEN_STRATEGY='truncate_to_first_and_last'
 
 POWERLEVEL9K_STATUS_VERBOSE=true
-POWERLEVEL9K_STATUS_CROSS=true
+POWERLEVEL9K_STATUS_CROSS=false
+POWERLEVEL9K_STATUS_OK=false
 
 # anaconda segment
 POWERLEVEL9K_ANACONDA_LEFT_DELIMITER="\uE235 "
@@ -179,7 +171,7 @@ setopt histreduceblanks
 # Do not exit on end-of-file. Require the use of exit or logout instead.
 # setopt ignoreeof
 # Print the exit value of programs with non-zero exit status.
-setopt printexitvalue
+# setopt printexitvalue
 # Do not share history
 # setopt no_share_history
 
@@ -253,12 +245,34 @@ rebuild_ycm() {
     fi
 }
 
+# Switch between different python installations
+switch_python() {
+    echo "SP Start"
+    if [[ $0 == "local" ]]; then
+        echo "ARG local"
+        PATH=${PATH:s/.+PYTHON/\/usr\/local\/bin:PYTHON/}
+    elif [[ $0 == 'conda' ]]; then
+        echo "ARG conda"
+        if [[ $PATH =~ "anaconda" ]]; then
+            echo "Found anaconda in PATH"
+            PATH=${PATH:s/.+PYTHON/\/anaconda3\/bin\/:PYTHON/}
+        elif [[ $PATH =~ "miniconda3" ]]; then
+            echo "Found miniconda3 in PATH"
+            PATH=${PATH:s/.+PYTHON/${HOME}\/miniconda3\/bin:PYTHON/}
+        else
+            echo "Didn't find others, so presuming miniconda"
+            PATH=${PATH:s/.+PYTHON/${HOME}\/miniconda\/bin:PYTHON/}}
+        fi
+    fi
+    echo $PATH
+    echo $(which python)
+}
+
 # Deal with path anomalies across platforms
 fix_path() {
     # First get rid of games entries that are cropping up on raspbian
     tmp_path=$(print -l ${(j.:.)$(print -l "${(s. .)path}" |grep -v games)})
-    echo $tmp_path
-
+    # echo $tmp_path
     if [[ -d ${HOME}/miniconda ]]; then
         miniconda_loc=miniconda
     elif [[ -d ${HOME}/miniconda3 ]]; then
@@ -266,22 +280,26 @@ fix_path() {
     elif [[ -d /anaconda3 && ! ${PATH} =~ /anaconda/ ]]; then
         PATH=/anaconda3/bin:${tmp_path}
     fi
-
     if [ ${miniconda_loc} ]; then
         if [[ ${PATH} =~ /anaconda/ ]]; then
-            PATH=$(echo ${PATH} |sed 's/\/anaconda3/${HOME}\/${miniconda_loc}\/')
+            PATH=$(echo ${PATH} |sed 's/\/anaconda3/${HOME}\/${miniconda_loc}\/PYTHON')
         elif [[ ! ${PATH} =~ /miniconda/ ]]; then
-            PATH=${HOME}/${miniconda_loc}/bin:${PATH}
+            PATH=${HOME}/${miniconda_loc}/bin:PYTHON:${PATH}
         fi
     fi
 }
 
 # Attempt to deduplicate the PATH variable
 dedup_path() {
-    PATH="$(echo ${PATH} |sed 's/ /:/g'| sed 's/~/${HOME}/g'| sed 's/:\/usr\/local\/games//g'| sed 's/:\/usr\/bin\/games//g')"
+    # PATH="$(echo ${PATH} |sed 's/ /:/g'| sed 's/~/${HOME}/g'| sed 's/:\/usr\/local\/games//g'| sed 's/:\/usr\/bin\/games//g')"
+    PATH=${PATH:gs/~/${HOME}/}
+    PATH=${PATH:gs/\/usr\/local\/games://}
+    PATH=${PATH:gs/\/usr\/bin\/games://}
+    # print -l "${(fu)$(<infile)}"))}
+    # print -l "${(fu)${print -t ${PATH:gs/:/ /}}}"
     PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
 }
-fix_path && dedup_path
+dedup_path && fix_path
 
 # if profiling was on
 if $PROFILING; then
