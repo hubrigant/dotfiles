@@ -446,8 +446,10 @@ set tags=./.tags
 let g:easytags_dynamic_files = 1
 highlight pythonFunctionTag ctermfg=blue cterm=bold ctermbg=yellow
 
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
+map qq :qa<CR>
+
+" inoremap ( ()<left>
+" inoremap [ []<left>
+" inoremap { {}<left>
+" inoremap {<CR> {<CR>}<ESC>O
+" inoremap {;<CR> {<CR>};<ESC>O
