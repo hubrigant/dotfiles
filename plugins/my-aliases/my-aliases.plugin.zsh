@@ -18,7 +18,7 @@ alias zre='vi ~/.dotfiles/config_masters/zshrc'
 alias zrr='source ~/.zshrc'
 alias zee='vi ~/.dotfiles/config_masters/zshenv'
 alias zer='source ~/.zshenv'
-
+alias zx='exec /usr/local/bin/zsh'
 function buc(){
     rm -rf ~/.vim/bundle
     vundle-init
@@ -40,6 +40,8 @@ alias hsi='hs -i'
 alias speedtest='repeat 10 {time zsh -i -c exit}'
 alias profon="perl -pi -e 's/PROFILING:-false/PROFILING:-true/g' ~/.zshrc"
 alias profoff="perl -pi -e 's/PROFILING:-true/PROFILING:-false/g' ~/.zshrc"
+alias profcap="zprof >~/tmp/zprof.txt"
+alias profe="vi ~/tmp/zprof.txt"
 
 # Programming conveniences
 alias testloop='ag -l --python |entr pytest'
