@@ -29,8 +29,19 @@ DOTFILES=$HOME/.dotfiles
 # Speed up load time
 DISABLE_UPDATE_PROMPT=true
 
+# Execute code in the background to not affect the current session
+{
+    # Compile zcompdump, if modified, to increase startup speed.
+    zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+    if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
+        zcompile "$zcompdump"
+    fi
+} &!
+
+# Perform compinit only once a day
 autoload -Uz compinit
-if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+# if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
   compinit
 else
   compinit -C
@@ -54,7 +65,7 @@ fi
 COMPLETION_WAITING_DOTS="true"
 
 # tmux plugin settings
-ZSH_TMUX_AUTOSTART_ONCE=false
+ZSH_TMUX_AUTOSTART_ONCE=true
 ZSH_TMUX_FIXTERM=true
 ZSH_TMUX_AUTOQUIT=false # tells TMUX not to close terminal once tmux exits
 
@@ -65,11 +76,6 @@ DEFAULT_USER=${USERNAME}
 
 # use vi bindings
 bindkey -v
-
-# load powerlevel9k theme
-source ${DOTFILES}/themes/powerlevel9k/powerlevel9k.zsh-theme
-POWERLEVEL9K_MODE='awsome-patched'
-ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
@@ -88,9 +94,6 @@ DISABLE_AUTO_TITLE="true"
 ## Powerlevel9k Settings
 POWERLEVEL9K_HISTORY_BACKGROUND='green'
 
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
-
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
@@ -99,7 +102,6 @@ POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%F{red} \Uf1d0 %f %F{yellow}❯ "
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_RPROMPT_ON_NEWLINE=false
 
-# POWERLEVEL9K_STATUS_VERBOSE=false
 POWERLEVEL9K_DIR_OMIT_FIRST_CHARACTER=false
 POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=false
 POWERLEVEL9K_CONTEXT_ALWAYS_SHOW_USER=false
@@ -108,15 +110,15 @@ POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND=red
 POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND=black
 
 # Command prompt
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vcs custom_git_repo_name newline context dir_joined)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vcs custom_git_repo_name newline context dir_joined custom_direnv_active )
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status anaconda root_indicator vi_mode date ssh)
 
 # GitHub prompt
 POWERLEVEL9K_VCS_GIT_GITHUB_ICON=$'\uF113'
 
 get_repo_name() {
-    if [[ (GITREPO) ]]; then
-        local repo_name=${GITREPO}
+    # if [[ (GITREPO) ]]; then
+    #     local repo_name=${GITREPO}
     # if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) ]]; then
     #     # local repo_url=$(git remote show origin |grep URL |grep Fetch)
     #     # local url_end=$(echo $repo_url |awk -F'/' '{print $NF}')
@@ -127,17 +129,37 @@ get_repo_name() {
     #         # local repo_name=$url_end
     #     # fi
     #     local repo_name=$url_end
-    else
-        local repo_name=''
-    fi
-    echo -n $repo_name
+    # else
+    #     local repo_name=''
+    # fi
+    echo -n $GITREPO
 }
 
+direnv_active() {
+    if [[ -n "$DIRENV_DIFF" ]]; then
+        # local color='%F{blue}'
+        echo -n "\uf300"
+    fi
+}
+
+# Custom segment configs
 POWERLEVEL9K_CUSTOM_GIT_REPO_NAME="get_repo_name"
+POWERLEVEL9K_CUSTOM_DIRENV_ACTIVE="direnv_active"
+POWERLEVEL9K_CUSTOM_DIRENV_ACTIVE_FOREGROUND="black"
+POWERLEVEL9K_CUSTOM_DIRENV_ACTIVE_BACKGROUND="green"
 
 # dir
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_SHORTEN_STRATEGY='truncate_to_first_and_last'
+POWERLEVEL9K_HOME_ICON="\uf016"
+POWERLEVEL9K_HOME_SUB_ICON="\uf07c"
+POWERLEVEL9K_FOLDER_ICON="\uf07b"
+POWERLEVEL9K_ETC_ICON="\uf423"
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
+# POWERLEVEL9K_SHORTEN_STRATEGY='truncate_middle'
+POWERLEVEL9K_SHORTEN_STRATEGY='truncate_with_package_name'
+POWERLEVEL9K_FOLDER_MARKER='.envrc'
+POWERLEVEL9K_DIR_PACKAGE_FILES=(package.json composer.json)
+POWERLEVEL9K_DIR_SHOW_WRITABLE=true
+# POWERLEVEL9K_HOME_FOLDER_ABBREVIATION="%F{red} $(print_icon 'HOME_ICON') %F{black}"
 
 POWERLEVEL9K_STATUS_VERBOSE=true
 POWERLEVEL9K_STATUS_CROSS=false
@@ -149,25 +171,31 @@ POWERLEVEL9K_ANACONDA_RIGHT_DELIMITER=""
 POWERLEVEL9K_ANACONDA_BACKGROUND='cyan'
 POWERLEVEL9K_ANACONDA_FOREGROUND='black'
 
+# load powerlevel9k theme
+source ${DOTFILES}/themes/powerlevel9k/powerlevel9k.zsh-theme
+POWERLEVEL9K_MODE='awsome-patched'
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
 # dumb terminal can be a vim dump terminal in that case don't try to load plugins
 if [ ! $TERM = dumb ]; then
     ZGEN_DIR=${HOME}/.zgen
     source ${DOTFILES}/plugins/autojump/autojump.plugin.zsh
     source ${DOTFILES}/plugins/my-aliases/my-aliases.plugin.zsh
-    source ${DOTFILES}/plugins/my-brew/my-brew.plugin.zsh
+    # source ${DOTFILES}/plugins/my-brew/my-brew.plugin.zsh
     source ${DOTFILES}/plugins/my-tmux/my-tmux.plugin.zsh
     source ${DOTFILES}/plugins/sudo/sudo.plugin.zsh
-    source ${DOTFILES}/plugins/taskwarrior/taskwarrior.plugin.zsh
+    # source ${DOTFILES}/plugins/taskwarrior/taskwarrior.plugin.zsh
     source ${DOTFILES}/plugins/tmuxinator/tmuxinator.plugin.zsh
     source ${DOTFILES}/plugins/tpm/tpm.plugin.zsh
-    source ${DOTFILES}/plugins/vi-mode/vi-mode.plugin.zsh
+    # source ${DOTFILES}/plugins/vi-mode/vi-mode.plugin.zsh
     source ${DOTFILES}/plugins/vundle/vundle.plugin.zsh
     source ${DOTFILES}/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-    source ${DOTFILES}/plugins/zsh-completions/zsh-completions.plugin.zsh
+    # source ${DOTFILES}/plugins/zsh-completions/zsh-completions.plugin.zsh
 fi
 
 # Which plugins would you like to load?
-plugins=(sudo git my-tmux my-aliases taskwarrior tmux tmuxinator zsh-autosuggestions tpm)
+# plugins=(sudo git my-tmux my-aliases taskwarrior tmux tmuxinator zsh-autosuggestions tpm)
+# plugins=(sudo git my-tmux my-aliases tmux tmuxinator zsh-autosuggestions tpm)
 
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
@@ -192,67 +220,67 @@ if [ -f ~/.machinerc ]; then
     source ~/.machinerc
 fi
 
-build_ycm() {
-    if [[ -d ${HOME}/.vim/bundle/YouCompleteMe/ ]]; then
-        YCMDIR=${HOME}/.vim/bundle/YouCompleteMe/
-        YCMBUILDDIR=${HOME}/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
-    elif [[ -d ${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/ ]]; then
-        YCMDIR=${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/
-        YCMBUILDDIR=${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
-    fi
-    if [[ ! -d $YCMBUILDDIR ]]; then
-        print -P "%B%K{green}%F{black}[*]%k%f%b Building the YouCompleteMe core library."
-        if [ ! -f "$YCMDIR/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
-            cd ${YCMDIR}
-            if $(python install.py > ${HOME}/dotfiles-installer.out); then
-                print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
-            else
-                print -P "%B%K{red}%F{black}[X]%f%k%b Install failed."
-                exit(1)
-            fi
-            cd -
-        fi
-    else
-        print -P "%B%K{green}%F{black}[*]%f%k%b YouCompleteMe core already built."
-    fi
-}
+# build_ycm() {
+#     if [[ -d ${HOME}/.vim/bundle/YouCompleteMe/ ]]; then
+#         YCMDIR=${HOME}/.vim/bundle/YouCompleteMe/
+#         YCMBUILDDIR=${HOME}/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
+#     elif [[ -d ${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/ ]]; then
+#         YCMDIR=${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/
+#         YCMBUILDDIR=${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
+#     fi
+#     if [[ ! -d $YCMBUILDDIR ]]; then
+#         print -P "%B%K{green}%F{black}[*]%k%f%b Building the YouCompleteMe core library."
+#         if [ ! -f "$YCMDIR/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
+#             cd ${YCMDIR}
+#             if $(python install.py > ${HOME}/dotfiles-installer.out); then
+#                 print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
+#             else
+#                 print -P "%B%K{red}%F{black}[X]%f%k%b Install failed."
+#                 exit(1)
+#             fi
+#             cd -
+#         fi
+#     else
+#         print -P "%B%K{green}%F{black}[*]%f%k%b YouCompleteMe core already built."
+#     fi
+# }
 
 
-rebuild_ycm() {
-    if [[ -d ${HOME}/.vim/bundle/YouCompleteMe/ ]]; then
-        YCMDIR=${HOME}/.vim/bundle/YouCompleteMe/
-        YCMBUILDDIR=${HOME}/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
-    elif [[ -d ${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/ ]]; then
-        YCMDIR=${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/
-        YCMBUILDDIR=${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
-    fi
-    if [[ ! -d $YCMBUILDDIR ]]; then
-        print -P "%B%K{green}%F{black}[*]%k%f%b Building the YouCompleteMe core library."
-        if [ ! -f "$YCMDIR/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
-            cd ${YCMDIR}
-            if $(python install.py > ${HOME}/dotfiles-installer.out); then
-                print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
-            else
-                print -P "%B%K{red}%F{black}[X]%f%k%b Install failed."
-                exit(1)
-            fi
-            cd -
-        fi
-    else
-        print -P "%B%K{green}%F{black}[*]%k%f%b Building the YouCompleteMe core library."
-        rm -rf $YCMBUILDDIR
-        if [ ! -f "$YCMDIR/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
-            cd ${YCMDIR}
-            if $(python install.py > ${HOME}/dotfiles-installer.out); then
-                print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
-            else
-                print -P "%B%K{red}%F{black}[X]%f%k%b Install failed."
-                exit(1)
-            fi
-            cd -
-        fi
-    fi
-}
+# rebuild_ycm() {
+#     if [[ -d ${HOME}/.vim/bundle/YouCompleteMe/ ]]; then
+#         YCMDIR=${HOME}/.vim/bundle/YouCompleteMe/
+#         YCMBUILDDIR=${HOME}/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
+#     elif [[ -d ${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/ ]]; then
+#         YCMDIR=${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/
+#         YCMBUILDDIR=${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
+#     fi
+#     if [[ ! -d $YCMBUILDDIR ]]; then
+#         print -P "%B%K{green}%F{black}[*]%k%f%b Building the YouCompleteMe core library."
+#         if [ ! -f "$YCMDIR/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
+#             cd ${YCMDIR}
+#             if $(python install.py > ${HOME}/dotfiles-installer.out); then
+#                 print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
+#             else
+#                 print -P "%B%K{red}%F{black}[X]%f%k%b Install failed."
+#                 exit(1)
+#             fi
+#             cd -
+#         fi
+#     else
+#         print -P "%B%K{green}%F{black}[*]%k%f%b Building the YouCompleteMe core library."
+#         rm -rf $YCMBUILDDIR
+#         if [ ! -f "$YCMDIR/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
+#             cd ${YCMDIR}
+#             if $(python install.py > ${HOME}/dotfiles-installer.out); then
+#                 print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
+#             else
+#                 print -P "%B%K{red}%F{black}[X]%f%k%b Install failed."
+#                 exit(1)
+#             fi
+#             cd -
+#         fi
+#     fi
+# }
 
 # Switch between different python installations
 switch_python() {
@@ -279,8 +307,14 @@ switch_python() {
 
 # Deal with path anomalies across platforms
 fix_path() {
-    # First get rid of games entries that are cropping up on raspbian
+    # First get rid of games entries that are cropping up on raspbian and expand tilde
+    # since some programs have problems with that directory expansion in PATH
     tmp_path=$(print -l ${(j.:.)$(print -l "${(s. .)path}" |grep -v games)})
+    PATH=${PATH:gs/~/(${HOME}|\/usr\/(local|bin)\/games:)/}
+    # PATH=${PATH:gs/\/usr\/(local|bin)\/games://}
+    unset mimiconda_loc
+    # tmp_path=${PATH/\/usr\/local\/games://}
+    # tmp_path=${PATH/\/usr\/bin\/games://}
     # echo $tmp_path
     if [[ -d ${HOME}/miniconda ]]; then
         miniconda_loc=miniconda
@@ -300,19 +334,14 @@ fix_path() {
 
 # Attempt to deduplicate the PATH variable
 dedup_path() {
-    # PATH="$(echo ${PATH} |sed 's/ /:/g'| sed 's/~/${HOME}/g'| sed 's/:\/usr\/local\/games//g'| sed 's/:\/usr\/bin\/games//g')"
-    PATH=${PATH:gs/~/${HOME}/}
-    PATH=${PATH:gs/\/usr\/local\/games://}
-    PATH=${PATH:gs/\/usr\/bin\/games://}
-    # print -l "${(fu)$(<infile)}"))}
-    # print -l "${(fu)${print -t ${PATH:gs/:/ /}}}"
-    # echo ${(uj.:.)path}
-    PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
+    # tmppath=${(j.:.)${(u)path}}
+    PATH=${(j.:.)${(u)path}}
 }
 dedup_path && fix_path
 
 # Load direnv, which hopefully will speed up prompt generation
-eval "$(direnv hook zsh)"
+# export DIRENV_LOG_FORMAT=
+# eval "$(direnv hook zsh)"
 
 # if profiling was on
 if $PROFILING; then
