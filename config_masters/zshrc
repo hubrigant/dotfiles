@@ -101,7 +101,7 @@ POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND=red
 POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND=black
 
 # Command prompt
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir_joined newline vcs custom_git_repo_name)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vcs custom_git_repo_name newline context dir_joined)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status anaconda root_indicator vi_mode date ssh)
 
 # GitHub prompt
@@ -300,6 +300,9 @@ dedup_path() {
     PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
 }
 dedup_path && fix_path
+
+# Load direnv, which hopefully will speed up prompt generation
+eval "$(direnv hook zsh)"
 
 # if profiling was on
 if $PROFILING; then
