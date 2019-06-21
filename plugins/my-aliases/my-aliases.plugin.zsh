@@ -37,7 +37,7 @@ function hs
 alias hsi='hs -i'
 
 # ZSH conveniences
-alias speedtest='repeat 10 {test zsh -i -c exit}'
+alias speedtest='repeat 10 {time zsh -i -c exit}'
 
 # Programming conveniences
 alias testloop='ag -l --python |entr pytest'
