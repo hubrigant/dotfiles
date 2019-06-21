@@ -444,7 +444,7 @@ let g:mucomplete#completion_delay = 1
 " easytags settings test
 set tags=./.tags
 let g:easytags_dynamic_files = 1
-highlight pythonFunctionTag ctermfg=blue cterm=bold ctermbg=yellow
+highlight pythonFunctionTag ctermfg=blue cterm=bold
 
 map qq :qa<CR>
 
