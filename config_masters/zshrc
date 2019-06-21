@@ -29,19 +29,26 @@ DOTFILES=$HOME/.dotfiles
 # Speed up load time
 DISABLE_UPDATE_PROMPT=true
 
-# Perform compinit only once a day
 autoload -Uz compinit
+if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+  compinit
+else
+  compinit -C
+fi
 
-setopt EXTENDEDGLOB
-for dump in $ZSH_COMPDUMP(#qN.m1); do
-    compinit
-    if [[ -s "$dump" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; then
-        zcompile "$dump"
-    fi
-    echo "Initializing Completions..."
-done
-unsetopt EXTENDEDGLOB
-compinit -C
+# Perform compinit only once a day
+# autoload -Uz compinit
+
+# setopt EXTENDEDGLOB
+# for dump in $ZSH_COMPDUMP(#qN.m1); do
+#     compinit
+#     if [[ -s "$dump" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; then
+#         zcompile "$dump"
+#     fi
+#     echo "Initializing Completions..."
+# done
+# unsetopt EXTENDEDGLOB
+# compinit -C
 
 # if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
@@ -108,16 +115,18 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status anaconda root_indicator vi_mode date 
 POWERLEVEL9K_VCS_GIT_GITHUB_ICON=$'\uF113'
 
 get_repo_name() {
-    if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) ]]; then
-        # local repo_url=$(git remote show origin |grep URL |grep Fetch)
-        # local url_end=$(echo $repo_url |awk -F'/' '{print $NF}')
-        local url_end=$(git remote show origin |grep URL |grep Fetch |awk -F'\' '{print $NF}' |awk '{print $3}' |awk -F'\/' '{print $NF}' |awk -F'.' '{print $1}')
-        # if [[ $(echo $url_end |egrep -e 'git$') ]]; then
-            # local repo_name=$(echo $url_end |awk -F'.' '{print $1}')
-        # else
-            # local repo_name=$url_end
-        # fi
-        local repo_name=$url_end
+    if [[ (GITREPO) ]]; then
+        local repo_name=${GITREPO}
+    # if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) ]]; then
+    #     # local repo_url=$(git remote show origin |grep URL |grep Fetch)
+    #     # local url_end=$(echo $repo_url |awk -F'/' '{print $NF}')
+    #     local url_end=$(git remote show origin |grep URL |grep Fetch |awk -F'\' '{print $NF}' |awk '{print $3}' |awk -F'\/' '{print $NF}' |awk -F'.' '{print $1}')
+    #     # if [[ $(echo $url_end |egrep -e 'git$') ]]; then
+    #         # local repo_name=$(echo $url_end |awk -F'.' '{print $1}')
+    #     # else
+    #         # local repo_name=$url_end
+    #     # fi
+    #     local repo_name=$url_end
     else
         local repo_name=''
     fi
@@ -297,6 +306,7 @@ dedup_path() {
     PATH=${PATH:gs/\/usr\/bin\/games://}
     # print -l "${(fu)$(<infile)}"))}
     # print -l "${(fu)${print -t ${PATH:gs/:/ /}}}"
+    # echo ${(uj.:.)path}
     PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
 }
 dedup_path && fix_path
