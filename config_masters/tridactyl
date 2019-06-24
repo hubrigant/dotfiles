@@ -74,6 +74,14 @@ bind N findnext -1
 " Refresh tridactyl config from file
 bind i source ~/.tridactyl
 
+" Make it easier to open sites I frequent
+bind ;g tabopen https://mail.google.com
+bind ;fb tabopen https://facebook.com
+bind ;fd tabopen https://flowdock.com
+bind ;y tabopen https://www.yammer.com/johndeere.com/
+bind ;s tabopen https://sso.johndeere.com/
+bind ;job tabopen https://talentcentral.deere.com/
+
 "
 " Misc settings
 "
