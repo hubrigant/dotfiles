@@ -448,8 +448,7 @@ highlight pythonFunctionTag ctermfg=blue cterm=bold
 
 map qq :qa<CR>
 
-" inoremap ( ()<left>
-" inoremap [ []<left>
-" inoremap { {}<left>
-" inoremap {<CR> {<CR>}<ESC>O
-" inoremap {;<CR> {<CR>};<ESC>O
+" Commands to make running python code being edited easier
+set autowrite
+autocmd Filetype python setlocal makeprg=/usr/bin/env\ python\ %
+noremap m :make<CR>
