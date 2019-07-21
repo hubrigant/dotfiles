@@ -50,7 +50,8 @@ set autoread
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = ","
+" let mapleader = ","
+let mapleader = ";"
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -452,3 +453,7 @@ map qq :qa<CR>
 set autowrite
 autocmd Filetype python setlocal makeprg=/usr/bin/env\ python\ %
 noremap m :make<CR>
+
+nmap <leader>gc :Gcommit %<cr>
+nmap <leader>gp :Gpush<cr>
+nmap <leader>gs ;Gstatus<cr>
