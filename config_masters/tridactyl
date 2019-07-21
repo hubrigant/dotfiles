@@ -83,7 +83,6 @@ bind ;fb open https://facebook.com
 bind ;FB tabopen https://facebook.com
 bind ;fd open https://flowdock.com
 bind ;FD tabopen https://flowdock.com
-" bind ;job tabopen https://talentcentral.deere.com/
 bind ;fd open https://flowdock.com
 bind ;j open https://performancemanager8.successfactors.com/sf/careers/jobalerts?bplte_company=1161975P
 bind ;J tabopen https://performancemanager8.successfactors.com/sf/careers/jobalerts?bplte_company=1161975P
