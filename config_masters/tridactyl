@@ -81,7 +81,8 @@ bind ;fd tabopen https://flowdock.com
 bind ;y tabopen https://www.yammer.com/johndeere.com/
 bind ;s tabopen https://sso.johndeere.com/
 " bind ;job tabopen https://talentcentral.deere.com/
-bind ;j https://performancemanager8.successfactors.com/sf/careers/jobalerts?bplte_company=1161975P
+bind ;j open https://performancemanager8.successfactors.com/sf/careers/jobalerts?bplte_company=1161975P
+bind ;J tabopen https://performancemanager8.successfactors.com/sf/careers/jobalerts?bplte_company=1161975P
 
 bind <C-`> fillcmdline
 
