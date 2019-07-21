@@ -78,8 +78,6 @@ bind i source ~/.tridactyl
 bind ;g tabopen https://mail.google.com
 bind ;fb tabopen https://facebook.com
 bind ;fd tabopen https://flowdock.com
-bind ;y tabopen https://www.yammer.com/johndeere.com/
-bind ;s tabopen https://sso.johndeere.com/
 " bind ;job tabopen https://talentcentral.deere.com/
 bind ;j open https://performancemanager8.successfactors.com/sf/careers/jobalerts?bplte_company=1161975P
 bind ;J tabopen https://performancemanager8.successfactors.com/sf/careers/jobalerts?bplte_company=1161975P
