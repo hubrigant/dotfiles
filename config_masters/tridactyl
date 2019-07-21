@@ -82,6 +82,7 @@ bind ;y tabopen https://www.yammer.com/johndeere.com/
 bind ;s tabopen https://sso.johndeere.com/
 " bind ;job tabopen https://talentcentral.deere.com/
 " bind ;j tabopen https://performancemanager8.successfactors.com/acme?bplte_company=1161975P&fbacme_n=recruiting&recruiting%5fns=joblisting%20summary&joblistingSummary%5fsearch=true&joblistingSummary%5fhide%5fsearch=true&jobAlertController%5fjobAlertId=153450551&jobAlertController%5fjobAlertName=Broader%20Escape%20Pod&_s.crb=7P%2fmoAFgLfFNW4YlBdRPREQ4vgw%3d
+bind ;j https://performancemanager8.successfactors.com/sf/careers/jobalerts?bplte_company=1161975P
 
 bind <C-`> fillcmdline
 
