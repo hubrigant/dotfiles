@@ -75,9 +75,14 @@ bind N findnext -1
 bind i source ~/.tridactyl
 
 " Make it easier to open sites I frequent
-bind ;g tabopen https://mail.google.com
-bind ;fb tabopen https://facebook.com
-bind ;fd tabopen https://flowdock.com
+bind ;gm open https://mail.google.com
+bind ;GM tabopen https://mail.google.com
+bind ;gd open https://drive.google.com
+bind ;GD tabopen https://drive.google.com
+bind ;fb open https://facebook.com
+bind ;FB tabopen https://facebook.com
+bind ;fd open https://flowdock.com
+bind ;FD tabopen https://flowdock.com
 " bind ;job tabopen https://talentcentral.deere.com/
 bind ;j open https://performancemanager8.successfactors.com/sf/careers/jobalerts?bplte_company=1161975P
 bind ;J tabopen https://performancemanager8.successfactors.com/sf/careers/jobalerts?bplte_company=1161975P
