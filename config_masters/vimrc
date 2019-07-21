@@ -456,4 +456,4 @@ noremap m :make<CR>
 
 nmap <leader>gc :Gcommit %<cr>
 nmap <leader>gp :Gpush<cr>
-nmap <leader>gs ;Gstatus<cr>
+nmap <leader>gs :Gstatus<cr>
