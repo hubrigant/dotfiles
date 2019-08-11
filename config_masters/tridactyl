@@ -75,8 +75,8 @@ bind N findnext -1
 bind i source ~/.tridactyl
 
 " Make it easier to open sites I frequent
-bind ;gm open https://mail.google.com
-bind ;GM tabopen https://mail.google.com
+bind ;gm open https://mail.google.com/mail/u/0/h/702skixx2ha9/?&
+bind ;GM tabopen https://mail.google.com/mail/u/0/h/702skixx2ha9/?&
 bind ;gd open https://drive.google.com
 bind ;GD tabopen https://drive.google.com
 bind ;fb open https://facebook.com
