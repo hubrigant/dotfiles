@@ -115,6 +115,10 @@ Plugin 'vim-syntastic/syntastic'
 " Exuberant cTags management
 Plugin 'xolox/vim-easytags'
 "
+" Kotlin syntax checker
+"
+Plugin 'udalov/kotlin-vim'
+"
 call vundle#end()               " required
 filetype plugin indent on       " required
 
