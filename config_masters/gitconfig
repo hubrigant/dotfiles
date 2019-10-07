@@ -1,5 +1,7 @@
 [core]
 	excludesfile = /Users/jw68539/.gitignore_global
+[diff]
+    tool = vimdiff
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -8,7 +10,7 @@
 	trustExitCode = true
 [user]
 	name = Jon Williams
-	email = williamsjon@johndeere.com
+	email = jonhatesspam+gitrepo@gmail.com
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
