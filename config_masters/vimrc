@@ -457,3 +457,9 @@ noremap m :make<CR>
 nmap <leader>gc :Gcommit %<cr>
 nmap <leader>gp :Gpush<cr>
 nmap <leader>gs :Gstatus<cr>
+
+" Enabling support for LilyPond music editing
+filetype off
+set runtimepath+=/Applications/LilyPond.app/Contents/Resources/share/lilypond/current/vim
+filetype on
+syntax on
