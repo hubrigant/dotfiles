@@ -1,3 +1,4 @@
 tmp/*
 .tmp/*
 settings/iterm2/*
+plugins/zsh-*

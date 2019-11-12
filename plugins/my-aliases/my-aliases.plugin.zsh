@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 # basic conveniences
+alias ahe='vi ~/.dotfiles/config_masters/SwapEscAndCapsLock.ahk'
 alias ale='vi ~/.dotfiles/plugins/my-aliases/my-aliases.plugin.zsh'
 alias alr='source ~/.dotfiles/plugins/my-aliases/my-aliases.plugin.zsh'
 alias bue='vi ~/.bundles.vim'
@@ -8,7 +9,7 @@ alias bur='/usr/local/bin/vim +PluginInstall +qall'
 alias cd-='cd -'
 alias ine='vi ~/.dotfiles/scripts/install_dotfiles.sh'
 alias inr='~/.dotfiles/scripts/install_dotfiles.sh'
-alias jd='j d'
+alias jd='j dotfile'
 alias jl='jupyter-lab'
 alias ls='ls -FG'
 alias l='ls -l'
@@ -48,6 +49,7 @@ alias profe="vi ~/tmp/zprof.txt"
 
 # Programming conveniences
 alias testloop='ag -l --python |entr pytest'
+alias jpl='cd ~/Documents/GitHub/JupyterNotebooks && jupyter-lab --no-browser'
 
 # GitHub conveniences
 alias all-commit='git commit -a -m'

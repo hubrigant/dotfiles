@@ -3,10 +3,8 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-Esc::
-send CapsLock
-return
+Esc::CapsLock
+; return
 
-CapsLock::
-send Esc
-return
+CapsLock::Esc
+; return
