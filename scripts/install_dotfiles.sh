@@ -17,6 +17,16 @@ else
     print -P "%B%K{green}%F{black}[*]%k%f%b The dotfiles repo exists, good."
 fi
 
+# Initialize external plugin submodules
+git submodule update --init --recursive ${HOME}/.dotfiles/plugins/*
+
+# Initialize external theme submodules
+if [ ! -d "${DOTFILES_DIR}/themes/powerlevel9k" ]; then
+    print -P "%B%K{green}%F{black}[*]%k%f%b Creating empty directory for powerlevel9k submodule."
+    mkdir ${DOTFILES_DIR}/themes/powerlevel9k
+fi
+git submodule update --init --recursive ${HOME}/.dotfiles/themes/*
+
 CONFIG_MASTERS_DIR="${DOTFILES_DIR}/config_masters"
 
 if ! git_loc="$(type -p "git")" || [[ -z $git_loc ]]; then
@@ -121,7 +131,8 @@ print -P "%B%K{green}%F{black}[*]%k%f%b Activating new configurations."
 source ${HOME}/.zshrc
 
 print -P "%B%K{green}%F{black}[*]%k%f%b Installing Vundle plugins."
-if /usr/local/bin/vim +PluginInstall +qall; then
+# if /usr/local/bin/vim +PluginInstall +qall; then
+if env vim +PluginInstall +qall; then
     print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
 else
     print -P "%B%K{red}%F{black}[X]%f%k%b Install failed."
