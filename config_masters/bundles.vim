@@ -119,6 +119,11 @@ Plugin 'xolox/vim-easytags'
 "
 Plugin 'udalov/kotlin-vim'
 "
+" LilyPond plugin
+"
+Plugin 'matze/vim-lilypond'
+"
+
 call vundle#end()               " required
 filetype plugin indent on       " required
 

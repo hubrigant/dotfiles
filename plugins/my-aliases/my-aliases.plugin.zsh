@@ -23,6 +23,7 @@ alias zrr='source ~/.zshrc'
 alias zee='vi ~/.dotfiles/config_masters/zshenv'
 alias zer='source ~/.zshenv'
 alias zx='exec /usr/local/bin/zsh'
+alias bi='brew install'
 function buc(){
     rm -rf ~/.vim/bundle
     vundle-init
@@ -60,6 +61,8 @@ alias gd='git difftool'
 alias gp='git push'
 alias gs='git status'
 alias gpu='git pull'
+export GHP='https://github.com/'
+alias gcl='git clone'
 
 # Tmuxinator conveniences
 alias txst='tmuxinator start traffic'
