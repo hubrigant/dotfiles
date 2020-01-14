@@ -24,6 +24,7 @@ alias zee='vi ~/.dotfiles/config_masters/zshenv'
 alias zer='source ~/.zshenv'
 alias zx='exec /usr/local/bin/zsh'
 alias bi='brew install'
+alias bd='brew doctor'
 function buc(){
     rm -rf ~/.vim/bundle
     vundle-init
