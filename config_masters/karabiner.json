@@ -17,7 +17,65 @@
                 },
                 "rules": [
                     {
+                        "description": "Map right_control to mission control when it has been hit twice successively",
+                        "type": "basic",
+                        "from": {
+                            "key_code": "right_control",
+                            "modifiers": {
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "mission_control"
+                            }
+                        ],
+                        "conditions": [
+                            {
+                                "type": "variable_if",
+                                "name": "right_control pressed",
+                                "value": 1
+                            }
+                        ]
+                    },
+                    {
+                        "description": "set the 'right_control pressed' viarable used in the double-right_control-press modification above",
+                        "type": "basic",
+                        "from": {
+                            "key_code": "right_control",
+                            "modifiers": {
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                        ],
+                        "to_delayed_action": {
+                            "to_if_invoked": [
+                                {
+                                    "set_variable": {
+                                        "name": "right_control pressed",
+                                        "value": 0
+                                    }
+                                }
+                            ],
+                            "to_if_canceled": [
+                                {
+                                    "set_variable": {
+                                        "name": "right_control pressed",
+                                        "value": 0
+                                    }
+                                }
+                            ]
+                        }
+                    },
+
+                    {
                         "description": "Map right_shift to tmux's <CTRL>-a",
+                        "type": "basic",
                         "manipulators": [
                             {
                                 "from": {
@@ -25,74 +83,20 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "a",
-                                        "modifiers": [
-                                            "left_control"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Send the sequence <CTRL>-a q to tmux when left_shift is pressed a second time consecutively",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "left_shift_pressed",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    },
-                                    {
-                                        "bundle_identifiers": [
-                                            "^com\\.googlecode\\.iterm2$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "left_shift"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "a",
-                                        "modifiers": [
-                                            "control"
-                                        ]
-                                    },
-                                    {
-                                        "key_code": "q"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Set the left_shift_pressed variable used in the double-left_shift-press modification above",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "left_shift"
-                                },
-                                "to": [
-                                    {
                                         "set_variable": {
-                                            "name": "left_shift_pressed",
+                                            "name": "right_shift pressed",
                                             "value": 1
                                         }
                                     },
                                     {
-                                        "key_code": "left_shift"
+                                        "key_code": "right_shift"
                                     }
                                 ],
                                 "to_delayed_action": {
                                     "to_if_canceled": [
                                         {
                                             "set_variable": {
-                                                "name": "left_shift_pressed",
+                                                "name": "right_shift pressed",
                                                 "value": 0
                                             }
                                         }
@@ -100,7 +104,7 @@
                                     "to_if_invoked": [
                                         {
                                             "set_variable": {
-                                                "name": "left_shift_pressed",
+                                                "name": "right_shift pressed",
                                                 "value": 0
                                             }
                                         }
@@ -198,6 +202,28 @@
                             },
                             "to": {
                                 "key_code": "return_or_enter"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": false,
+                        "is_pointing_device": "true",
+                        "product_id": 307,
+                        "vendor_id": 1390
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": false,
+                    "simple_modifications": [
+                        {
+                            "from": {
+                                "pointing_button": "button6"
+                            },
+                            "to": {
+                                "key_code": "vk_mission_control"
                             }
                         }
                     ]
@@ -322,6 +348,14 @@
                     "to": {
                         "key_code": "caps_lock"
                     }
+                },
+                {
+                    "from": {
+                        "pointing_button": "button6"
+                    },
+                    "to": {
+                        "key_code": "mission_control"
+                    }
                 }
             ],
             "virtual_hid_keyboard": {
@@ -329,6 +363,7 @@
                 "mouse_key_xy_scale": 100
             }
         },
+
         {
             "complex_modifications": {
                 "parameters": {
@@ -488,7 +523,16 @@
                 "delay_milliseconds_before_open_device": 1000
             },
             "selected": false,
-            "simple_modifications": [],
+            "simple_modifications": [
+                {
+                    "from": {
+                        "pointing_button": "button6"
+                    },
+                    "to": {
+                        "key_code": "mission_control"
+                    }
+                }
+            ],
             "virtual_hid_keyboard": {
                 "country_code": 0,
                 "mouse_key_xy_scale": 100
