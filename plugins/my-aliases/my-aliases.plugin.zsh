@@ -25,6 +25,7 @@ alias zer='source ~/.zshenv'
 alias zx='exec /usr/local/bin/zsh'
 alias bi='brew install'
 alias bd='brew doctor'
+alias tms='tmux new'
 function buc(){
     rm -rf ~/.vim/bundle
     vundle-init
