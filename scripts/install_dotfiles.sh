@@ -59,7 +59,7 @@ else
     print -P "%B%K{green}%F{black}[*]%f%k%b ZSH is already my shell, continuing."
 fi
 
-if [ -v $ZSH ]; then
+if [ -n "${ZSH+1}" ]; then
     print -P "%B%K{green}%F{black}[*]%f%k%b ZSH environment variable set. Unsetting to prevent incorrect oh-my-zsh installation and config."
     unset ZSH
 else
@@ -80,52 +80,64 @@ if [ ! -d ${HOME}/dotfiles.bkup ]; then
         print -P "%B%K{green}%F{black}[*]%f%k%b Created ${HOME}/dotfiles.bkup"
     else
         print -P "%B%K{red}%F{black}[X]%f%k%b Failed to create backup dir ${HOME}/dotfiles.bkup"
-        exit(1)
+        exit(2)
     fi
 fi
 
+# create .config directories if they don't exist
+[ -f ${HOME}/.config/karabiner ] && mkdir ${HOME}/.config/karabiner # >dev/null 2>&1
+[ -f ${HOME}/.config/tmuxinator ] && mkdir ${HOME}/.config/tmuxinator # >dev/null 2>&1
+
 print -P "%B%K{green}%F{black}[*]%k%f%b Backing up old home-dir dot files before creating links"
 [ -f ${HOME}/.bundles.vim ]                     && mv ${HOME}/.bundles.vim                     ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.gitconfig ]                       && mv ${HOME}/.gitconfig                       ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.gitignore_global ]                && mv ${HOME}/.gitignore_global                ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.global_extra_conf ]               && mv ${HOME}/global_extra_conf.py             ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.tmux.conf ]                       && mv ${HOME}/.tmux.conf                       ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.vimrc ]                           && mv ${HOME}/.vimrc                           ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.zshenv ]                          && mv ${HOME}/.zshenv                          ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.zshrc ]                           && mv ${HOME}/.zshrc                           ${HOME}/dotfiles.bkup >/dev/null 2>&1
-[ -f ${HOME}/.tridactyl ]                       && mv ${HOME}/.tridactyl                       ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.config/karabiner/karabiner.json ] && mv ${HOME}/.config/karabiner/karabiner.json ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.config/tmuxinator/dev.yml ]       && mv ${HOME}/.config/tmuxinator/dev.yml       ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.config/tmuxinator/template.erb ]  && mv ${HOME}/.config/tmuxinator/template.erb  ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.gitconfig ]                       && mv ${HOME}/.gitconfig                       ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.gitignore_global ]                && mv ${HOME}/.gitignore_global                ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.global_extra_conf ]               && mv ${HOME}/global_extra_conf.py             ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.theming.zsh ]                     && mv ${HOME}/.theming.zsh                     ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.tmux.conf ]                       && mv ${HOME}/.tmux.conf                       ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.tridactyl ]                       && mv ${HOME}/.tridactyl                       ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.p10k.zsh ]                        && mv ${HOME}/.p10k.zsh                        ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.p9k.zsh ]                         && mv ${HOME}/.p9k.zsh                         ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.zshenv ]                          && mv ${HOME}/.zshenv                          ${HOME}/dotfiles.bkup >/dev/null 2>&1
+[ -f ${HOME}/.zshrc ]                           && mv ${HOME}/.zshrc                           ${HOME}/dotfiles.bkup >/dev/null 2>&1
 
 print -P "%B%K{green}%F{black}[*]%k%f%b Removing old home-dir dot files."
 [ -f ${HOME}/.bundles.vim ]                     && rm ${HOME}/.bundles.vim
-[ -f ${HOME}/.gitconfig ]                       && rm ${HOME}/.gitconfig
-[ -f ${HOME}/.gitignore_global ]                && rm ${HOME}/.gitignore_global
-[ -f ${HOME}/global_extra_conf.py ]             && rm ${HOME}/global_extra_conf.py
-[ -f ${HOME}/.tmux.conf ]                       && rm ${HOME}/.tmux.conf
-[ -f ${HOME}/.vimrc ]                           && rm ${HOME}/.vimrc
-[ -f ${HOME}/.zshenv ]                          && rm ${HOME}/.zshenv
-[ -f ${HOME}/.zshrc ]                           && rm ${HOME}/.zshrc
-[ -f ${HOME}/.tridactyl ]                       && rm ${HOME}/.tridactyl
 [ -f ${HOME}/.config/karabiner/karabiner.json ] && rm ${HOME}/.config/karabiner/karabiner.json
 [ -f ${HOME}/.config/tmuxinator/dev.yml ]       && rm ${HOME}/.config/tmuxinator/dev.yml
 [ -f ${HOME}/.config/tmuxinator/template.erb ]  && rm ${HOME}/.config/tmuxinator/template.erb
+[ -f ${HOME}/.gitconfig ]                       && rm ${HOME}/.gitconfig
+[ -f ${HOME}/.gitignore_global ]                && rm ${HOME}/.gitignore_global
+[ -f ${HOME}/global_extra_conf.py ]             && rm ${HOME}/global_extra_conf.py
+[ -f ${HOME}/.p10k.zsh ]                        && rm ${HOME}/.p10k.zsh
+[ -f ${HOME}/.p9k.zsh ]                         && rm ${HOME}/.p9k.zsh
+[ -f ${HOME}/.theming.zsh ]                     && rm ${HOME}/.theming.zsh
+[ -f ${HOME}/.tmux.conf ]                       && rm ${HOME}/.tmux.conf
+[ -f ${HOME}/.tridactyl ]                       && rm ${HOME}/.tridactyl
+[ -f ${HOME}/.vimrc ]                           && rm ${HOME}/.vimrc
+[ -f ${HOME}/.zshenv ]                          && rm ${HOME}/.zshenv
+[ -f ${HOME}/.zshrc ]                           && rm ${HOME}/.zshrc
 
 # link new dot files
 print -P "%B%K{green}%F{black}[*]%k%f%b Creating hard links of dot files"
 ln ${CONFIG_MASTERS_DIR}/bundles.vim          ${HOME}/.bundles.vim
+ln ${CONFIG_MASTERS_DIR}/dev.yml              ${HOME}/.config/tmuxinator/dev.yml
 ln ${CONFIG_MASTERS_DIR}/gitconfig            ${HOME}/.gitconfig
 ln ${CONFIG_MASTERS_DIR}/gitignore_global     ${HOME}/.gitignore_global
 ln ${CONFIG_MASTERS_DIR}/global_extra_conf.py ${HOME}/global_extra_conf.py
+ln ${CONFIG_MASTERS_DIR}/karabiner.json       ${HOME}/.config/karabiner/karabiner.json
+ln ${CONFIG_MASTERS_DIR}/p10k.zsh             ${HOME}/.p10k.zsh
+ln ${CONFIG_MASTERS_DIR}/p9k.zsh              ${HOME}/.p9k.zsh
+ln ${CONFIG_MASTERS_DIR}/theming.zsh          ${HOME}/.theming.zsh
+ln ${CONFIG_MASTERS_DIR}/template.erb         ${HOME}/.config/tmuxinator/template.erb
 ln ${CONFIG_MASTERS_DIR}/tmux.conf            ${HOME}/.tmux.conf
+ln ${CONFIG_MASTERS_DIR}/tridactyl            ${HOME}/.tridactyl
 ln ${CONFIG_MASTERS_DIR}/vimrc                ${HOME}/.vimrc
 ln ${CONFIG_MASTERS_DIR}/zshenv               ${HOME}/.zshenv
 ln ${CONFIG_MASTERS_DIR}/zshrc                ${HOME}/.zshrc
-ln ${CONFIG_MASTERS_DIR}/tridactyl            ${HOME}/.tridactyl
-ln ${CONFIG_MASTERS_DIR}/karabiner.json       ${HOME}/.config/karabiner/karabiner.json
-ln ${CONFIG_MASTERS_DIR}/dev.yml              ${HOME}/.config/tmuxinator/dev.yml
-ln ${CONFIG_MASTERS_DIR}/template.erb         ${HOME}/.config/tmuxinator/template.erb
 
 print -P "%B%K{green}%F{black}[*]%k%f%b Activating new configurations."
 source ${HOME}/.zshrc
