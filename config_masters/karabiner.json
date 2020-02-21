@@ -74,7 +74,7 @@
                     },
 
                     {
-                        "description": "Map right_shift to tmux's <CTRL>-a",
+                        "description": "Map right_shift to tmux's <CTRL>-a when pressed twice",
                         "type": "basic",
                         "manipulators": [
                             {
@@ -418,6 +418,28 @@
                     "ignore": false,
                     "manipulate_caps_lock_led": true,
                     "simple_modifications": []
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": false,
+                        "is_pointing_device": "true",
+                        "product_id": 307,
+                        "vendor_id": 1390
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": false,
+                    "simple_modifications": [
+                        {
+                            "from": {
+                                "pointing_button": "button6"
+                            },
+                            "to": {
+                                "key_code": "vk_mission_control"
+                            }
+                        }
+                    ]
                 }
             ],
             "fn_function_keys": [
@@ -523,16 +545,7 @@
                 "delay_milliseconds_before_open_device": 1000
             },
             "selected": false,
-            "simple_modifications": [
-                {
-                    "from": {
-                        "pointing_button": "button6"
-                    },
-                    "to": {
-                        "key_code": "mission_control"
-                    }
-                }
-            ],
+            "simple_modifications": [ ],
             "virtual_hid_keyboard": {
                 "country_code": 0,
                 "mouse_key_xy_scale": 100
