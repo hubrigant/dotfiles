@@ -1,27 +1,33 @@
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin("~/.vim/plugged")
-Plug 
-"Plugin 'airblade/vim-gitgutter'
-"Plugin 'avakhov/vim-yaml'
-"Plugin 'bling/vim-airline'
-"Plugin 'bronson/vim-trailing-whitespace'
-"Plugin 'davidhalter/jedi-vim'
-"Plugin 'elzr/vim-json'
-"Plugin 'godlygeek/tabular'
-"Plugin 'jszakmeister/vim-togglecursor'
-"Plugin 'klen/python-mode'
-"Plugin 'matze/vim-lilypond'
-"Plugin 'udalov/kotlin-vim'
-"Plugin 'xolox/vim-easytags'
-"Plugin 'vim-syntastic/syntastic'
-"Plugin 'xolox/vim-misc'
-"Plugin 'tpope/vim-unimpaired'
-"Plugin 'tpope/vim-surround'
-"Plugin 'tpope/vim-repeat'
-"Plugin 'tpope/vim-fugitive'
-"Plugin 'tmux-plugins/vim-tmux'
-"Plugin 'scrooloose/nerdcommenter'
-"Plugin 'scrooloose/nerdtree'
-"Plugin 'plasticboy/vim-markdown'
+    Plug 'junegunn/vim-plug'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'avakhov/vim-yaml'
+    Plug 'bling/vim-airline'
+    Plug 'bronson/vim-trailing-whitespace'
+    Plug 'davidhalter/jedi-vim'
+    Plug 'elzr/vim-json'
+    Plug 'godlygeek/tabular'
+    Plug 'jszakmeister/vim-togglecursor'
+    Plug 'klen/python-mode'
+    Plug 'matze/vim-lilypond'
+    Plug 'udalov/kotlin-vim'
+    Plug 'xolox/vim-easytags'
+    Plug 'vim-syntastic/syntastic'
+    Plug 'xolox/vim-misc'
+    Plug 'tpope/vim-unimpaired'
+    Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-repeat'
+    Plug 'tpope/vim-fugitive'
+    Plug 'tmux-plugins/vim-tmux'
+    Plug 'preservim/nerdcommenter'
+    Plug 'scrooloose/nerdtree'
+    Plug 'plasticboy/vim-markdown'
 call plug#end()
 
 "set nocompatible
