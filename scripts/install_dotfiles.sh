@@ -85,8 +85,8 @@ if [ ! -d ${HOME}/dotfiles.bkup ]; then
 fi
 
 # create .config directories if they don't exist
-[ -f ${HOME}/.config/karabiner ] && mkdir ${HOME}/.config/karabiner # >dev/null 2>&1
-[ -f ${HOME}/.config/tmuxinator ] && mkdir ${HOME}/.config/tmuxinator # >dev/null 2>&1
+[ ! -f ${HOME}/.config/karabiner ] && mkdir ${HOME}/.config/karabiner # >dev/null 2>&1
+[ ! -f ${HOME}/.config/tmuxinator ] && mkdir ${HOME}/.config/tmuxinator # >dev/null 2>&1
 
 print -P "%B%K{green}%F{black}[*]%k%f%b Backing up old home-dir dot files before creating links"
 [ -f ${HOME}/.bundles.vim ]                     && mv ${HOME}/.bundles.vim                     ${HOME}/dotfiles.bkup >/dev/null 2>&1
