@@ -284,21 +284,26 @@ if $DEBUG; then
     echo "-------------------------" >> ~/tmp/loginpaths.txt
 fi
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/hubrigant/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/hubrigant/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/hubrigant/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/hubrigant/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/hubrigant/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/hubrigant/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/hubrigant/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/hubrigant/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
 
+# instead of using the miniconda loading above immediately
+# use a plugin to lazy-load conda
+source ${DOTFILES}/plugins/lazy-conda/lazy-conda.plugin.zsh
+
+# fix up the $path list using my path plugin
 source ${DOTFILES}/plugins/my-path/my-path.plugin.zsh
 
 [[ ! -f ${HOME}/.zshrc-local ]] || source ~/.zshrc-local
