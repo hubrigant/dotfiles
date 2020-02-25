@@ -101,7 +101,6 @@ if [ ! $TERM = dumb ]; then
     source ${DOTFILES}/plugins/autojump/autojump.plugin.zsh
     source ${DOTFILES}/plugins/my-aliases/my-aliases.plugin.zsh
     # source ${DOTFILES}/plugins/my-brew/my-brew.plugin.zsh
-    source ${DOTFILES}/plugins/my-path/my-path.plugin.zsh
     source ${DOTFILES}/plugins/my-tmux/my-tmux.plugin.zsh
     source ${DOTFILES}/plugins/sudo/sudo.plugin.zsh
     # source ${DOTFILES}/plugins/taskwarrior/taskwarrior.plugin.zsh
@@ -257,7 +256,7 @@ dedup_path() {
     # tmppath=${(j.:.)${(u)path}}
     PATH=${(j.:.)${(u)path}}
 }
-dedup_path && fix_path
+# dedup_path && fix_path
 
 # Load direnv, which hopefully will speed up prompt generation
 # export DIRENV_LOG_FORMAT=
@@ -291,5 +290,7 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+source ${DOTFILES}/plugins/my-path/my-path.plugin.zsh
 
 [[ ! -f ${HOME}/.zshrc-local ]] || source ~/.zshrc-local
