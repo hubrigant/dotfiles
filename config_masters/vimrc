@@ -6,6 +6,10 @@ augroup END
 endif " has autocmd
 
 
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ";"
+
 " Load plugins via Vundle plugin manager
 " source ~/.bundles.vim
 
@@ -15,6 +19,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+source ~/.bundles.vim
 
 " Use ag with the ack.vim plugin
 if executable('ag')
@@ -65,7 +70,6 @@ set autoread
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-" let mapleader = ","
 " let mapleader = ";"!
 
 " Fast saving
