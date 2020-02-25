@@ -54,10 +54,12 @@ alias hsi='hs -i'
 
 # ZSH conveniences
 alias speedtest='repeat 10 {time zsh -i -c exit}'
-alias profon="perl -pi -e 's/PROFILING:-false/PROFILING:-true/g' ~/.zshrc"
-alias profoff="perl -pi -e 's/PROFILING:-true/PROFILING:-false/g' ~/.zshrc"
-alias profcap="zprof >~/tmp/zprof.txt"
-alias profe="vi ~/tmp/zprof.txt"
+# alias profon="perl -pi -e 's/PROFILING:-false/PROFILING:-true/g' ~/.zshrc"
+# alias profoff="perl -pi -e 's/PROFILING:-true/PROFILING:-false/g' ~/.zshrc"
+alias profon="sed -i -e 's/PROFILING:-false/PROFILING:-true/g' ~/.zshrc"
+alias profoff="sed -i -e 's/PROFILING:-true/PROFILING:-false/g' ~/.zshrc"
+alias profcap="zprof >~/.tmp/zprof.txt"
+alias profe="vi ~/.tmp/zprof.txt"
 
 # Programming conveniences
 alias testloop='ag -l --python |entr pytest'
