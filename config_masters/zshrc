@@ -1,10 +1,18 @@
 DEBUG=${DEBUG:-false}
-#DEBUG=${DEBUG:-true}
+# DEBUG=${DEBUG:-true}
 if $DEBUG; then
     echo "-------------------------" >> ~/tmp/loginpaths.txt
     echo "zshrc> Start of execution" >> ~/tmp/loginpaths.txt
     echo "zshrc> PATH: ${PATH}" >> ~/tmp/loginpaths.txt
     echo "zshrc> path: ${path}" >> ~/tmp/loginpaths.txt
+fi
+
+PROFILING=${PROFILING:-false}
+# PROFILING=${PROFILING:-true}
+
+# if profiling is on
+if $PROFILING; then
+    zprof
 fi
 
 export TRY_THEMING=p10k
