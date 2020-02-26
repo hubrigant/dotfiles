@@ -23,6 +23,7 @@ alias pae='vi ~/.dotfiles/plugins/my-path/my-path.plugin.zsh'
 alias par='source ~/.dotfiles/plugins/my-path/my-path.plugin.zsh'
 alias the='vi ~/.dotfiles/config_masters/theming.zsh'
 alias thr='source ~/.dotfiles/config_masters/theming.zsh'
+# alias thc="sed -i -e 's/^TRY_THEME=.*/TRY_THEME=$@/g' ~/.dotfiles/config_masters/theming.zsh"
 alias top='htop'
 alias tre='vi ~/.dotfiles/config_masters/tridactyl'
 alias vi='vim'
@@ -39,6 +40,9 @@ function buc(){
     rm -rf ~/.vim/bundle
     vundle-init
     /usr/local/bin/vim +PluginInstall +qall
+}
+function thc() {
+    sed -i -e 's/^TRY_THEME=.*/TRY_THEME=${@}/g' ~/.dotfiles/config_masters/theming.zsh
 }
 
 # history aliases copied from the oh-my-zsh history plugin
