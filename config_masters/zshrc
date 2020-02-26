@@ -1,18 +1,9 @@
 DEBUG=${DEBUG:-false}
-# DEBUG=${DEBUG:-true}
 if $DEBUG; then
     echo "-------------------------" >> ~/tmp/loginpaths.txt
     echo "zshrc> Start of execution" >> ~/tmp/loginpaths.txt
     echo "zshrc> PATH: ${PATH}" >> ~/tmp/loginpaths.txt
     echo "zshrc> path: ${path}" >> ~/tmp/loginpaths.txt
-fi
-
-PROFILING=${PROFILING:-false}
-# PROFILING=${PROFILING:-true}
-
-# if profiling is on
-if $PROFILING; then
-    zprof
 fi
 
 export TRY_THEMING=p10k
@@ -27,7 +18,6 @@ fi
 # If I see that zsh takes to much time to load I profile what has been changed,
 # I want to see my shell ready in not more than 1 second
 PROFILING=${PROFILING:-false}
-#PROFILING=${PROFILING:-true}
 if $PROFILING; then
     zmodload zsh/zprof
 fi
@@ -57,20 +47,6 @@ else
   compinit -C
 fi
 
-# Perform compinit only once a day
-# autoload -Uz compinit
-
-# setopt EXTENDEDGLOB
-# for dump in $ZSH_COMPDUMP(#qN.m1); do
-#     compinit
-#     if [[ -s "$dump" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; then
-#         zcompile "$dump"
-#     fi
-#     echo "Initializing Completions..."
-# done
-# unsetopt EXTENDEDGLOB
-# compinit -C
-
 # if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
 
@@ -96,11 +72,6 @@ DISABLE_AUTO_TITLE="true"
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
 
-# User configuration
-
-# ssh
-# #export SSH_KEY_PATH="~/.ssh/rsa_id"
-
 [[ ! -f ${HOME}/.theming.zsh ]] || source ~/.theming.zsh
 
 # dumb terminal can be a vim dump terminal in that case don't try to load plugins
@@ -119,11 +90,6 @@ if [ ! $TERM = dumb ]; then
     source ${DOTFILES}/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
     # source ${DOTFILES}/plugins/zsh-completions/zsh-completions.plugin.zsh
 fi
-
-# Which plugins would you like to load?
-# plugins=(sudo git my-tmux my-aliases taskwarrior tmux tmuxinator zsh-autosuggestions tpm)
-# plugins=(sudo git my-tmux my-aliases tmux tmuxinator zsh-autosuggestions tpm)
-
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
@@ -147,68 +113,6 @@ if [ -f ~/.machinerc ]; then
     source ~/.machinerc
 fi
 
-# build_ycm() {
-#     if [[ -d ${HOME}/.vim/bundle/YouCompleteMe/ ]]; then
-#         YCMDIR=${HOME}/.vim/bundle/YouCompleteMe/
-#         YCMBUILDDIR=${HOME}/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
-#     elif [[ -d ${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/ ]]; then
-#         YCMDIR=${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/
-#         YCMBUILDDIR=${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
-#     fi
-#     if [[ ! -d $YCMBUILDDIR ]]; then
-#         print -P "%B%K{green}%F{black}[*]%k%f%b Building the YouCompleteMe core library."
-#         if [ ! -f "$YCMDIR/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
-#             cd ${YCMDIR}
-#             if $(python install.py > ${HOME}/dotfiles-installer.out); then
-#                 print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
-#             else
-#                 print -P "%B%K{red}%F{black}[X]%f%k%b Install failed."
-#                 exit(1)
-#             fi
-#             cd -
-#         fi
-#     else
-#         print -P "%B%K{green}%F{black}[*]%f%k%b YouCompleteMe core already built."
-#     fi
-# }
-
-
-# rebuild_ycm() {
-#     if [[ -d ${HOME}/.vim/bundle/YouCompleteMe/ ]]; then
-#         YCMDIR=${HOME}/.vim/bundle/YouCompleteMe/
-#         YCMBUILDDIR=${HOME}/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
-#     elif [[ -d ${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/ ]]; then
-#         YCMDIR=${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/
-#         YCMBUILDDIR=${HOME}/.vim/bundle/Vundle.vim/YouCompleteMe/third_party/ycmd/ycmd/__pycache__
-#     fi
-#     if [[ ! -d $YCMBUILDDIR ]]; then
-#         print -P "%B%K{green}%F{black}[*]%k%f%b Building the YouCompleteMe core library."
-#         if [ ! -f "$YCMDIR/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
-#             cd ${YCMDIR}
-#             if $(python install.py > ${HOME}/dotfiles-installer.out); then
-#                 print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
-#             else
-#                 print -P "%B%K{red}%F{black}[X]%f%k%b Install failed."
-#                 exit(1)
-#             fi
-#             cd -
-#         fi
-#     else
-#         print -P "%B%K{green}%F{black}[*]%k%f%b Building the YouCompleteMe core library."
-#         rm -rf $YCMBUILDDIR
-#         if [ ! -f "$YCMDIR/third_party/ycmd/third_party/cregex/regex_3/_regex.so" ]; then
-#             cd ${YCMDIR}
-#             if $(python install.py > ${HOME}/dotfiles-installer.out); then
-#                 print -P "%B%K{green}%F{black}[*]%f%k%b Success!"
-#             else
-#                 print -P "%B%K{red}%F{black}[X]%f%k%b Install failed."
-#                 exit(1)
-#             fi
-#             cd -
-#         fi
-#     fi
-# }
-
 # Switch between different python installations
 switch_python() {
     echo "SP Start"
@@ -231,40 +135,6 @@ switch_python() {
     echo $PATH
     echo $(which python)
 }
-
-# Deal with path anomalies across platforms
-fix_path() {
-    # First get rid of games entries that are cropping up on raspbian and expand tilde
-    # since some programs have problems with that directory expansion in PATH
-    tmp_path=$(print -l ${(j.:.)$(print -l "${(s. .)path}" |grep -v games)})
-    PATH=${PATH:gs/~/(${HOME}|\/usr\/(local|bin)\/games:)/}
-    # PATH=${PATH:gs/\/usr\/(local|bin)\/games://}
-    unset mimiconda_loc
-    # tmp_path=${PATH/\/usr\/local\/games://}
-    # tmp_path=${PATH/\/usr\/bin\/games://}
-    # echo $tmp_path
-    if [[ -d ${HOME}/miniconda ]]; then
-        miniconda_loc=miniconda
-    elif [[ -d ${HOME}/miniconda3 ]]; then
-        miniconda_loc=miniconda3
-    elif [[ -d /anaconda3 && ! ${PATH} =~ /anaconda/ ]]; then
-        PATH=/anaconda3/bin:${tmp_path}
-    fi
-    if [ ${miniconda_loc} ]; then
-        if [[ ${PATH} =~ /anaconda/ ]]; then
-            PATH=$(echo ${PATH} |sed 's/\/anaconda3/${HOME}\/${miniconda_loc}\/PYTHON')
-        elif [[ ! ${PATH} =~ /miniconda/ ]]; then
-            PATH=${HOME}/${miniconda_loc}/bin:PYTHON:${PATH}
-        fi
-    fi
-}
-
-# Attempt to deduplicate the PATH variable
-dedup_path() {
-    # tmppath=${(j.:.)${(u)path}}
-    PATH=${(j.:.)${(u)path}}
-}
-# dedup_path && fix_path
 
 # Load direnv, which hopefully will speed up prompt generation
 # export DIRENV_LOG_FORMAT=
