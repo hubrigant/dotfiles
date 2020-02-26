@@ -1,0 +1,17 @@
+software:
+  - git
+  - vim
+  - python
+  - zsh
+  - cmake
+  - autojump
+  - tmux
+  - homebrew
+  - miniconda
+zsh plugins:
+  - zsh-syntax-highlighting
+  - zsh-autosuggestions
+  - tmuxinator
+  - tpm
+vim plugins:
+  - plug.vim
