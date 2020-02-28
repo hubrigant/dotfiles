@@ -21,6 +21,7 @@ alias p9e='vi ~/.dotfiles/config_masters/p9k.zsh'
 alias p9r='source ~/.dotfiles/config_masters/p9k.zsh'
 alias pae='vi ~/.dotfiles/plugins/my-path/my-path.plugin.zsh'
 alias par='source ~/.dotfiles/plugins/my-path/my-path.plugin.zsh'
+alias sai='sudo apt install'
 alias the='vi ~/.dotfiles/config_masters/theming.zsh'
 alias thr='source ~/.dotfiles/config_masters/theming.zsh'
 # alias thc="sed -i -e 's/^TRY_THEME=.*/TRY_THEME=$@/g' ~/.dotfiles/config_masters/theming.zsh"
