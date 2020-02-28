@@ -24,7 +24,6 @@ alias par='source ~/.dotfiles/plugins/my-path/my-path.plugin.zsh'
 alias sai='sudo apt install'
 alias the='vi ~/.dotfiles/config_masters/theming.zsh'
 alias thr='source ~/.dotfiles/config_masters/theming.zsh'
-# alias thc="sed -i -e 's/^TRY_THEME=.*/TRY_THEME=$@/g' ~/.dotfiles/config_masters/theming.zsh"
 alias top='htop'
 alias tre='vi ~/.dotfiles/config_masters/tridactyl'
 alias vi='vim'
@@ -59,8 +58,6 @@ alias hsi='hs -i'
 
 # ZSH conveniences
 alias speedtest='repeat 10 {time zsh -i -c exit}'
-# alias profon="perl -pi -e 's/PROFILING:-false/PROFILING:-true/g' ~/.zshrc"
-# alias profoff="perl -pi -e 's/PROFILING:-true/PROFILING:-false/g' ~/.zshrc"
 alias profon="sed -i -e 's/PROFILING:-false/PROFILING:-true/g' ~/.zshrc"
 alias profoff="sed -i -e 's/PROFILING:-true/PROFILING:-false/g' ~/.zshrc"
 alias profcap="zprof >~/.tmp/zprof.txt"
@@ -71,7 +68,6 @@ alias testloop='ag -l --python |entr pytest'
 alias jpl='cd ~/Documents/GitHub/JupyterNotebooks && jupyter-lab --no-browser'
 
 # GitHub conveniences
-alias all-commit='git commit -a -m'
 alias ga='git add'
 alias gca='git commit -a -m'
 alias gcm='git commit -m'
