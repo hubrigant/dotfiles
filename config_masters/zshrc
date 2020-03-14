@@ -76,17 +76,17 @@ DISABLE_AUTO_TITLE="true"
 
 # dumb terminal can be a vim dump terminal in that case don't try to load plugins
 if [ ! $TERM = dumb ]; then
-    ZGEN_DIR=${HOME}/.zgen
+    # ZGEN_DIR=${HOME}/.zgen
     source ${DOTFILES}/plugins/autojump/autojump.plugin.zsh
     source ${DOTFILES}/plugins/my-aliases/my-aliases.plugin.zsh
     # source ${DOTFILES}/plugins/my-brew/my-brew.plugin.zsh
-    source ${DOTFILES}/plugins/my-tmux/my-tmux.plugin.zsh
+    # source ${DOTFILES}/plugins/my-tmux/my-tmux.plugin.zsh
     source ${DOTFILES}/plugins/sudo/sudo.plugin.zsh
     # source ${DOTFILES}/plugins/taskwarrior/taskwarrior.plugin.zsh
-    source ${DOTFILES}/plugins/tmuxinator/tmuxinator.plugin.zsh
-    source ${DOTFILES}/plugins/tpm/tpm.plugin.zsh
+    # source ${DOTFILES}/plugins/tmuxinator/tmuxinator.plugin.zsh
+    # source ${DOTFILES}/plugins/tpm/tpm.plugin.zsh
     # source ${DOTFILES}/plugins/vi-mode/vi-mode.plugin.zsh
-    source ${DOTFILES}/plugins/vundle/vundle.plugin.zsh
+    # source ${DOTFILES}/plugins/vundle/vundle.plugin.zsh
     source ${DOTFILES}/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
     # source ${DOTFILES}/plugins/zsh-completions/zsh-completions.plugin.zsh
 fi
