@@ -7,16 +7,17 @@ endif
 call plug#begin('~/.vim/plugged')
     Plug 'junegunn/vim-plug'
     Plug 'airblade/vim-gitgutter'
-    Plug 'avakhov/vim-yaml'
+    Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
     Plug 'bling/vim-airline'
     Plug 'bronson/vim-trailing-whitespace'
     Plug 'davidhalter/jedi-vim'
-    Plug 'elzr/vim-json'
+    Plug 'ervandew/supertab'
+    Plug 'elzr/vim-json', { 'for': 'json' }
     Plug 'godlygeek/tabular'
-    Plug 'jszakmeister/vim-togglecursor'
-    Plug 'klen/python-mode'
-    Plug 'matze/vim-lilypond'
-    Plug 'udalov/kotlin-vim'
+    " Plug 'jszakmeister/vim-togglecursor'
+    " Plug 'klen/python-mode'
+    Plug 'matze/vim-lilypond', { 'for': 'lilypond' }
+    Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
     Plug 'xolox/vim-easytags'
     Plug 'vim-syntastic/syntastic'
     Plug 'xolox/vim-misc'
@@ -26,9 +27,14 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'tmux-plugins/vim-tmux'
     Plug 'preservim/nerdcommenter'
-    Plug 'scrooloose/nerdtree'
+    " Plug 'scrooloose/nerdtree'
     Plug 'plasticboy/vim-markdown'
 call plug#end()
+
+"set jedi-vim options
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#popup_on_dot = 0
+" let g:jedi#completions_command <C-A-space>
 
 "set nocompatible
 "filetype off
