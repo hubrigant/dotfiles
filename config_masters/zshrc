@@ -87,7 +87,7 @@ if [ ! $TERM = dumb ]; then
     # source ${DOTFILES}/plugins/tpm/tpm.plugin.zsh
     # source ${DOTFILES}/plugins/vi-mode/vi-mode.plugin.zsh
     # source ${DOTFILES}/plugins/vundle/vundle.plugin.zsh
-    source ${DOTFILES}/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+    # source ${DOTFILES}/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
     # source ${DOTFILES}/plugins/zsh-completions/zsh-completions.plugin.zsh
 fi
 
