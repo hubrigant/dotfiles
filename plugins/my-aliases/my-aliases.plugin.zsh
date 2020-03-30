@@ -12,11 +12,16 @@ alias ine='vi ~/.dotfiles/scripts/install_dotfiles.zsh'
 alias inr='~/.dotfiles/scripts/install_dotfiles.zsh'
 alias jd='j dotfile'
 alias jl='jupyter-lab'
-alias ls='ls -FG --color'
+if [[ ${OSTYPE} =~ ".*arwin.*" ]]
+then
+	alias ls='ls -FG'
+else
+	alias ls='ls -FG --color'
+fi
 alias l='ls'
 alias ll='ls -l'
 alias la='ls -a'
-alias lla='l -a'
+alias lla='ll -a'
 alias p1e='vi ~/.dotfiles/config_masters/p10k.zsh'
 alias p1r='source ~/.dotfiles/config_masters/p10k.zsh'
 alias p9e='vi ~/.dotfiles/config_masters/p9k.zsh'
