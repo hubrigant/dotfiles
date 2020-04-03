@@ -7,13 +7,13 @@ typeset -U path
 path=(/home/linuxbrew/.linuxbrew/bin)
 path+=PYTHON
 path+=/anaconda3/bin
-path+=/home/hubrigant/miniconda3/bin
-path+=/home/hubrigant/miniconda3/condabin
-path+=/home/hubrigant/miniconda3/bin
-path+=/home/hubrigant/bin
-path+=/home/hubrigant/scripts
+path+=/home/${USERNAME}/miniconda3/bin
+path+=/home/${USERNAME}/miniconda3/condabin
+path+=/home/${USERNAME}/miniconda3/bin
+path+=/home/${USERNAME}/bin
+path+=/home/${USERNAME}/scripts
 path+=/home/linuxbrew/.linuxbrew/lib/ruby/gems/2.7.0
-path+=/home/hubrigant/.gem/ruby/2.7.0
+path+=/home/${USERNAME}/.gem/ruby/2.7.0
 path+=/home/linuxbrew/.linuxbrew/Cellar/ruby/2.7.0/lib/ruby/gems/2.7.0
 path+=/usr/local/bin
 path+=/usr/local/sbin
@@ -25,9 +25,9 @@ path+=/bin
 path+=/sbin
 path+=/usr/bin
 path+=/usr/sbin
-path+=/home/hubrigant/.dotfiles/scripts
-path+=/home/hubrigant/bin
-path+=/home/hubrigant/scripts
+path+=/home/${USERNAME}/.dotfiles/scripts
+path+=/home/${USERNAME}/bin
+path+=/home/${USERNAME}/scripts
 path+=/usr/local/bin
 path+=/usr/local/sbin
 path+=/usr/local/opt/ruby/bin
@@ -38,7 +38,7 @@ path+=/bin
 path+=/sbin
 path+=/usr/bin
 path+=/usr/sbin
-path+=/home/hubrigant/.dotfiles/scripts
+path+=/home/${USERNAME}/.dotfiles/scripts
 
 
 # remove path entries that don't exist
