@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-# basic conveniences
+# general
 alias vi='nvim'
 alias ahe='vi ~/.dotfiles/config_masters/SwapEscAndCapsLock.ahk'
 alias ale='vi ~/.dotfiles/plugins/my-aliases/my-aliases.plugin.zsh'
@@ -44,7 +44,6 @@ alias zer='source ~/.zshenv'
 alias zx='exec /usr/local/bin/zsh'
 alias bi='brew install'
 alias bd='brew doctor'
-alias tm='tmux'
 function buc(){
     rm -rf ~/.vim/bundle
     vundle-init
@@ -65,18 +64,18 @@ function hs
 
 alias hsi='hs -i'
 
-# ZSH conveniences
+# ZSH
 alias speedtest='repeat 10 {time zsh -i -c exit}'
 alias profon="sed -i -e 's/PROFILING:-false/PROFILING:-true/g' ~/.zshrc"
 alias profoff="sed -i -e 's/PROFILING:-true/PROFILING:-false/g' ~/.zshrc"
 alias profcap="zprof >~/.tmp/zprof.txt"
 alias profe="vi ~/.tmp/zprof.txt"
 
-# Programming conveniences
+# Programming
 alias testloop='ag -l --python |entr pytest'
 alias jpl='cd ~/Documents/GitHub/JupyterNotebooks && jupyter-lab --no-browser'
 
-# GitHub conveniences
+# GitHub
 alias ga='git add'
 alias gca='git commit -a -m'
 alias gcm='git commit -m'
@@ -87,5 +86,10 @@ alias gpu='git pull'
 export GHP='https://github.com/'
 alias gcl='git clone'
 
-# Tmuxinator conveniences
+# tmux
+alias tm='tmux'
+alias tma='tmux attach'
+alias tmd='tmux detach'
+
+# Tmuxinator
 alias txst='tmuxinator start traffic'
