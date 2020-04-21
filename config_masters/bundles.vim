@@ -29,6 +29,7 @@ call plug#begin('~/.config/nvim')
     Plug 'preservim/nerdcommenter'
     " Plug 'scrooloose/nerdtree'
     Plug 'plasticboy/vim-markdown'
+    Plug 'jeffkreeftmeijer/vim-numbertoggle'
 call plug#end()
 
 "set jedi-vim options
