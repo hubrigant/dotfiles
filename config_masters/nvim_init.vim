@@ -140,7 +140,7 @@ set mat=2
 
 " No annoying sound on errors
 " set noerrorbells
-set novisualbell
+" set novisualbell
 " set t_vb=
 set tm=500
 
@@ -489,3 +489,5 @@ filetype on
 syntax on
 set guicursor=n-v-c-sm:block,i-ci-ve:ver25-Cursor,r-cr-o:hor20
 
+" Enable line numbering
+set number relativenumber
