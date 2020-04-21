@@ -109,13 +109,7 @@ print -P "%B%K{green}%F{black}[*]%k%f%b Backing up old home-dir dot files before
 print -P "%B%K{green}%F{black}[*]%k%f%b Removing old home-dir dot files."
 [ -f ${HOME}/.bundles.vim ]                     && rm ${HOME}/.bundles.vim
 [ -f ${HOME}/.config/karabiner/karabiner.json ] && rm ${HOME}/.config/karabiner/karabiner.json
-<<<<<<< HEAD
 [ -f ${HOME}/.config/nvim/init.vim ] 		&& rm ${HOME}/.config/nvim/init.vim
-||||||| merged common ancestors
-[ -f ${HOME}/.config/nvim/init.config ] 	&& rm ${HOME}/.config/nvim/init.config
-=======
-[ -f ${HOME}/.config/nvim/init.vim ] 	&& rm ${HOME}/.config/nvim/init.vim
->>>>>>> dfba41ac74791a6942e9b1bb3e6222a200334588
 [ -f ${HOME}/.config/tmuxinator/dev.yml ]       && rm ${HOME}/.config/tmuxinator/dev.yml
 [ -f ${HOME}/.config/tmuxinator/template.erb ]  && rm ${HOME}/.config/tmuxinator/template.erb
 [ -f ${HOME}/.gitconfig ]                       && rm ${HOME}/.gitconfig
@@ -138,13 +132,7 @@ ln ${CONFIG_MASTERS_DIR}/gitconfig            ${HOME}/.gitconfig
 ln ${CONFIG_MASTERS_DIR}/gitignore_global     ${HOME}/.gitignore_global
 ln ${CONFIG_MASTERS_DIR}/global_extra_conf.py ${HOME}/global_extra_conf.py
 ln ${CONFIG_MASTERS_DIR}/karabiner.json       ${HOME}/.config/karabiner/karabiner.json
-<<<<<<< HEAD
 ln ${CONFIG_MASTERS_DIR}/nvim_init.vim        ${HOME}/.config/nvim/init.vim
-||||||| merged common ancestors
-ln ${CONFIG_MASTERS_DIR}/nvim_init.config     ${HOME}/.config/nvim/init.config
-=======
-ln ${CONFIG_MASTERS_DIR}/nvim_init.vim	      ${HOME}/.config/nvim/init.vim
->>>>>>> dfba41ac74791a6942e9b1bb3e6222a200334588
 ln ${CONFIG_MASTERS_DIR}/p10k.zsh             ${HOME}/.p10k.zsh
 ln ${CONFIG_MASTERS_DIR}/p9k.zsh              ${HOME}/.p9k.zsh
 ln ${CONFIG_MASTERS_DIR}/theming.zsh          ${HOME}/.theming.zsh
