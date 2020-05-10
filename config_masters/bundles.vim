@@ -7,7 +7,7 @@ endif
 call plug#begin('~/.config/nvim')
     Plug 'junegunn/vim-plug'
     Plug 'bling/vim-airline'
-    Plug 'neoclide/coc.nvim'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'xolox/vim-easytags'
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
