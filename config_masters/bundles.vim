@@ -6,30 +6,32 @@ endif
 
 call plug#begin('~/.config/nvim')
     Plug 'junegunn/vim-plug'
-    Plug 'airblade/vim-gitgutter'
-    Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
     Plug 'bling/vim-airline'
-    Plug 'bronson/vim-trailing-whitespace'
-    Plug 'davidhalter/jedi-vim'
-    Plug 'ervandew/supertab'
-    Plug 'elzr/vim-json', { 'for': 'json' }
-    Plug 'godlygeek/tabular'
-    " Plug 'jszakmeister/vim-togglecursor'
-    " Plug 'klen/python-mode'
-    Plug 'matze/vim-lilypond', { 'for': 'lilypond' }
-    Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'xolox/vim-easytags'
-    Plug 'vim-syntastic/syntastic'
-    Plug 'xolox/vim-misc'
-    Plug 'tpope/vim-unimpaired'
-    Plug 'tpope/vim-surround'
-    Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-fugitive'
-    Plug 'tmux-plugins/vim-tmux'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'elzr/vim-json', { 'for': 'json' }
+    Plug 'davidhalter/jedi-vim'
+    Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
+    Plug 'matze/vim-lilypond', { 'for': 'lilypond' }
+    Plug 'plasticboy/vim-markdown'
+    Plug 'xolox/vim-misc'
     Plug 'preservim/nerdcommenter'
     " Plug 'scrooloose/nerdtree'
-    Plug 'plasticboy/vim-markdown'
     Plug 'jeffkreeftmeijer/vim-numbertoggle'
+    Plug 'sirtaj/vim-openscad', { 'for': 'openscad' }
+    " Plug 'klen/python-mode'
+    Plug 'tpope/vim-repeat'
+    Plug 'ervandew/supertab'
+    Plug 'tpope/vim-surround'
+    Plug 'vim-syntastic/syntastic'
+    Plug 'tmux-plugins/vim-tmux'
+    Plug 'godlygeek/tabular'
+    " Plug 'jszakmeister/vim-togglecursor'
+    Plug 'bronson/vim-trailing-whitespace'
+    Plug 'tpope/vim-unimpaired'
+    Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
 call plug#end()
 
 "set jedi-vim options

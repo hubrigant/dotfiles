@@ -104,6 +104,11 @@ setopt histreduceblanks
 # setopt printexitvalue
 # Do not share history
 # setopt no_share_history
+# Save history between sessions
+HISTFILE=~/.zsh_histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt appendhistory
 
 # load local tmux configurations
 tmux source-file ~/.tmux-local.conf

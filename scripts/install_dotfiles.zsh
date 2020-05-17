@@ -89,6 +89,8 @@ fi
 [ -f ${HOME}/.config/tmuxinator ] && mkdir ${HOME}/.config/tmuxinator
 [ -f ${HOME}/.config/nvim ] 	  && mkdir ${HOME}/.config/nvim
 
+# TODO: move vim-related, non-nvim init.vim to ~/.vim
+# TODO: add coc.vim to the installation process
 print -P "%B%K{green}%F{black}[*]%k%f%b Backing up old home-dir dot files before creating links"
 [ -f ${HOME}/.bundles.vim ]                     && mv ${HOME}/.bundles.vim                     ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.config/karabiner/karabiner.json ] && mv ${HOME}/.config/karabiner/karabiner.json ${HOME}/dotfiles.bkup >/dev/null 2>&1
