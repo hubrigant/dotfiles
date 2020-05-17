@@ -1739,7 +1739,7 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>230 833 592 584 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>330 461 1105 728 0 0 2560 1417 </string>
+	<string>1436 513 1105 728 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>1361 552 1105 728 0 0 2560 1417 </string>
 	<key>NeverWarnAboutSpaces</key>
@@ -8649,7 +8649,7 @@
 	<key>NoSyncLastTipTime</key>
 	<real>579492809.75485098</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>29</integer>
+	<integer>33</integer>
 	<key>NoSyncNextAnnoyanceTime</key>
 	<real>588403770.27889895</real>
 	<key>NoSyncOnboardingWindowHasBeenShown</key>
@@ -9444,6 +9444,8 @@
 	<true/>
 	<key>OpenTmuxWindowsIn</key>
 	<integer>2</integer>
+	<key>PMPrintingExpandedStateForPrint2</key>
+	<false/>
 	<key>PasteTabToStringTabStopSize</key>
 	<integer>4</integer>
 	<key>PointerActions</key>
@@ -9481,6 +9483,8 @@
 	</dict>
 	<key>PrefsCustomFolder</key>
 	<string>/Users/jon/.dotfiles/settings/iterm2</string>
+	<key>Print In Black And White</key>
+	<true/>
 	<key>PromptOnQuit</key>
 	<false/>
 	<key>RestoreWindowContents</key>
@@ -9537,7 +9541,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-04-07T21:00:22Z</date>
+	<date>2020-04-24T01:02:56Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateRelaunchingMarker</key>
