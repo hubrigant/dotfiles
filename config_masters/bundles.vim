@@ -21,14 +21,14 @@ call plug#begin('~/.config/nvim')
     " Plug 'scrooloose/nerdtree'
     Plug 'jeffkreeftmeijer/vim-numbertoggle'
     Plug 'sirtaj/vim-openscad', { 'for': 'openscad' }
-    " Plug 'klen/python-mode'
+    Plug 'klen/python-mode'
     Plug 'tpope/vim-repeat'
     Plug 'ervandew/supertab'
     Plug 'tpope/vim-surround'
     Plug 'vim-syntastic/syntastic'
     Plug 'tmux-plugins/vim-tmux'
     Plug 'godlygeek/tabular'
-    " Plug 'jszakmeister/vim-togglecursor'
+    Plug 'jszakmeister/vim-togglecursor'
     Plug 'bronson/vim-trailing-whitespace'
     Plug 'tpope/vim-unimpaired'
     Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
