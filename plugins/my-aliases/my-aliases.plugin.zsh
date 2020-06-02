@@ -52,6 +52,14 @@ function buc(){
 function thc() {
     sed -i -e 's/^TRY_THEME=.*/TRY_THEME=${@}/g' ~/.dotfiles/config_masters/theming.zsh
 }
+function tma() {
+    tmux list-sessions
+    if [ $? -ne 0 ]; then # |grep -i detached) ]; then
+        tmux new-session
+    else;
+        tmux attach
+    fi
+}
 
 # history aliases copied from the oh-my-zsh history plugin
 # added here because the other plugin isn't working
@@ -88,7 +96,7 @@ alias gcl='git clone'
 
 # tmux
 alias tm='tmux'
-alias tma='tmux attach'
+# alias tma='tmux attach'
 alias tmd='tmux detach'
 
 # Tmuxinator
