@@ -1,45 +1,55 @@
 #!/usr/bin/env zsh
 
-# ensure that there are no duplicates allowed in $path
+set EXTENDED_GLOB
+
+# ensure that there are no duplicates allowed in $path_array
+typeset -U path_array
 typeset -U path
 
 # add all of the possible paths
-path=(/home/linuxbrew/.linuxbrew/bin)
-path+=PYTHON
-path+=/anaconda3/bin
-path+=/home/${USERNAME}/miniconda3/bin
-path+=/home/${USERNAME}/miniconda3/condabin
-path+=/home/${USERNAME}/miniconda3/bin
-path+=/home/${USERNAME}/bin
-path+=/home/${USERNAME}/scripts
-path+=/home/linuxbrew/.linuxbrew/lib/ruby/gems/2.7.0
-path+=/home/${USERNAME}/.gem/ruby/2.7.0
-path+=/home/linuxbrew/.linuxbrew/Cellar/ruby/2.7.0/lib/ruby/gems/2.7.0
-path+=/usr/local/bin
-path+=/usr/local/sbin
-path+=/usr/local/opt/ruby/bin
-path+=/usr/local/lib/ruby/gems/2.6.0/bin
-path+=/opt/local/bin
-path+=/opt/local/sbin
-path+=/bin
-path+=/sbin
-path+=/usr/bin
-path+=/usr/sbin
-path+=/home/${USERNAME}/.dotfiles/scripts
-path+=/home/${USERNAME}/bin
-path+=/home/${USERNAME}/scripts
-path+=/usr/local/bin
-path+=/usr/local/sbin
-path+=/usr/local/opt/ruby/bin
-path+=/usr/local/lib/ruby/gems/2.6.0/bin
-path+=/opt/local/bin
-path+=/opt/local/sbin
-path+=/bin
-path+=/sbin
-path+=/usr/bin
-path+=/usr/sbin
-path+=/home/${USERNAME}/.dotfiles/scripts
+path_array=(
+    /anaconda3/bin
+	${HOME}/anaconda3/bin
+	${HOME}/miniconda3/bin
+	${HOME}/miniconda3/condabin
+	${HOME}/miniconda3/bin
+	${HOME}/bin
+	${HOME}/scripts
+	${HOME}/.gem/ruby/2.7.0
+	/usr/local/bin
+	/usr/local/sbin
+	/usr/local/opt/ruby/bin
+	/usr/local/lib/ruby/gems/2.6.0/bin
+	/opt/local/bin
+	/opt/local/sbin
+	PYTHON
+	/home/linuxbrew/.linuxbrew/bin
+	/home/linuxbrew/.linuxbrew/lib/ruby/gems/2.7.0
+	/home/linuxbrew/.linuxbrew/Cellar/ruby/2.7.0/lib/ruby/gems/2.7.0
+	/bin
+	/sbin
+	/usr/bin
+	/usr/sbin
+	${HOME}/.dotfiles/scripts
+	${HOME}/bin
+	${HOME}/scripts
+	/usr/local/bin
+	/usr/local/sbin
+	/usr/local/opt/ruby/bin
+	/usr/local/lib/ruby/gems/2.6.0/bin
+	/opt/local/bin
+	/opt/local/sbin
+	/bin
+	/sbin
+	/usr/bin
+	/usr/sbin
+	${HOME}/.dotfiles/scripts
+)
 
-
+path=(/bin)
 # remove path entries that don't exist
-path=($^path(N))
+for dir in $path_array; do
+    if [ -d $dir ]; then
+        path+=$dir
+    fi
+done
