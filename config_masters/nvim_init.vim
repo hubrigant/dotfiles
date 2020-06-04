@@ -483,8 +483,6 @@ nmap <leader>gs :Gstatus<cr>
 filetype off
 set runtimepath+=/Applications/LilyPond.app/Contents/Resources/share/lilypond/current/vim
 
-" setting variable for nvim python3 support
-let python3_host_prog='/home/hubrigant/miniconda3/bin/python3'
 filetype on
 syntax on
 set guicursor=n-v-c-sm:block,i-ci-ve:ver25-Cursor,r-cr-o:hor20
