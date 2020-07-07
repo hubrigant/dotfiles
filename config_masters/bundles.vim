@@ -5,6 +5,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim')
+    Plug 'ervandew/supertab' " Moved out of order to the top to fix runtime error
     Plug 'junegunn/vim-plug'
     Plug 'bling/vim-airline'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -23,7 +24,6 @@ call plug#begin('~/.config/nvim')
     Plug 'sirtaj/vim-openscad', { 'for': 'openscad' }
     Plug 'klen/python-mode'
     Plug 'tpope/vim-repeat'
-    Plug 'ervandew/supertab'
     Plug 'tpope/vim-surround'
     Plug 'vim-syntastic/syntastic'
     Plug 'tmux-plugins/vim-tmux'
