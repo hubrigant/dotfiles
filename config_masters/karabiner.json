@@ -18,59 +18,67 @@
                 "rules": [
                     {
                         "description": "Map right_control to mission control when it has been hit twice successively",
-                        "type": "basic",
-                        "from": {
-                            "key_code": "right_control",
-                            "modifiers": {
-                                "optional": [
-                                    "any"
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "right_control",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "mission_control"
+                                    }
+                                ],
+                                "conditions": [
+                                    {
+                                        "type": "variable_if",
+                                        "name": "right_control pressed",
+                                        "value": 1
+                                    }
                                 ]
-                            }
-                        },
-                        "to": [
-                            {
-                                "key_code": "mission_control"
-                            }
-                        ],
-                        "conditions": [
-                            {
-                                "type": "variable_if",
-                                "name": "right_control pressed",
-                                "value": 1
                             }
                         ]
                     },
                     {
                         "description": "set the 'right_control pressed' viarable used in the double-right_control-press modification above",
-                        "type": "basic",
-                        "from": {
-                            "key_code": "right_control",
-                            "modifiers": {
-                                "optional": [
-                                    "any"
-                                ]
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "right_control",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_invoked": [
+                                        {
+                                            "set_variable": {
+                                                "name": "right_control pressed",
+                                                "value": 0
+                                            }
+                                        }
+                                    ],
+                                    "to_if_canceled": [
+                                        {
+                                            "set_variable": {
+                                                "name": "right_control pressed",
+                                                "value": 0
+                                            }
+                                        }
+                                    ]
+                                }
                             }
-                        },
-                        "to": [
-                        ],
-                        "to_delayed_action": {
-                            "to_if_invoked": [
-                                {
-                                    "set_variable": {
-                                        "name": "right_control pressed",
-                                        "value": 0
-                                    }
-                                }
-                            ],
-                            "to_if_canceled": [
-                                {
-                                    "set_variable": {
-                                        "name": "right_control pressed",
-                                        "value": 0
-                                    }
-                                }
-                            ]
-                        }
+                        ]
                     },
 
                     {
