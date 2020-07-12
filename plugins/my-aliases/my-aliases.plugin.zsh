@@ -32,6 +32,7 @@ alias sai='sudo apt install'
 alias saud='sudo apt update'
 alias saug='sudo apt upgrade'
 alias sauu='sudo apt update && sudo apt upgrade'
+alias saar='sudo apt autoremove'
 alias the='vi ~/.dotfiles/config_masters/theming.zsh'
 alias thr='source ~/.dotfiles/config_masters/theming.zsh'
 alias top='htop'
@@ -80,6 +81,7 @@ alias profcap="zprof >~/.tmp/zprof.txt"
 alias profe="vi ~/.tmp/zprof.txt"
 
 # Programming
+alias loopcmd='ag -l |entr -c'
 alias testloop='ag -l --python |entr pytest'
 alias jpl='cd ~/Documents/GitHub/JupyterNotebooks && jupyter-lab --no-browser'
 
