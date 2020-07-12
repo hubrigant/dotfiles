@@ -1,12 +1,12 @@
 set runtimepath^='~/.vim' runtimepath+='~/.vim/after'
 let &packpath = &runtimepath
 
-if has ('autocmd') " Remain compatible with earlier versions
-    augroup vimrc     " Source vim configuration upon save
-    autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
-    autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
-augroup END
-endif " has autocmd
+" if has ('autocmd') " Remain compatible with earlier versions
+"     augroup vimrc     " Source vim configuration upon save
+"     autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
+"     autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
+" augroup END
+" endif " has autocmd
 
 
 " With a map leader it's possible to do extra key combinations
@@ -15,11 +15,11 @@ let mapleader = ";"
 
 call plug#begin()
 " Load plugins via vim-plug plugin manager
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-    silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+" if empty(glob('~/.config/nvim/autoload/plug.vim'))
+"     silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+"         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+" endif
 source ~/.bundles.vim
 call plug#end()
 
