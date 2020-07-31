@@ -20,7 +20,13 @@
                         "description": "Map right_control to mission control when it has been hit twice successively",
                         "manipulators": [
                             {
-                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "name": "right_control pressed",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "right_control",
                                     "modifiers": {
@@ -34,13 +40,7 @@
                                         "key_code": "mission_control"
                                     }
                                 ],
-                                "conditions": [
-                                    {
-                                        "type": "variable_if",
-                                        "name": "right_control pressed",
-                                        "value": 1
-                                    }
-                                ]
+                                "type": "basic"
                             }
                         ]
                     },
@@ -48,7 +48,6 @@
                         "description": "set the 'right_control pressed' viarable used in the double-right_control-press modification above",
                         "manipulators": [
                             {
-                                "type": "basic",
                                 "from": {
                                     "key_code": "right_control",
                                     "modifiers": {
@@ -57,17 +56,8 @@
                                         ]
                                     }
                                 },
-                                "to": [
-                                ],
+                                "to": [],
                                 "to_delayed_action": {
-                                    "to_if_invoked": [
-                                        {
-                                            "set_variable": {
-                                                "name": "right_control pressed",
-                                                "value": 0
-                                            }
-                                        }
-                                    ],
                                     "to_if_canceled": [
                                         {
                                             "set_variable": {
@@ -75,15 +65,22 @@
                                                 "value": 0
                                             }
                                         }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "set_variable": {
+                                                "name": "right_control pressed",
+                                                "value": 0
+                                            }
+                                        }
                                     ]
-                                }
+                                },
+                                "type": "basic"
                             }
                         ]
                     },
-
                     {
                         "description": "Map right_shift to tmux's <CTRL>-a when pressed twice",
-                        "type": "basic",
                         "manipulators": [
                             {
                                 "from": {
@@ -120,7 +117,8 @@
                                 },
                                 "type": "basic"
                             }
-                        ]
+                        ],
+                        "type": "basic"
                     }
                 ]
             },
@@ -188,22 +186,6 @@
                     "ignore": false,
                     "manipulate_caps_lock_led": false,
                     "simple_modifications": [
-                        {
-                            "from": {
-                                "key_code": "left_command"
-                            },
-                            "to": {
-                                "key_code": "left_option"
-                            }
-                        },
-                        {
-                            "from": {
-                                "key_code": "left_option"
-                            },
-                            "to": {
-                                "key_code": "left_command"
-                            }
-                        },
                         {
                             "from": {
                                 "key_code": "right_option"
@@ -371,7 +353,6 @@
                 "mouse_key_xy_scale": 100
             }
         },
-
         {
             "complex_modifications": {
                 "parameters": {
@@ -553,7 +534,7 @@
                 "delay_milliseconds_before_open_device": 1000
             },
             "selected": false,
-            "simple_modifications": [ ],
+            "simple_modifications": [],
             "virtual_hid_keyboard": {
                 "country_code": 0,
                 "mouse_key_xy_scale": 100
