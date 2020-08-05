@@ -39,14 +39,10 @@ path_array=(
 	/usr/local/lib/ruby/gems/2.6.0/bin
 	/opt/local/bin
 	/opt/local/sbin
-	/bin
-	/sbin
-	/usr/bin
-	/usr/sbin
 	${HOME}/.dotfiles/scripts
 )
 
-path=(/bin)
+path=(${HOME}/bin)
 # remove path entries that don't exist
 for dir in $path_array; do
     if [ -d $dir ]; then
