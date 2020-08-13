@@ -293,7 +293,7 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 set laststatus=2
 
 " Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+set statusline=\ %{FugitiveStatusline()}\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -469,6 +469,7 @@ let g:easytags_dynamic_files = 1
 highlight pythonFunctionTag ctermfg=blue cterm=bold
 
 map qq :qa<CR>
+map <C-W><C-W> <C-W><C-Q>
 
 " Commands to make running python code being edited easier
 set autowrite
@@ -489,3 +490,4 @@ set guicursor=n-v-c-sm:block,i-ci-ve:ver25-Cursor,r-cr-o:hor20
 
 " Enable line numbering
 set number relativenumber
+" set vimtex_compiler_program='nvm'
