@@ -14,6 +14,7 @@ path_array=(
 	${HOME}/miniconda3/condabin
 	${HOME}/miniconda3/bin
 	${HOME}/bin
+    ${HOME}/.local/bin
 	${HOME}/scripts
 	${HOME}/.gem/ruby/2.7.0
 	/usr/local/bin
