@@ -13,8 +13,9 @@ let &packpath = &runtimepath
 " like <leader>w saves the current file
 let mapleader = ";"
 
-call plug#begin()
 " Load plugins via vim-plug plugin manager
+call plug#begin()
+" Uncomment the following lines to automatically install plug.vim
 " if empty(glob('~/.config/nvim/autoload/plug.vim'))
 "     silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
 "         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
