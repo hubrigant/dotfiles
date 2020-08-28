@@ -85,9 +85,9 @@ if [ ! -d ${HOME}/dotfiles.bkup ]; then
 fi
 
 # create .config directories if they don't exist
-[ -f ${HOME}/.config/karabiner ]  && mkdir ${HOME}/.config/karabiner
-[ -f ${HOME}/.config/tmuxinator ] && mkdir ${HOME}/.config/tmuxinator
-[ -f ${HOME}/.config/nvim ] 	  && mkdir ${HOME}/.config/nvim
+[ -f ${HOME}/.config/karabiner ]  || mkdir -p ${HOME}/.config/karabiner
+[ -f ${HOME}/.config/tmuxinator ] || mkdir -p ${HOME}/.config/tmuxinator
+[ -f ${HOME}/.config/nvim ] 	  || mkdir -p ${HOME}/.config/nvim
 
 # TODO: move vim-related, non-nvim init.vim to ~/.vim
 # TODO: add coc.vim to the installation process
@@ -148,7 +148,7 @@ ln ${CONFIG_MASTERS_DIR}/zshrc                ${HOME}/.zshrc
 print -P "%B%K{green}%F{black}[*]%k%f%b Activating new configurations."
 source ${HOME}/.zshrc
 
-if 0; then
+if false; then
     print -P "%B%K{green}%F{black}[*]%k%f%b Installing Vundle plugins."
     # if /usr/local/bin/vim +PluginInstall +qall; then
     if env vim +PluginInstall +qall; then
