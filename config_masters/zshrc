@@ -6,7 +6,11 @@ if $DEBUG; then
     echo "zshrc> path: ${path}" >> ~/tmp/loginpaths.txt
 fi
 
-export TRY_THEMING=p10k
+# export TRY_THEMING=p10k
+# enable powerlevel10k's instant prompt feature
+if [[ -r ${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh ]]; then
+    source ${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh 
+fi
 
 if [ -d ${HOME}/miniconda/envs/py36 ]; then
     conda activate py36
