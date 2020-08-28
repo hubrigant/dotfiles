@@ -104,3 +104,9 @@ alias tmd='tmux detach'
 
 # Tmuxinator
 alias txst='tmuxinator start traffic'
+
+# gentoo
+alias sem='sudo emerge --ask'
+function esch() {
+	emerge --search $1 |egrep -e '^\*'
+}
