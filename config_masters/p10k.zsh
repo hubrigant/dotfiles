@@ -38,6 +38,9 @@ source ${DOTFILES}/themes/powerlevel10k/powerlevel10k.zsh-theme
     os_icon                 # os identifier
     dir                     # current directory
     vcs                     # git status
+    # second line
+    # newline
+    context
     prompt_char             # prompt symbol
   )
 
