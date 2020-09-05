@@ -8,17 +8,17 @@ call plug#begin('~/.config/nvim')
     Plug 'ervandew/supertab' " Moved out of order to the top to fix runtime error
     " Plug 'bling/vim-airline'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'xolox/vim-easytags', { 'for': ['json', 'kotlin', 'lilypond', 'markdown'] }
+    Plug 'xolox/vim-easytags', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
     Plug 'elzr/vim-json', { 'for': 'json' }
-    Plug 'davidhalter/jedi-vim', { 'for': ['json', 'kotlin', 'lilypond', 'markdown'] }
+    Plug 'davidhalter/jedi-vim', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
     Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
     Plug 'matze/vim-lilypond', { 'for': 'lilypond' }
     Plug 'itchyny/lightline.vim'
     Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
     Plug 'xolox/vim-misc'
-    Plug 'preservim/nerdcommenter', { 'for': ['json', 'kotlin', 'lilypond', 'markdown', 'vim', 'zsh'] }
+    Plug 'preservim/nerdcommenter', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown', 'vim', 'zsh', 'python'] }
     " Plug 'scrooloose/nerdtree'
     Plug 'jeffkreeftmeijer/vim-numbertoggle'
     Plug 'sirtaj/vim-openscad', { 'for': 'openscad' }
@@ -27,14 +27,14 @@ call plug#begin('~/.config/nvim')
     Plug 'tpope/vim-repeat'
     Plug 'honza/vim-snippets'
     Plug 'tpope/vim-surround'
-    Plug 'vim-syntastic/syntastic', { 'for': ['json', 'kotlin', 'lilypond', 'markdown'] }
+    Plug 'vim-syntastic/syntastic', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
     Plug 'godlygeek/tabular'
     Plug 'tmux-plugins/vim-tmux'
     Plug 'jszakmeister/vim-togglecursor'
-    Plug 'bronson/vim-trailing-whitespace', { 'for': ['json', 'kotlin', 'lilypond', 'markdown'] }
+    Plug 'bronson/vim-trailing-whitespace', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
     Plug 'lervag/vimtex', { 'for': 'tex' }
     Plug 'SirVer/ultisnips'
-    Plug 'tpope/vim-unimpaired', { 'for': ['json', 'kotlin', 'lilypond', 'markdown'] }
+    Plug 'tpope/vim-unimpaired', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
     Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
 call plug#end()
 
