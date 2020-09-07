@@ -37,3 +37,7 @@ if $DEBUG; then
     echo "zshenv> End of execution" >> ~/tmp/loginpaths.txt
     echo "--------------------------" >> ~/tmp/loginpaths.txt
 fi
+
+if [[ -f ~/perl5/perlbrew/etc/bashrc ]]; then
+    source ~/perl5/perlbrew/etc/bashrc
+fi
