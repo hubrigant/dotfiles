@@ -185,4 +185,8 @@ source ${DOTFILES}/plugins/lazy-conda/lazy-conda.plugin.zsh
 # fix up the $path list using my path plugin
 source ${DOTFILES}/plugins/my-path/my-path.plugin.zsh
 
+ export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 [[ ! -f ${HOME}/.zshrc-local ]] || source ~/.zshrc-local
