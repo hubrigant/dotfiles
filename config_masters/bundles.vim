@@ -19,7 +19,6 @@ call plug#begin('~/.config/nvim')
     Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
     Plug 'xolox/vim-misc'
     Plug 'preservim/nerdcommenter', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown', 'vim', 'zsh', 'python'] }
-    " Plug 'scrooloose/nerdtree'
     Plug 'jeffkreeftmeijer/vim-numbertoggle'
     Plug 'sirtaj/vim-openscad', { 'for': 'openscad' }
     Plug 'junegunn/vim-plug'
