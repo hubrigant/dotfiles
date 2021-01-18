@@ -18,7 +18,7 @@ call plug#begin('~/.config/nvim')
     Plug 'itchyny/lightline.vim'
     Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
     Plug 'xolox/vim-misc'
-    Plug 'preservim/nerdcommenter', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown', 'vim', 'zsh', 'python', 'yaml'] }
+    Plug 'preservim/nerdcommenter', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown', 'vim', 'zsh', 'python', 'yaml', 'tmux'] }
     Plug 'jeffkreeftmeijer/vim-numbertoggle'
     Plug 'sirtaj/vim-openscad', { 'for': 'openscad' }
     Plug 'junegunn/vim-plug'
@@ -26,14 +26,14 @@ call plug#begin('~/.config/nvim')
     Plug 'tpope/vim-repeat'
     Plug 'honza/vim-snippets'
     Plug 'tpope/vim-surround'
-    Plug 'vim-syntastic/syntastic', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown', 'yaml'] }
+    Plug 'vim-syntastic/syntastic', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown', 'yaml', 'tmux'] }
     Plug 'godlygeek/tabular'
     Plug 'tmux-plugins/vim-tmux'
     Plug 'jszakmeister/vim-togglecursor'
     Plug 'bronson/vim-trailing-whitespace', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
     Plug 'lervag/vimtex', { 'for': 'tex' }
     Plug 'SirVer/ultisnips'
-    Plug 'tpope/vim-unimpaired', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
+    Plug 'tpope/vim-unimpaired', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown', 'tmux'] }
     Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
 call plug#end()
 
