@@ -10,6 +10,12 @@ endif " has autocmd
 " like <leader>w saves the current file
 let mapleader = ";"
 
+augroup filetypedetect
+    autocmd!
+    autocmd BufRead,BufNewFile,BufReadPre,FileReadPre *.ly set ft=lilypond
+    " au! BufRead,BufNewFile *.ly        setfiletype lilypond
+augroup END
+
 " Load plugins via vim-plug plugin manager
 " if empty(glob('~/.vim/autoload/plug.vim'))
 "     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs

@@ -23,6 +23,7 @@ path_array=(
 	/usr/local/lib/ruby/gems/2.6.0/bin
 	/opt/local/bin
 	/opt/local/sbin
+    /usr/local/Cellar/bison/3.7.1/bin
 	PYTHON
 	/home/linuxbrew/.linuxbrew/bin
 	/home/linuxbrew/.linuxbrew/lib/ruby/gems/2.7.0

@@ -436,7 +436,7 @@ nmap <leader>h :GitGutterLineHighlightsToggle<CR>
 let g:airline_statusline_ontop=1
 
 " bind key to run YAPF to format Python code
-autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr><C-o>
+" autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr><C-o>
 
 " bind keys to swtich between panes with C-[hjkl], mimicing cursor movement keys
 map <C-j> <C-W>j
