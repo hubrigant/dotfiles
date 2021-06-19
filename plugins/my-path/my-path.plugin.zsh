@@ -21,6 +21,7 @@ path_array=(
 	/usr/local/sbin
 	/usr/local/opt/ruby/bin
 	/usr/local/lib/ruby/gems/2.6.0/bin
+    /usr/local/go/bin
 	/opt/local/bin
 	/opt/local/sbin
     /usr/local/Cellar/bison/3.7.1/bin
