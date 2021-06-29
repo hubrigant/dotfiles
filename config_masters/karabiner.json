@@ -17,6 +17,29 @@
                 },
                 "rules": [
                     {
+                        "description": "Map button5 to <command>] when using Safari",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": ["^com\\.apple\\.Safari$"]
+                                    }
+                                ],
+                                "from": {
+                                    "pointing_button": "button5"
+                                },
+                                "to": [
+                                        {
+                                            "key_code": "close_bracket",
+                                            "modifiers": ["left_command"]
+                                        }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Map right_control to mission control when it has been hit twice successively",
                         "manipulators": [
                             {
