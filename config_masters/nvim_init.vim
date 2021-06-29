@@ -21,7 +21,45 @@ call plug#begin()
 "         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 " endif
-source ~/.bundles.vim
+" source ~/.bundles.vim
+
+call plug#begin('~/.config/nvim')
+    " Plug 'ervandew/supertab' " Moved out of order to the top to fix runtime error
+    " Plug 'bling/vim-airline'
+    " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'xolox/vim-easytags', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
+    Plug 'tpope/vim-fugitive'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'elzr/vim-json', { 'for': 'json' }
+    Plug 'davidhalter/jedi-vim', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
+    Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
+    Plug 'matze/vim-lilypond', { 'on': 'lilypond' }
+    Plug 'itchyny/lightline.vim'
+    Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+    Plug 'xolox/vim-misc'
+    Plug 'preservim/nerdcommenter', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown', 'vim', 'zsh', 'python'] }
+    Plug 'jeffkreeftmeijer/vim-numbertoggle'
+    Plug 'sirtaj/vim-openscad', { 'for': 'openscad' }
+    Plug 'junegunn/vim-plug'
+    Plug 'klen/python-mode', { 'for': 'python' }
+    Plug 'tpope/vim-repeat'
+    Plug 'honza/vim-snippets'
+    Plug 'tpope/vim-surround'
+    Plug 'vim-syntastic/syntastic', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
+    " Plug 'godlygeek/tabular'
+    " Plug 'tmux-plugins/vim-tmux'
+    Plug 'jszakmeister/vim-togglecursor'
+    Plug 'bronson/vim-trailing-whitespace', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
+    Plug 'lervag/vimtex', { 'for': 'tex' }
+    " Plug 'SirVer/ultisnips'
+    Plug 'tpope/vim-unimpaired', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
+    Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
+call plug#end()
+
+"set jedi-vim options
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#popup_on_dot = 0
+" let g:jedi#completions_command <C-A-space>
 call plug#end()
 
 " Use ag with the ack.vim plugin
@@ -92,8 +130,8 @@ nmap <leader>w :w!<cr>
 " Avoid garbled characters in Chinese language windows OS
 let $LANG='en'
 set langmenu=en
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
+" source $VIMRUNTIME/delmenu.vim
+" source $VIMRUNTIME/menu.vim
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc

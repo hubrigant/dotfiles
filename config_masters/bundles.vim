@@ -5,9 +5,9 @@
 " endif
 
 call plug#begin('~/.config/nvim')
-    Plug 'ervandew/supertab' " Moved out of order to the top to fix runtime error
+    " Plug 'ervandew/supertab' " Moved out of order to the top to fix runtime error
     " Plug 'bling/vim-airline'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'xolox/vim-easytags', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
