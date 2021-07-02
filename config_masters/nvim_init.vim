@@ -243,8 +243,7 @@ catch
 endtry
 
 " Return to last edit position when opening files
-au BufReadPost * if line("'\"") > 1 && Line("'\"") <= line("$") |exe "normal! g'\"" | endif
-
+au BufReadPost * if line("'\"") >1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
  
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Status line
@@ -416,7 +415,6 @@ nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>3jwf>a
 
 call plug#begin('~/.config/nvim')
     Plug 'ervandew/supertab' " Moved out of order to the top to fix runtime error
-    " Plug 'bling/vim-airline'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'xolox/vim-easytags', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
     Plug 'tpope/vim-fugitive'
@@ -438,11 +436,10 @@ call plug#begin('~/.config/nvim')
     Plug 'tpope/vim-surround'
     Plug 'vim-syntastic/syntastic', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
     Plug 'godlygeek/tabular'
-    " Plug 'tmux-plugins/vim-tmux'
     Plug 'jszakmeister/vim-togglecursor'
     Plug 'bronson/vim-trailing-whitespace', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
     Plug 'lervag/vimtex', { 'for': 'tex' }
-    " Plug 'SirVer/ultisnips'
+    Plug 'SirVer/ultisnips'
     Plug 'tpope/vim-unimpaired', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
     Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
 call plug#end()
@@ -526,4 +523,3 @@ map qq :qa<CR>
  " Enable line numbering
  set number relativenumber
  " set vimtex_compiler_program='nvm'
-
