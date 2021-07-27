@@ -19,12 +19,15 @@ path_array=(
 	${HOME}/.gem/ruby/2.7.0
 	/usr/local/bin
 	/usr/local/sbin
+    /usr/local/opt/bison/bin
 	/usr/local/opt/ruby/bin
+    /usr/local/opt/texinfo/bin
 	/usr/local/lib/ruby/gems/2.6.0/bin
     /usr/local/go/bin
 	/opt/local/bin
 	/opt/local/sbin
     /usr/local/Cellar/bison/3.7.1/bin
+    /Library/TeX/texbin
 	PYTHON
 	/home/linuxbrew/.linuxbrew/bin
 	/home/linuxbrew/.linuxbrew/lib/ruby/gems/2.7.0
