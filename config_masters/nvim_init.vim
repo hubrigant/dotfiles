@@ -1,5 +1,14 @@
 " enter the current millenium
 set nocompatible
+set number
+set title
+set showcmd
+set scrolloff=10
+set shell=zsh
+
+if has('nvim')
+    set inccommand=split
+endif
 
 set history=500
 syntax enable
@@ -157,7 +166,7 @@ if has("gui_running")
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
+set encoding=utf-8
 
 " Use Unix as the hstandard file type
 set ffs=unix,dos,mac
@@ -392,8 +401,8 @@ let g:netrw_banner=0		" disable annoying banner
 let g:netrw_browse_split=4	" open in prior window
 let g:netrw_altv=1		" open splits to the right
 let g:netrw_liststyle=3		" tree view
-let g:netrw_list_hide=netrw_gitignore#Hide()
-let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+" let g:netrw_list_hide=netrw_gitignore#Hide()
+" let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 " Now we can
 " - :edit a folder to open the file browser
@@ -416,6 +425,7 @@ nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>3jwf>a
 call plug#begin('~/.config/nvim')
     Plug 'ervandew/supertab' " Moved out of order to the top to fix runtime error
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'windwp/nvim-autopairs'
     Plug 'xolox/vim-easytags', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
@@ -423,24 +433,30 @@ call plug#begin('~/.config/nvim')
     Plug 'davidhalter/jedi-vim', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
     Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
     Plug 'matze/vim-lilypond', { 'on': 'lilypond' }
-    Plug 'itchyny/lightline.vim'
+    " Plug 'itchyny/lightline.vim'
+    Plug 'hoob3rt/lualine.nvim'
     Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
     Plug 'xolox/vim-misc'
     Plug 'preservim/nerdcommenter', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown', 'vim', 'zsh', 'python'] }
     Plug 'jeffkreeftmeijer/vim-numbertoggle'
     Plug 'sirtaj/vim-openscad', { 'for': 'openscad' }
+    Plug 'nvim-lua/plenary.nvim'
     Plug 'junegunn/vim-plug'
     Plug 'klen/python-mode', { 'for': 'python' }
     Plug 'tpope/vim-repeat'
     Plug 'honza/vim-snippets'
+    Plug 'tweekmonster/startuptime.vim'
     Plug 'tpope/vim-surround'
     Plug 'vim-syntastic/syntastic', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
     Plug 'godlygeek/tabular'
+    Plug 'nvim-telescope/telescope.nvim'
     Plug 'jszakmeister/vim-togglecursor'
     Plug 'bronson/vim-trailing-whitespace', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
+    Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
     Plug 'lervag/vimtex', { 'for': 'tex' }
     Plug 'SirVer/ultisnips'
     Plug 'tpope/vim-unimpaired', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
+    Plug 'kyazdani42/nvim-web-devicons'
     Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
 call plug#end()
 
@@ -501,7 +517,7 @@ let g:jedi#popup_on_dot = 0
  highlight pythonFunctionTag ctermfg=blue cterm=bold
 
 map qq :qa<CR>
- map <C-W><C-W> <C-W><C-Q>
+map <C-W><C-W> <C-W><C-Q>
 
  " Commands to make running python code being edited easier
  set autowrite
@@ -523,3 +539,46 @@ map qq :qa<CR>
  " Enable line numbering
  set number relativenumber
  " set vimtex_compiler_program='nvm'
+
+ if has("unix")
+     let s:uname = system("uname -s")
+     " Do Mac stuff
+     if s:uname == "Darwin\n"
+         set clipboard+=unnamedplus
+     endif
+ endif
+
+"### Lua-based configurations
+lua <<EOF
+require 'lualine'.setup {
+    options = {
+    icons_enabled = true,
+    theme = 'gruvbox',
+    component_separators = {'', ''},
+    section_separators = {'', ''},
+    disabled_filetypes = {}
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {}
+}
+
+require 'nvim-web-devicons'.get_icons()
+
+require('nvim-autopairs').setup{}
+EOF
