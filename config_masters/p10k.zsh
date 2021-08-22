@@ -92,7 +92,7 @@ source ${DOTFILES}/themes/powerlevel10k/powerlevel10k.zsh-theme
     # swap                  # used swap
     # todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
     # timewarrior             # timewarrior tracking status (https://timewarrior.net/)
-    # time                    # current time
+    time                    # current time
     # ip                    # ip address and bandwidth usage for a specified network interface
     # public_ip             # public IP address
     # proxy                 # system-wide http/https/ftp proxy
@@ -1279,10 +1279,11 @@ source ${DOTFILES}/themes/powerlevel10k/powerlevel10k.zsh-theme
   typeset -g POWERLEVEL9K_TIME_FOREGROUND=66
   # Format for the current time: 09:51:02. See `man 3 strftime`.
   typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'
+  # typeset -g POWERLEVEL9K_TIME_FORMAT='%T %d %e'
   # If set to true, time will update when you hit enter. This way prompts for the past
   # commands will contain the start times of their commands as opposed to the default
   # behavior where they contain the end times of their preceding commands.
-  typeset -g POWERLEVEL9K_TIME_UPDATE_ON_COMMAND=false
+  typeset -g POWERLEVEL9K_TIME_UPDATE_ON_COMMAND=true
   # Custom icon.
   typeset -g POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION=
   # Custom prefix.
@@ -1327,8 +1328,10 @@ source ${DOTFILES}/themes/powerlevel10k/powerlevel10k.zsh-theme
   #   - always:   Trim down prompt when accepting a command line.
   #   - same-dir: Trim down prompt when accepting a command line unless this is the first command
   #               typed after changing current working directory.
-  typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=always
+  typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=off
 
+  # Only display prompt at bottom of the screen
+  printf '\n%.0s' {1..100}
   # Instant prompt mode.
   #
   #   - off:     Disable instant prompt. Choose this if you've tried instant prompt and found
@@ -1339,7 +1342,7 @@ source ${DOTFILES}/themes/powerlevel10k/powerlevel10k.zsh-theme
   #   - verbose: Enable instant prompt and print a warning when detecting console output during
   #              zsh initialization. Choose this if you've never tried instant prompt, haven't
   #              seen the warning, or if you are unsure what this all means.
-  typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
+  typeset -g POWERLEVEL9K_INSTANT_PROMPT=verbosoffe
 
   # Hot reload allows you to change POWERLEVEL9K options after Powerlevel10k has been initialized.
   # For example, you can type POWERLEVEL9K_BACKGROUND=red and see your prompt turn red. Hot reload
