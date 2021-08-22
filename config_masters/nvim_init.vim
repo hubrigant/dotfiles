@@ -424,7 +424,7 @@ nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>3jwf>a
 
 call plug#begin('~/.config/nvim')
     Plug 'ervandew/supertab' " Moved out of order to the top to fix runtime error
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'windwp/nvim-autopairs'
     Plug 'xolox/vim-easytags', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
     Plug 'tpope/vim-fugitive'
