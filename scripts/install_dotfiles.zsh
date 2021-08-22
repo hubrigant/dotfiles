@@ -85,6 +85,7 @@ if [ ! -d ${HOME}/dotfiles.bkup ]; then
 fi
 
 # create .config directories if they don't exist
+[ -f ${HOME}/.config/alacritty ]  || mkdir -p ${HOME}/.config/alacritty
 [ -f ${HOME}/.config/karabiner ]  || mkdir -p ${HOME}/.config/karabiner
 [ -f ${HOME}/.config/tmuxinator ] || mkdir -p ${HOME}/.config/tmuxinator
 [ -f ${HOME}/.config/nvim ] 	  || mkdir -p ${HOME}/.config/nvim
@@ -92,6 +93,7 @@ fi
 # TODO: move vim-related, non-nvim init.vim to ~/.vim
 # TODO: add coc.vim to the installation process
 print -P "%B%K{green}%F{black}[*]%k%f%b Backing up old home-dir dot files before creating links"
+[ -f ${HOME}/.bundles.vim ]                     && mv ${HOME}/.bundles.vim                     ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.bundles.vim ]                     && mv ${HOME}/.bundles.vim                     ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.config/karabiner/karabiner.json ] && mv ${HOME}/.config/karabiner/karabiner.json ${HOME}/dotfiles.bkup >/dev/null 2>&1
 [ -f ${HOME}/.config/nvim/init.vim ]    	&& mv ${HOME}/.config/nvim/init.vim 	       ${HOME}/dotfiles.bkup >/dev/null 2>&1
@@ -110,6 +112,7 @@ print -P "%B%K{green}%F{black}[*]%k%f%b Backing up old home-dir dot files before
 
 print -P "%B%K{green}%F{black}[*]%k%f%b Removing old home-dir dot files."
 [ -f ${HOME}/.bundles.vim ]                     && rm ${HOME}/.bundles.vim
+[ -f ${HOME}/.config/alacritty/alacritty.yml ] && rm ${HOME}/.config/alacritty/alacritty.yml
 [ -f ${HOME}/.config/karabiner/karabiner.json ] && rm ${HOME}/.config/karabiner/karabiner.json
 [ -f ${HOME}/.config/nvim/init.vim ] 		&& rm ${HOME}/.config/nvim/init.vim
 [ -f ${HOME}/.config/tmuxinator/dev.yml ]       && rm ${HOME}/.config/tmuxinator/dev.yml
@@ -129,6 +132,7 @@ print -P "%B%K{green}%F{black}[*]%k%f%b Removing old home-dir dot files."
 # link new dot files
 print -P "%B%K{green}%F{black}[*]%k%f%b Creating hard links of dot files"
 ln ${CONFIG_MASTERS_DIR}/bundles.vim          ${HOME}/.bundles.vim
+ln ${CONFIG_MASTERS_DIR}/alacritty.yml        ${HOME}/.config/alacritty/alacritty.yml
 ln ${CONFIG_MASTERS_DIR}/dev.yml              ${HOME}/.config/tmuxinator/dev.yml
 ln ${CONFIG_MASTERS_DIR}/gitconfig            ${HOME}/.gitconfig
 ln ${CONFIG_MASTERS_DIR}/gitignore_global     ${HOME}/.gitignore_global
