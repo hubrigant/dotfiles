@@ -434,6 +434,8 @@ call plug#begin('~/.config/nvim')
     Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
     Plug 'matze/vim-lilypond', { 'on': 'lilypond' }
     " Plug 'itchyny/lightline.vim'
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'glepnir/lspsaga.nvim'
     Plug 'hoob3rt/lualine.nvim'
     Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
     Plug 'xolox/vim-misc'
@@ -581,4 +583,6 @@ require 'lualine'.setup {
 require 'nvim-web-devicons'.get_icons()
 
 require('nvim-autopairs').setup{}
+
+require'lspconfig'.pyright.setup{}
 EOF
