@@ -37,9 +37,9 @@ window:
   #
   # Specified in number of pixels.
   # If the position is not set, the window manager will handle the placement.
-  position:
-    x: 500
-    y: 300
+  # position:
+  #   x: 500
+  #   y: 300
 
   # Window padding (changes require restart)
   #
@@ -104,16 +104,16 @@ window:
 # Font configuration
 font:
   normal:
-    family: Monofur Nerd Font
+    family: Monofur NF
       # style: Regular
   bold:
-    family: MonofurBold Nerd Font
+    family: MonofurBold NF
     style: Bold
   italic:
-    family: MonofurItalic Nerd Font
+    family: MonofurItalic NF
     style: Italic
   bolditalic:
-    family: MonofurItalic Nerd Font
+    family: MonofurItalic NF
     style: Italic
 
   # =>
@@ -326,7 +326,9 @@ bell:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.9
+## background.opacity is depricated, window.opacity is the new option
+# background_opacity: 0.9
+  opacity: 0.2
 
 #selection:
   # This string contains all characters that are used as separators for
