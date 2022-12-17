@@ -12,9 +12,9 @@ if [[ -r ${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh ]]; 
     source ${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh 
 fi
 
-if [ -d ${HOME}/miniconda/envs/py36 ]; then
-    conda activate py36
-fi
+# if [ -d ${HOME}/miniconda/envs/py36 ]; then
+#     conda activate py36
+# fi
 
 # begin section 1
 # This first section adapted from https://www.outcoldman.com/en/archive/2015/09/13/keep-your-sh-together/
@@ -123,27 +123,27 @@ if [ -f ~/.machinerc ]; then
 fi
 
 # Switch between different python installations
-switch_python() {
-    echo "SP Start"
-    if [[ $0 == "local" ]]; then
-        echo "ARG local"
-        PATH=${PATH:s/.+PYTHON/\/usr\/local\/bin:PYTHON/}
-    elif [[ $0 == 'conda' ]]; then
-        echo "ARG conda"
-        if [[ $PATH =~ "anaconda" ]]; then
-            echo "Found anaconda in PATH"
-            PATH=${PATH:s/.+PYTHON/\/anaconda3\/bin\/:PYTHON/}
-        elif [[ $PATH =~ "miniconda3" ]]; then
-            echo "Found miniconda3 in PATH"
-            PATH=${PATH:s/.+PYTHON/${HOME}\/miniconda3\/bin:PYTHON/}
-        else
-            echo "Didn't find others, so presuming miniconda"
-            PATH=${PATH:s/.+PYTHON/${HOME}\/miniconda\/bin:PYTHON/}}
-        fi
-    fi
-    echo $PATH
-    echo $(which python)
-}
+# switch_python() {
+#     echo "SP Start"
+#     if [[ $0 == "local" ]]; then
+#         echo "ARG local"
+#         PATH=${PATH:s/.+PYTHON/\/usr\/local\/bin:PYTHON/}
+#     elif [[ $0 == 'conda' ]]; then
+#         echo "ARG conda"
+#         if [[ $PATH =~ "anaconda" ]]; then
+#             echo "Found anaconda in PATH"
+#             PATH=${PATH:s/.+PYTHON/\/anaconda3\/bin\/:PYTHON/}
+#         elif [[ $PATH =~ "miniconda3" ]]; then
+#             echo "Found miniconda3 in PATH"
+#             PATH=${PATH:s/.+PYTHON/${HOME}\/miniconda3\/bin:PYTHON/}
+#         else
+#             echo "Didn't find others, so presuming miniconda"
+#             PATH=${PATH:s/.+PYTHON/${HOME}\/miniconda\/bin:PYTHON/}}
+#         fi
+#     fi
+#     echo $PATH
+#     echo $(which python)
+# }
 
 # Load direnv, which hopefully will speed up prompt generation
 # export DIRENV_LOG_FORMAT=
