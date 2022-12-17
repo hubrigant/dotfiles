@@ -427,6 +427,7 @@ call plug#begin('~/.config/nvim')
     " Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'windwp/nvim-autopairs'
     Plug 'xolox/vim-easytags', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
+    Plug 'easymotion/vim-easymotion'
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
     Plug 'elzr/vim-json', { 'for': 'json' }
@@ -456,7 +457,7 @@ call plug#begin('~/.config/nvim')
     Plug 'bronson/vim-trailing-whitespace', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
     Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
     Plug 'lervag/vimtex', { 'for': 'tex' }
-    Plug 'SirVer/ultisnips'
+    " Plug 'SirVer/ultisnips'
     Plug 'tpope/vim-unimpaired', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'avakhov/vim-yaml', { 'for': 'yaml' }
