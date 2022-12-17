@@ -50,6 +50,7 @@ alias zx='exec /usr/local/bin/zsh'
 alias bi='brew install'
 alias bd='brew doctor'
 alias diskutil='diskUtil'
+alias eject='diskUtil eject'
 function buc(){
     rm -rf ~/.vim/bundle
     vundle-init
