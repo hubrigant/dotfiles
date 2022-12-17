@@ -8,11 +8,11 @@ typeset -U path
 
 # add all of the possible paths
 path_array=(
-    /anaconda3/bin
-	${HOME}/anaconda3/bin
-	${HOME}/miniconda3/bin
-	${HOME}/miniconda3/condabin
-	${HOME}/miniconda3/bin
+    /anaconda3a/bin
+	${HOME}/anaconda3a/bin
+	${HOME}/miniconda3a/bin
+	${HOME}/miniconda3a/condabin
+	${HOME}/miniconda3a/bin
 	${HOME}/bin
     ${HOME}/.local/bin
 	${HOME}/scripts
