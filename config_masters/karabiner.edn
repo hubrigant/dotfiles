@@ -1,0 +1,53 @@
+;; edn spec https://github.com/edn-format/edn
+{
+ :simlayers {
+              :equals-mode {:key :f12}
+            },
+
+ :main
+    [
+
+       {:des "Swap caps lock and ESC"
+          :rules [
+             [:caps_lock :escape]
+             [:escape :caps_lock]
+          ]
+       }
+
+       {:des "Make mouse button6 trigger mission control"
+         :rules [[:button6 :mission_control]]
+       }
+
+       {:des "Pressing right-shift by itself triggers mission control"
+         :rules [
+                  [
+                    :right_shift :right_shift nil
+                    {:alone [:right_shift :mission_control]}
+                  ]
+                ]
+       }
+
+       {:des   "Press right_shift twice to enter double shift mode, press right_shift once to leave it"
+           :rules [
+                     [:right_shift ["double-right-shift-mode" 1] ["shift-pressed-once" 1]]
+                     [:right_shift [:right_shift ["shift-pressed-once" 1]] ["double-right-shift-mode" 0] {:delayed {:invoked ["shift-pressed-once" 0] :canceled ["shift-pressed-once" 0]}}]
+                     :double-right-shift-mode
+                       [:right_shift ["double-right-shift-mode" 0]]
+                       [:a "say 'know we are in double shift mode'"]
+                  ]
+       }
+
+       {:des "sleep when pressing '-' in equals-mode"
+        :rules [:equals-mode
+                 [:f11 :!COeject]
+               ]
+       }
+
+       {:des "sleep when pressing 'insert'"
+          :rules [
+                    [:insert :!COeject]
+                 ]
+       }
+
+    ]
+}
