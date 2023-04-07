@@ -51,6 +51,7 @@ alias bi='brew install'
 alias bd='brew doctor'
 alias diskutil='diskUtil'
 alias eject='diskUtil eject'
+alias python='python3'
 function buc(){
     rm -rf ~/.vim/bundle
     vundle-init
