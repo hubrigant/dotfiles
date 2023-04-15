@@ -92,7 +92,7 @@ window:
   # Override the variant of the GTK theme. Commonly supported values are `dark`
   # and `light`. Set this to `None` to use the default theme variant.
   #gtk_theme_variant: None
-  opacity: 0.9
+  opacity: 0.8
 
 #scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -396,6 +396,14 @@ live_config_reload: true
 #  program: /bin/bash
 #  args:
 #    - --login
+shell:
+  program: /bin/tmux
+  args:
+    - new-session
+    - -A
+    - -D
+    - -s
+    - main
 
 # Startup directory
 #
