@@ -178,6 +178,8 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+conda activate
+
 # instead of using the miniconda loading above immediately
 # use a plugin to lazy-load conda
 # source ${DOTFILES}/plugins/lazy-conda/lazy-conda.plugin.zsh
