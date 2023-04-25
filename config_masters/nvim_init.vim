@@ -455,7 +455,7 @@ call plug#begin('~/.config/nvim')
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'jszakmeister/vim-togglecursor'
     Plug 'bronson/vim-trailing-whitespace', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
-    Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+    " Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
     Plug 'lervag/vimtex', { 'for': 'tex' }
     " Plug 'SirVer/ultisnips'
     Plug 'tpope/vim-unimpaired', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
@@ -583,7 +583,7 @@ require 'lualine'.setup {
 
 require 'nvim-web-devicons'.get_icons()
 
-require('nvim-autopairs').setup{}
+-- require('nvim-autopairs').setup{}
 
 require'lspconfig'.pyright.setup{}
 EOF
