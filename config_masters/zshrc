@@ -12,10 +12,6 @@ if [[ -r ${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh ]]; 
     source ${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh 
 fi
 
-# if [ -d ${HOME}/miniconda/envs/py36 ]; then
-#     conda activate py36
-# fi
-
 # begin section 1
 # This first section adapted from https://www.outcoldman.com/en/archive/2015/09/13/keep-your-sh-together/
 
@@ -122,29 +118,6 @@ if [ -f ~/.machinerc ]; then
     source ~/.machinerc
 fi
 
-# Switch between different python installations
-# switch_python() {
-#     echo "SP Start"
-#     if [[ $0 == "local" ]]; then
-#         echo "ARG local"
-#         PATH=${PATH:s/.+PYTHON/\/usr\/local\/bin:PYTHON/}
-#     elif [[ $0 == 'conda' ]]; then
-#         echo "ARG conda"
-#         if [[ $PATH =~ "anaconda" ]]; then
-#             echo "Found anaconda in PATH"
-#             PATH=${PATH:s/.+PYTHON/\/anaconda3\/bin\/:PYTHON/}
-#         elif [[ $PATH =~ "miniconda3" ]]; then
-#             echo "Found miniconda3 in PATH"
-#             PATH=${PATH:s/.+PYTHON/${HOME}\/miniconda3\/bin:PYTHON/}
-#         else
-#             echo "Didn't find others, so presuming miniconda"
-#             PATH=${PATH:s/.+PYTHON/${HOME}\/miniconda\/bin:PYTHON/}}
-#         fi
-#     fi
-#     echo $PATH
-#     echo $(which python)
-# }
-
 # Load direnv, which hopefully will speed up prompt generation
 # export DIRENV_LOG_FORMAT=
 # eval "$(direnv hook zsh)"
@@ -162,27 +135,6 @@ if $DEBUG; then
     echo "zshrc> End of execution" >> ~/tmp/loginpaths.txt
     echo "-------------------------" >> ~/tmp/loginpaths.txt
 fi
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/jon/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/jon/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/jon/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/jon/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-conda activate
-
-# instead of using the miniconda loading above immediately
-# use a plugin to lazy-load conda
-# source ${DOTFILES}/plugins/lazy-conda/lazy-conda.plugin.zsh
 
 # fix up the $path list using my path plugin
 source ${DOTFILES}/plugins/my-path/my-path.plugin.zsh
