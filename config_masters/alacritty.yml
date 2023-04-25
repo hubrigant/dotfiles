@@ -397,8 +397,9 @@ live_config_reload: true
 #  args:
 #    - --login
 shell:
-  program: /bin/tmux
+  program: /usr/bin/env
   args:
+    - tmux
     - new-session
     - -A
     - -D
