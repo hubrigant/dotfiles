@@ -12,7 +12,7 @@ path_array=(
 	${HOME}/anaconda3a/bin
 	${HOME}/miniconda3a/bin
 	${HOME}/miniconda3a/condabin
-	${HOME}/miniconda3a/bin
+	${HOME}/miniconda3/bin
 	${HOME}/bin
     ${HOME}/.local/bin
 	${HOME}/scripts
