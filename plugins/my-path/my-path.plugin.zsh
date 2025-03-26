@@ -45,6 +45,7 @@ path_array=(
 	/usr/local/lib/ruby/gems/2.6.0/bin
 	/opt/local/bin
 	/opt/local/sbin
+    /opt/sublime_text
 	${HOME}/.dotfiles/scripts
 )
 
