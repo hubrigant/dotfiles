@@ -15,6 +15,7 @@ alias ine='nvim ~/.dotfiles/scripts/install_dotfiles.zsh'
 alias inr='~/.dotfiles/scripts/install_dotfiles.zsh'
 alias jd='j dotfile'
 alias jl='jupyter-lab'
+alias less='less -R'
 if [[ ${OSTYPE} =~ ".*arwin.*" ]]
 then
 	alias ls='ls -FG'
