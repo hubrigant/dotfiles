@@ -59,9 +59,9 @@ set autoread
 let mapleader = ";"
 
 " Use ag with the ack.vim plugin
-if executable('ag')
-	let g:ackprg = 'ag --vimgrep'
-endif
+" if executable('ag')
+"     let g:ackprg = 'ag --vimgrep'
+" endif
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -260,7 +260,7 @@ au BufReadPost * if line("'\"") >1 && line("'\"") <= line("$") | exe "normal! g'
 " Always show the status line
 set laststatus=2
 
-set statusline=\ %{FugitiveStatusline()}\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+" set statusline=\ %{FugitiveStatusline()}\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -424,38 +424,49 @@ nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>3jwf>a
 
 call plug#begin('~/.config/nvim')
     Plug 'ervandew/supertab' " Moved out of order to the top to fix runtime error
+    " Removed in preference of LSP
     " Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'windwp/nvim-autopairs'
+    " I don't ever use this
+    " Plug 'windwp/nvim-autopairs'
     Plug 'xolox/vim-easytags', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
     Plug 'easymotion/vim-easymotion'
-    Plug 'tpope/vim-fugitive'
+    " I don't do git commands from within nvim, so no point in having the plugin
+    " Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
+    Plug 'lukas-reineke/indent-blankline.nvim' ", { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown']}
     Plug 'elzr/vim-json', { 'for': 'json' }
-    Plug 'davidhalter/jedi-vim', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
-    Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
+    " Removing this in preference of LSP
+    " Plug 'davidhalteloadr/jedi-vim', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
+    Plug 'davidhalteloadr/jedi-vim', { 'for': ['json', 'kotlin', 'lilypond', 'markdown'] }
+    " I don't program kotlin anymore
+    " Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
     Plug 'matze/vim-lilypond', { 'on': 'lilypond' }
-    " Plug 'itchyny/lightline.vim'
     Plug 'neovim/nvim-lspconfig'
     Plug 'glepnir/lspsaga.nvim'
     Plug 'hoob3rt/lualine.nvim'
     Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
     Plug 'xolox/vim-misc'
     Plug 'preservim/nerdcommenter', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown', 'vim', 'zsh', 'python', 'yaml'] }
-    Plug 'jeffkreeftmeijer/vim-numbertoggle'
+    " I don't ever use this
+    " Plug 'jeffkreeftmeijer/vim-numbertoggle'
     Plug 'sirtaj/vim-openscad', { 'for': 'openscad' }
     Plug 'nvim-lua/plenary.nvim'
     Plug 'junegunn/vim-plug'
-    Plug 'klen/python-mode', { 'for': 'python' }
-    Plug 'tpope/vim-repeat'
+    " removing this in preference of LSP
+    " Plug 'klen/python-mode', { 'for': 'python' }
+    " I don't ever use this
+    " Plug 'tpope/vim-repeat'
     Plug 'honza/vim-snippets'
     Plug 'tweekmonster/startuptime.vim'
     Plug 'tpope/vim-surround'
-    Plug 'vim-syntastic/syntastic', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
+    " syntastic is no longer supported
+    " Plug 'vim-syntastic/syntastic', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
     Plug 'godlygeek/tabular'
     Plug 'nvim-telescope/telescope.nvim'
-    Plug 'jszakmeister/vim-togglecursor'
+    " probably doesn't work in the terminals I use. Don't remember why I added it in the first place.
+    " Plug 'jszakmeister/vim-togglecursor'
     Plug 'bronson/vim-trailing-whitespace', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
-    " Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+    Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
     Plug 'lervag/vimtex', { 'for': 'tex' }
     " Plug 'SirVer/ultisnips'
     Plug 'tpope/vim-unimpaired', { 'for': ['python', 'json', 'kotlin', 'lilypond', 'markdown'] }
@@ -464,8 +475,8 @@ call plug#begin('~/.config/nvim')
 call plug#end()
 
 "set jedi-vim options
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#popup_on_dot = 0
+" let g:jedi#auto_vim_configuration = 0
+" let g:jedi#popup_on_dot = 0
 " let g:jedi#completions_command <C-A-space>
 
 " map F8 to toggle the tagbar pluggin
@@ -486,7 +497,7 @@ let g:jedi#popup_on_dot = 0
  nmap <leader>h :GitGutterLineHighlightsToggle<CR>
 
  " put airline on top instead of bottom
- let g:airline_statusline_ontop=1
+ " let g:airline_statusline_ontop=1
 
  " bind keys to swtich between panes with C-[hjkl], mimicing cursor movement keys
  map <C-j> <C-W>j
@@ -503,16 +514,16 @@ let g:jedi#popup_on_dot = 0
  set cursorline
 
  " PyMode settings
- let g:pymode_python = 'python3'     " Use Python 3 syntax
- let g:pymode_rope = 1               " turn on pymode's use of rope
- let g:pymode_lint_ignore = ["missing-docstring"]
+" et g:pymode_python = 'python3'     " Use Python 3 syntax
+"  let g:pymode_rope = 1               " turn on pymode's use of rope
+"  let g:pymode_lint_ignore = ["missing-docstring"]
 
  " vim-mucomplete settings
- set completeopt+=noselect
- set shortmess+=c " Shut off completion messages
- set belloff+=ctrlg " stop Vim from beeping all the time during autocompletion
- let g:mucomplete#enable_auto_at_startup = 1
- let g:mucomplete#completion_delay = 1
+ " set completeopt+=noselect
+ " set shortmess+=c " Shut off completion messages
+ " set belloff+=ctrlg " stop Vim from beeping all the time during autocompletion
+ " let g:mucomplete#enable_auto_at_startup = 1
+ " let g:mucomplete#completion_delay = 1
 
  " easytags settings test
  set tags=./.tags
@@ -553,6 +564,10 @@ map <C-W><C-W> <C-W><C-Q>
 
 "### Lua-based configurations
 lua <<EOF
+
+-- Set up the indent indicator plugin stuff
+require("ibl").setup()
+
 require 'lualine'.setup {
     options = {
     icons_enabled = true,
@@ -581,7 +596,7 @@ require 'lualine'.setup {
   extensions = {}
 }
 
-require 'nvim-web-devicons'.get_icons()
+require('nvim-web-devicons').get_icons()
 
 -- require('nvim-autopairs').setup{}
 
