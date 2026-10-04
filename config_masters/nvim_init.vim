@@ -600,5 +600,6 @@ require('nvim-web-devicons').get_icons()
 
 -- require('nvim-autopairs').setup{}
 
-require'lspconfig'.pyright.setup{}
+-- require'lspconfig'.pyright.setup{}
+vim.lsp.enable('pyright')
 EOF
