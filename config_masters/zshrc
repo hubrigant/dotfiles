@@ -1,4 +1,7 @@
 DEBUG=${DEBUG:-false}
+
+[[ -s /Users/jon/.autojump/etc/profile.d/autojump.sh ]] && source /Users/jon/.autojump/etc/profile.d/autojump.sh
+
 if $DEBUG; then
     echo "-------------------------" >> ~/tmp/loginpaths.txt
     echo "zshrc> Start of execution" >> ~/tmp/loginpaths.txt
